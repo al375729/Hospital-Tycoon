@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid 
+public class Grid
 {
     private int filas;
     private int columnas;
-    private int[,] cuadricula;
+    public int[,] cuadricula;
     private float tamañoCelda;
 
 
@@ -19,32 +19,17 @@ public class Grid
 
         this.tamañoCelda = tamañoCelda;
 
-        for(int i = 0; i< cuadricula.GetLength(0); i++)
-        {
-            for (int j = 0; j < cuadricula.GetLength(1) ; j++) 
-            {
-                GameObject Texto = new GameObject("Texto", typeof(TextMesh));
-                TextMesh texto = Texto.GetComponent<TextMesh>();
-
-                texto.transform.position = GetWorldPosition(i,j) + new Vector3(tamañoCelda,tamañoCelda)*0.5f;
-                texto.text = cuadricula[i, j].ToString();
-                texto.alignment = TextAlignment.Center;
-                texto.color = Color.white;
-
-                //Debug.Log(cuadricula[i,j].ToString());
-
-                Debug.DrawLine(GetWorldPosition(i, j), GetWorldPosition(i, j + 1), Color.white, 100f);
-                Debug.DrawLine(GetWorldPosition(i, j), GetWorldPosition(i +1, j), Color.white, 100f);
-            }
-        }
-        Debug.DrawLine(GetWorldPosition(0, columnas), GetWorldPosition(filas, columnas), Color.white, 100f);
-        Debug.DrawLine(GetWorldPosition(filas, 0), GetWorldPosition(filas, columnas), Color.white, 100f);
+       
     }
 
-
-    private Vector3 GetWorldPosition(int x, int y)
+    public int[,] getCuadricula() 
     {
-        return new Vector3(x, y) * tamañoCelda;
+        return cuadricula;
+    }
+
+    public Vector3 GetWorldPosition(int x, int z)
+    {
+        return new Vector3(x, 0,z) * tamañoCelda;
     }
 
     public void SetCellValue(int fila, int columna, int valor) 
@@ -70,4 +55,7 @@ public class Grid
 
         return posCuadricula;
     }
+
+    
+    
 }
