@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 221}
   m_MaxSize: {x: 8004, y: 4021}
   vertical: 0
-  controlID: 55
+  controlID: 81
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 881, y: 342}
   m_MaxSize: {x: 16006, y: 8042}
   vertical: 0
-  controlID: 36
+  controlID: 100
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -362,8 +362,8 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMin: 1
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
-    m_HSlider: 0
-    m_VSlider: 0
+    m_HSlider: 1
+    m_VSlider: 1
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -376,18 +376,18 @@ MonoBehaviour:
       y: 21
       width: 403
       height: 547
-    m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 201.5, y: 273.5}
+    m_Scale: {x: 1.2221464, y: 1.2221464}
+    m_Translation: {x: 218.10298, y: 271.14554}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -201.5
-      y: -273.5
-      width: 403
-      height: 547
+      x: -178.45897
+      y: -221.8601
+      width: 329.74774
+      height: 447.5732
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 403, y: 568}
@@ -427,7 +427,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 6afbffff
+      m_ExpandedIDs: 1402fcffd635fcff6afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -487,9 +487,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 31.670595, y: -47.983536, z: 75.01247}
+    m_Target: {x: 38.213417, y: 24.86728, z: 46.8736}
     speed: 2
-    m_Value: {x: 31.670595, y: -47.983536, z: 75.01247}
+    m_Value: {x: 38.213417, y: 24.86728, z: 46.8736}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -535,13 +535,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.3630829, y: 0.1114196, z: -0.043780297, w: 0.92403585}
+    m_Target: {x: 0.5050564, y: 0.011651093, z: -0.006818722, w: 0.8629819}
     speed: 2
-    m_Value: {x: 0.36308244, y: 0.11141947, z: -0.043780245, w: 0.9240348}
+    m_Value: {x: 0.5050559, y: 0.011651082, z: -0.0068187155, w: 0.8629811}
   m_Size:
-    m_Target: 116.7903
+    m_Target: 59.082615
     speed: 2
-    m_Value: 111.761055
+    m_Value: 56.538387
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -695,20 +695,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/ScriptableObjects/ScriptableBuildings
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/ScriptableObjects/ScriptableBuildings
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\34655\Desktop\Hospital-Tycoon
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 10340000
-    m_LastClickedID: 13328
-    m_ExpandedIDs: 000000000634000000ca9a3b
+    m_SelectedIDs: 66410000
+    m_LastClickedID: 16742
+    m_ExpandedIDs: 00000000063400004c4100006041000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -724,7 +724,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 11}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -761,24 +761,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 50320000
-    m_LastClickedInstanceID: 12880
+    m_SelectedInstanceIDs: 2009fcff
+    m_LastClickedInstanceID: -259808
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300000037000004340000303400002a3400001a6400006a4d00002c380000983c0000e43a0000ee3a0000c0490000ca49000078560000b0560000e2580000f094000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Test
-      m_OriginalName: Test
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 12880
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:

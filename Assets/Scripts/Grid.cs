@@ -27,35 +27,41 @@ public class Grid
         return cuadricula;
     }
 
-    public Vector3 GetWorldPosition(int x, int z)
+    public int getFilas()
     {
-        return new Vector3(x, 0,z) * tamañoCelda;
+        return filas;
     }
 
-    public void SetCellValue(int fila, int columna, int valor) 
+    public int getColumnas()
+    {
+        return columnas;
+    }
+
+    public Vector3 GetWorldPosition(int x, int z)
+    {
+        return new Vector3(x ,0,z ) * tamañoCelda;
+    }
+
+    public void SetCellValueXZ(int fila, int columna, int valor) 
     {
         if (fila >= 0 && columna >= 0 && fila < filas && columna < columnas) 
         {
             cuadricula[fila, columna] = valor;
         }
     }
-    public void SetCellValue(Vector3 posicion, int valor)
+    public void SetCellValueWorldPos(Vector3 posicion, int valor)
     {
-        Vector2Int posicionCuadricula = GetFilaColumna(posicion);
+        int x, z;
+        GetGridPos(posicion, out x, out z);
 
-        SetCellValue(posicionCuadricula.x, posicionCuadricula.y, valor);
+
+        cuadricula[x, z] = valor;
     }
 
-    public Vector2Int GetFilaColumna(Vector3 posicion)
+    public void GetGridPos(Vector3 posicion, out int x, out int z)
     {
-        Vector2Int posCuadricula = new Vector2Int (0, 0);
-
-        posCuadricula.x = Mathf.FloorToInt(posicion.x / tamañoCelda);
-        posCuadricula.y = Mathf.FloorToInt(posicion.y / tamañoCelda);
-
-        return posCuadricula;
+        x = Mathf.FloorToInt(posicion.x / tamañoCelda);
+        z = Mathf.FloorToInt(posicion.z / tamañoCelda);
     }
 
-    
-    
 }
