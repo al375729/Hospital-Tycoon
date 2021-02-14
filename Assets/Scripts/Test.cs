@@ -15,19 +15,26 @@ public class Test : MonoBehaviour
     public TextMesh[,] gridTextMesh;
 
     public BuildingObjects building;
+
+    public  Material material;
     void Start()
     {
         grid = new Grid(filas, columnas, tamañoCelda);
         cuadricula = grid.getCuadricula();
+       
 
         gridTextMesh = new TextMesh[grid.getFilas(), grid.getColumnas()];
         Vector3 posicion = this.transform.position;
         posicion.y -= 0.2f;
         transform.position = posicion;
+
+        //dibujarCuadricula();
     }
 
 
-  void OnDrawGizmos()
+
+
+    void OnDrawGizmos()
     {
         for (int i = 0; i < cuadricula.GetLength(0); i++)
         {
@@ -36,7 +43,7 @@ public class Test : MonoBehaviour
             {
  
                 if (gridTextMesh[i,j] == null)
-                {
+                {/*
                     GameObject Texto = new GameObject("Texto", typeof(TextMesh));
                     TextMesh texto = Texto.GetComponent<TextMesh>();
                     gridTextMesh[i,j] = texto;
@@ -46,17 +53,18 @@ public class Test : MonoBehaviour
                     texto.text = cuadricula[i,j].ToString();
                     texto.alignment = TextAlignment.Center;
                     texto.color = Color.white;
+                    */
                 }
                 
                 DrawLine(grid.GetWorldPosition(i, j), grid.GetWorldPosition(i, j + 1));
                 DrawLine(grid.GetWorldPosition(i, j), grid.GetWorldPosition(i + 1, j));
 
-
+                /*
                 if (i == 0)
                 {
                     cuadricula[i, j] = 10;
                     gridTextMesh[i, j].text = cuadricula[i, j].ToString(); 
-                }
+                }*/
             }
         }
         DrawLine(grid.GetWorldPosition(0, columnas), grid.GetWorldPosition(filas, columnas));
@@ -66,10 +74,12 @@ public class Test : MonoBehaviour
 
     void DrawLine(Vector3 inicio, Vector3 fin)
     {
+        material.SetPass(0);
         GL.Begin(GL.LINES);
-        GL.Color(Color.red);
+        GL.Color(Color.black);
         GL.Vertex(inicio);
         GL.Vertex(fin);
+       
         GL.End();
     }
 
@@ -83,17 +93,20 @@ public class Test : MonoBehaviour
         {
             if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
             {
-                int x, z;
-                grid.GetGridPos(hit.point, out x, out z);
-
-                if (Constructable(building,  x,  z))
+                if (hit.transform.gameObject.tag == "Floor")
                 {
-                    
+                    int x, z;
+                    grid.GetGridPos(hit.point, out x, out z);
+
+                    //if (Constructable(building,  x,  z))
+                    //{
+
                     Instantiate(building.prefab, grid.GetWorldPosition(x + 1, z + 1), Quaternion.identity);
 
-                    setValues(building,x,z);
+                    //setValues(building,x,z);
+                    //}
                 }
-                
+
             }
         }     
     }

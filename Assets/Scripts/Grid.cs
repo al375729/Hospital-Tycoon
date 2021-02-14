@@ -18,9 +18,8 @@ public class Grid
         cuadricula = new int[filas, columnas];
 
         this.tamañoCelda = tamañoCelda;
-
-       
     }
+
 
     public int[,] getCuadricula() 
     {

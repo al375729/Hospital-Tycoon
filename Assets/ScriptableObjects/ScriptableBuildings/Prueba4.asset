@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Prueba4
   m_EditorClassIdentifier: 
   symetric: 1
-  buildingName: Prueba4
-  prefab: {fileID: 3630586949339741704, guid: 90415d239ab0a5b42992eed4c611a20a, type: 3}
+  buildingName: ' Prueba 4'
+  prefab: {fileID: 3606850856272916649, guid: a345dcc323dd82f4e9a517ea9452efbd, type: 3}
   width: 2
   height: 2
   xValues: ffffffffffffffff0000000000000000
