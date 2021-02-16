@@ -64,10 +64,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\DragBuildings.cs" />
     <Compile Include="Assets\Scripts\BuildingObjects.cs" />
+    <Compile Include="Assets\Scripts\DragBuildings.cs" />
     <Compile Include="Assets\Scripts\Grid.cs" />
+    <Compile Include="Assets\Scripts\GridDisplay.cs" />
     <Compile Include="Assets\Scripts\MouseHandler.cs" />
+    <Compile Include="Assets\Scripts\RotateWithMouse.cs" />
+    <Compile Include="Assets\Scripts\Seleccionador.cs" />
     <Compile Include="Assets\Scripts\Test.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
