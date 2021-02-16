@@ -32,23 +32,12 @@ public class DragBuildings : MonoBehaviour
 
     void OnMouseDown()
     {
-        isSelected = true;
+        if (!isSelected) isSelected = true;
     }
 
     void OnMouseUp()
     {
-        Debug.Log("Released");
-
-        if (!placed)
-        {
-            if (!isColliding)
-            {
-                renderer.material = materiales[0];
-                placed = true;
-            }
-
-        }
-        if (placed && isSelected)
+        if (isSelected)
         {
             if (!isColliding)
             {
@@ -73,17 +62,16 @@ public class DragBuildings : MonoBehaviour
         {
             renderer.material = materiales[2];
         }
-        else if(!isColliding && isSelected) renderer.material = materiales[1];
+        else if (!isColliding && isSelected) renderer.material = materiales[1];
 
 
 
-        if (placed == false)
+        if (isSelected == true)
         {
             zCoord = Camera.main.WorldToScreenPoint(
 
             gameObject.transform.position).z;
 
-            //renderer.material = materiales[1];
 
             int x, z;
             GetGridPos(GetMouseWorldPos(), out x, out z);
@@ -93,35 +81,8 @@ public class DragBuildings : MonoBehaviour
 
             transform.position = new Vector3(posicion.x, 0, posicion.z);
 
-            
-        }
-        else if (placed == true && isSelected == true)
-        {
-
-            if (isSelected)
-            {
-
-                zCoord = Camera.main.WorldToScreenPoint(
-
-                gameObject.transform.position).z;
-
-                renderer.material = materiales[1];
-
-                int x, z;
-                GetGridPos(GetMouseWorldPos(), out x, out z);
-
-                Vector3 posicion;
-                posicion = GetWorldPosition(x, z);
-
-                transform.position = new Vector3(posicion.x, 0, posicion.z);
-
-            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log(isColliding);
-        }
     }
 
     private Vector3 GetMouseWorldPos()
@@ -150,7 +111,7 @@ public class DragBuildings : MonoBehaviour
         z = Mathf.FloorToInt(posicion.z / 10);
     }
 
-    void OnCollisionEnter(Collision col)
+    void OnCollisionStay(Collision col)
     {
         if ((col.gameObject.CompareTag("Building") && isSelected ))
         {
