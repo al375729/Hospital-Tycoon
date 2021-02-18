@@ -13,6 +13,13 @@ public class GridDisplay : MonoBehaviour
     private int filas;
     private int columnas;
     public Material material;
+
+    float minFov = 15f;
+    float maxFov = 90.0f;
+    float sensitivity = 10.0f;
+
+    private Vector3 Origin; // place where mouse is first pressed
+    private Vector3 Diference; // change in position of mouse relative to origin
     void Start()
     {
         grid = test.getGrid();
@@ -25,7 +32,11 @@ public class GridDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float fov;
+        fov = Camera.main.fieldOfView;
+        fov += Input.GetAxis("Mouse ScrollWheel") * sensitivity;
+        fov = Mathf.Clamp(fov, minFov, maxFov);
+        Camera.main.fieldOfView = fov;
     }
 
     private void OnPostRender()
@@ -79,6 +90,23 @@ public class GridDisplay : MonoBehaviour
 
     }
 
-
+    void LateUpdate()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Origin = MousePos();
+        }
+        if (Input.GetMouseButton(0))
+        {
+            Diference = MousePos() - transform.position;
+            transform.position = Origin - Diference;
+        }
+        
+    }
+    // return the position of the mouse in world coordinates (helper method)
+    Vector3 MousePos()
+    {
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
 
 }

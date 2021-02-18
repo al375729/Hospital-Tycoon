@@ -19,23 +19,43 @@ public class DragBuildings : MonoBehaviour
     bool isSelected = true;
     bool isColliding = false;
 
-    Material originalMaterial;
+    public Material originalMaterial;
+
+    float speed = 300f;
 
     public Material[] materiales;
+
+    private Quaternion objectToRotate;
+
+    static bool globalSelection = false;
     private void Start()
     {
-        //renderer = this.transform.GetChild(0).GetComponent<Renderer>();
+
         renderer = this.transform.GetComponent<Renderer>();
-        originalMaterial = renderer.material;
+        //originalMaterial = renderer.material;
     }
 
 
     void OnMouseDown()
     {
-        if (!isSelected) isSelected = true;
+        if (!isSelected && !globalSelection) 
+        {
+            isSelected = true;
+
+        } 
+        
+
+        else 
+        {
+            if (!isColliding)
+            {
+                renderer.material = originalMaterial;
+                isSelected = false;
+            }
+        }
     }
 
-    void OnMouseUp()
+ /*   void OnMouseUp()
     {
         if (isSelected)
         {
@@ -50,21 +70,30 @@ public class DragBuildings : MonoBehaviour
             }
         }
 
-    }
+    }*/
 
-
+    
 
 
 
     private void Update()
     {
+
+        if  (Input.GetMouseButtonDown(1))
+        {
+            if(isSelected)
+            {
+                objectToRotate = this.transform.rotation * Quaternion.Euler(0, 90, 0);
+            }
+          
+        }
+        
         if (isColliding && isSelected)
         {
             renderer.material = materiales[2];
         }
+
         else if (!isColliding && isSelected) renderer.material = materiales[1];
-
-
 
         if (isSelected == true)
         {
@@ -83,6 +112,11 @@ public class DragBuildings : MonoBehaviour
 
         }
 
+    }
+
+    private void LateUpdate()
+    {
+        transform.rotation = Quaternion.Lerp(transform.rotation, objectToRotate, 70f * Time.deltaTime);
     }
 
     private Vector3 GetMouseWorldPos()

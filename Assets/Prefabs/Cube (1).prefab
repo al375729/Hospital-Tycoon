@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 604390819898553875}
   - component: {fileID: 1200465972286167089}
   - component: {fileID: 5942132063101678764}
+  - component: {fileID: 5869150559458445087}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Building
@@ -93,7 +94,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 0.9, z: 0.9}
+  m_Size: {x: 0.99, y: 0.99, z: 0.99}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1200465972286167089
 MonoBehaviour:
@@ -110,6 +111,7 @@ MonoBehaviour:
   placed: 0
   prefab: {fileID: 3757655827962246921}
   seleccionador: {fileID: 0}
+  originalMaterial: {fileID: 2100000, guid: 779a7112241de3044af6a521e10e7178, type: 2}
   materiales:
   - {fileID: 2100000, guid: 779a7112241de3044af6a521e10e7178, type: 2}
   - {fileID: 2100000, guid: 9dab5350f09e1db4f8dcf73656619713, type: 2}
@@ -130,3 +132,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!95 &5869150559458445087
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3757655827962246921}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

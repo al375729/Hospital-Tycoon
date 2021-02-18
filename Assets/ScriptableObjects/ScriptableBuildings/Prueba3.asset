@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symetric: 1
   buildingName: Prueba3
-  prefab: {fileID: 6578483981092458070, guid: 8d5b47102c9b8784896772cbfb90cd8e, type: 3}
+  prefab: {fileID: 3757655827962246921, guid: 24dab7a1a18680243a221b0bb303aa7d, type: 3}
   width: 1
   height: 1
   xValues: ffffffffffffffff00000000
