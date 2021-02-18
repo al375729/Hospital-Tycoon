@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class DragBuildings : MonoBehaviour
@@ -38,41 +39,52 @@ public class DragBuildings : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!isSelected && !globalSelection) 
+        if(! IsMouseOverUI())
         {
-            isSelected = true;
-
-        } 
-        
-
-        else 
-        {
-            if (!isColliding)
+            if (!isSelected && !globalSelection && GlobalVariables.EDIT_MODE)
             {
-                renderer.material = originalMaterial;
-                isSelected = false;
+                isSelected = true;
+
             }
-        }
-    }
-
- /*   void OnMouseUp()
-    {
-        if (isSelected)
-        {
-            if (!isColliding)
+            else if (!isSelected && !globalSelection && GlobalVariables.DELETE_MODE)
             {
-                renderer.material = originalMaterial;
-                isSelected = false;
+                Destroy(this.gameObject);
+
             }
             else
             {
-                //renderer.material = materiales[2];
+                if (!isColliding)
+                {
+                    renderer.material = originalMaterial;
+                    isSelected = false;
+                }
             }
         }
+        
+    }
 
-    }*/
+    private bool IsMouseOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
+    }
+    /*   void OnMouseUp()
+       {
+           if (isSelected)
+           {
+               if (!isColliding)
+               {
+                   renderer.material = originalMaterial;
+                   isSelected = false;
+               }
+               else
+               {
+                   //renderer.material = materiales[2];
+               }
+           }
 
-    
+       }*/
+
+
 
 
 
@@ -83,11 +95,11 @@ public class DragBuildings : MonoBehaviour
         {
             if(isSelected)
             {
-                objectToRotate = this.transform.rotation * Quaternion.Euler(0, 90, 0);
+                objectToRotate = this.transform.rotation * Quaternion.Euler(0, -90, 0);
             }
           
         }
-        
+
         if (isColliding && isSelected)
         {
             renderer.material = materiales[2];

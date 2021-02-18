@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GridDisplay : MonoBehaviour
 {
@@ -26,17 +27,28 @@ public class GridDisplay : MonoBehaviour
         cuadricula = test.getCuadricula();
         gridTextMesh = test.getTextMesh();
         filas = test.getFilas();
+
         columnas = test.getColumnas();
+    }
+
+    private bool IsMouseOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float fov;
-        fov = Camera.main.fieldOfView;
-        fov += Input.GetAxis("Mouse ScrollWheel") * sensitivity;
-        fov = Mathf.Clamp(fov, minFov, maxFov);
-        Camera.main.fieldOfView = fov;
+        if (!IsMouseOverUI())
+        {
+            float fov;
+            fov = Camera.main.fieldOfView;
+            fov += Input.GetAxis("Mouse ScrollWheel") * sensitivity;
+            fov = Mathf.Clamp(fov, minFov, maxFov);
+            Camera.main.fieldOfView = fov;
+
+        }
+        
     }
 
     private void OnPostRender()

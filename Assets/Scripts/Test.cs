@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Test : MonoBehaviour
 {
@@ -63,14 +64,18 @@ public class Test : MonoBehaviour
         return filas;
     }
 
+    private bool IsMouseOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
+    }
 
     private void Update()
-    {
+    {/*
         Vector3 mouse = Input.mousePosition;
         Ray castPoint = Camera.main.ScreenPointToRay(mouse);
         RaycastHit hit;
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !IsMouseOverUI())
         {
             if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
             {
@@ -89,7 +94,8 @@ public class Test : MonoBehaviour
                 }
 
             }
-        }     
+        } 
+        */
     }
 
     private void setValues(BuildingObjects building,int x, int z)

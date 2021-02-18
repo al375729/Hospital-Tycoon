@@ -65,13 +65,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BuildingObjects.cs" />
+    <Compile Include="Assets\Scripts\Buttons\DeleteModeButton.cs" />
+    <Compile Include="Assets\Scripts\Buttons\EditModeButton.cs" />
+    <Compile Include="Assets\Scripts\Buttons\OpenShopButton.cs" />
     <Compile Include="Assets\Scripts\DragBuildings.cs" />
+    <Compile Include="Assets\Scripts\GlobalVariables.cs" />
     <Compile Include="Assets\Scripts\Grid.cs" />
     <Compile Include="Assets\Scripts\GridDisplay.cs" />
     <Compile Include="Assets\Scripts\MouseHandler.cs" />
+    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\Prueba.cs" />
     <Compile Include="Assets\Scripts\RotateWithMouse.cs" />
     <Compile Include="Assets\Scripts\Seleccionador.cs" />
+    <Compile Include="Assets\Scripts\ShopUIManagement.cs" />
     <Compile Include="Assets\Scripts\Test.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
