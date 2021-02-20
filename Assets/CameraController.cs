@@ -15,7 +15,11 @@ public class CameraController : MonoBehaviour
     public float normalSpeed;
     public float fastSpeed;
     public float time;
-    public float rotation;
+    public float rotation; 
+    public float xLimit = 200;
+    public float yLimit = 200;
+    public int zoomInLimit = 100;
+    public int zoomOutLimit = 1000;
 
 
     public Vector3 zoom;
@@ -100,12 +104,12 @@ public class CameraController : MonoBehaviour
                 newZoom += Input.mouseScrollDelta.y * zoom;
             }
 
-            if (Input.GetMouseButtonDown(2) && !DragBuildings.globalSelection)
+            if (Input.GetMouseButtonDown(1) && !DragBuildings.globalSelection)
             {
                 rotateStartPos = Input.mousePosition;
             }
 
-            if (Input.GetMouseButton(2) && !DragBuildings.globalSelection)
+            if (Input.GetMouseButton(1) && !DragBuildings.globalSelection)
             {
                 rotateCurrenttPos = Input.mousePosition;
 
@@ -171,7 +175,11 @@ public class CameraController : MonoBehaviour
                 newZoom -= zoom;
             }
 
-            
+            newPosition.x = Mathf.Clamp(newPosition.x, -xLimit, xLimit);
+            newPosition.z = Mathf.Clamp(newPosition.z, -yLimit, yLimit);
+
+            newZoom.y = Mathf.Clamp(newZoom.y, zoomInLimit, zoomOutLimit);
+            newZoom.z = Mathf.Clamp(newZoom.z, -zoomOutLimit, -zoomInLimit);
 
             transform.position = Vector3.Lerp(transform.position, newPosition, time * Time.deltaTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, time * Time.deltaTime);
