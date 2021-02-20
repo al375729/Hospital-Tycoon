@@ -39,6 +39,7 @@ public class GridDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (!IsMouseOverUI())
         {
             float fov;
@@ -48,7 +49,7 @@ public class GridDisplay : MonoBehaviour
             Camera.main.fieldOfView = fov;
 
         }
-        
+        */
     }
 
     private void OnPostRender()

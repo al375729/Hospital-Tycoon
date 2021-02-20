@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 604390819898553875}
   - component: {fileID: 1200465972286167089}
   - component: {fileID: 5942132063101678764}
-  - component: {fileID: 5869150559458445087}
+  - component: {fileID: 349076339515887678}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Building
@@ -132,22 +132,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!95 &5869150559458445087
-Animator:
-  serializedVersion: 3
+--- !u!65 &349076339515887678
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3757655827962246921}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}

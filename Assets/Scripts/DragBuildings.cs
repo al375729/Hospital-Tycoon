@@ -28,7 +28,7 @@ public class DragBuildings : MonoBehaviour
 
     private Quaternion objectToRotate;
 
-    static bool globalSelection = false;
+    public static bool globalSelection = false;
     private void Start()
     {
 

@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CameraController.cs" />
     <Compile Include="Assets\Scripts\BuildingObjects.cs" />
     <Compile Include="Assets\Scripts\Buttons\DeleteModeButton.cs" />
     <Compile Include="Assets\Scripts\Buttons\EditModeButton.cs" />
