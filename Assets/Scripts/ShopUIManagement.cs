@@ -4,33 +4,61 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public static class ButtonExtension
+{
+    public static void AddEventListener<T,W>(this Button button, T param,W param2, Action<T,W> OnClick)
+    {
+        button.onClick.AddListener(delegate()
+       {
+           OnClick(param,param2);
+       });
+    }
+}
+
+
 public class ShopUIManagement : MonoBehaviour
 {
-    public Button buyBuilding1;
-    public GameObject prefabBuilding1;
+    public BuildingObjects[] arrayOfBuildings;
+    public Button exit;
+    public GameObject antiClick;
+    public GameObject shop;
 
-    public Button buyBuilding2;
-    public GameObject prefabBuilding2;
+    public Transform parent;
 
-    public Image antiClick;
+    public Button buttonTemplate;
 
-
+    
+    
     void Start()
     {
-        buyBuilding1.onClick.AddListener(InstantiateBuilding);
+        Button instance;
+
+        for (int i = 0; i < arrayOfBuildings.Length; i++)
+        {
+            instance = Instantiate(buttonTemplate, transform);
+            instance.gameObject.transform.GetChild(0).GetComponent<Text>().text = arrayOfBuildings[i].buildingName;
+            instance.gameObject.transform.GetChild(1).GetComponent<Text>().text = arrayOfBuildings[i].description;
+            instance.gameObject.transform.GetChild(2).GetComponent<Image>().sprite = arrayOfBuildings[i].image;
+
+            instance.GetComponent<Button>().AddEventListener(arrayOfBuildings[i].prefab, arrayOfBuildings[i].price, SpawnBuilding);
+
+
+        }
     }
 
-    private void InstantiateBuilding()
+    void SpawnBuilding(GameObject prefab, int price)
     {
-        Vector3 mouse = Input.mousePosition;
-        Instantiate(prefabBuilding1, mouse, Quaternion.identity);
-        closeUIShop();
-    }
+        if(GlobalVariables.MONEY > price)
+        {
+            shop.SetActive(false);
+            GlobalVariables.UI_OPEN = false;
+            antiClick.SetActive(false);
 
-    private void closeUIShop()
-    {
-        this.gameObject.SetActive(false);
-        antiClick.gameObject.SetActive(false);
+            GlobalVariables.MONEY -= price;
+
+            Instantiate(prefab, Input.mousePosition, Quaternion.identity);
+        }
+        
     }
 
     // Update is called once per frame

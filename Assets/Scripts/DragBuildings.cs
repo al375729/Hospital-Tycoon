@@ -14,7 +14,7 @@ public class DragBuildings : MonoBehaviour
         
     private Grid grid;
 
-    Renderer renderer;
+    private Renderer renderer;
     public Seleccionador seleccionador;
 
     bool isSelected = true;
@@ -128,9 +128,24 @@ public class DragBuildings : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.rotation = Quaternion.Lerp(transform.rotation, objectToRotate, 70f * Time.deltaTime);
+        
+        if(!IsQuaternionInvalid(transform.rotation) && !IsQuaternionInvalid(objectToRotate))
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, objectToRotate, 70f * Time.deltaTime);
+        }
+            
+      
+       
     }
+    private bool IsQuaternionInvalid(Quaternion q)
+    {
+        bool check = q.x == 0f;
+        check &= q.y == 0;
+        check &= q.z == 0;
+        check &= q.w == 0;
 
+        return check;
+    }
     private Vector3 GetMouseWorldPos()
     {
         //(x,y)

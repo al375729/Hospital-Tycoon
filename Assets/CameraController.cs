@@ -67,9 +67,9 @@ public class CameraController : MonoBehaviour
 
     private void HandlePlayerMouseInput()
     {
-        if (!IsMouseOverUI())
+        if (!IsMouseOverUI() && !GlobalVariables.UI_OPEN)
         {
-            if(Input.GetMouseButtonDown(0) && !DragBuildings.globalSelection )
+            if(Input.GetMouseButtonDown(0) && !DragBuildings.globalSelection && !GlobalVariables.UI_OPEN)
             {
                 Plane plane = new Plane(Vector3.up, Vector3.zero);
 
@@ -83,7 +83,7 @@ public class CameraController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButton(0) && !DragBuildings.globalSelection)
+            if (Input.GetMouseButton(0) && !DragBuildings.globalSelection && !GlobalVariables.UI_OPEN)
             {
                 Plane plane = new Plane(Vector3.up, Vector3.zero);
 
@@ -99,17 +99,17 @@ public class CameraController : MonoBehaviour
                 }
             }
 
-            if (Input.mouseScrollDelta.y != 0) 
+            if (Input.mouseScrollDelta.y != 0 && !GlobalVariables.UI_OPEN) 
             {
                 newZoom += Input.mouseScrollDelta.y * zoom;
             }
 
-            if (Input.GetMouseButtonDown(1) && !DragBuildings.globalSelection)
+            if (Input.GetMouseButtonDown(1) && !DragBuildings.globalSelection && !GlobalVariables.UI_OPEN)
             {
                 rotateStartPos = Input.mousePosition;
             }
 
-            if (Input.GetMouseButton(1) && !DragBuildings.globalSelection)
+            if (Input.GetMouseButton(1) && !DragBuildings.globalSelection && !GlobalVariables.UI_OPEN)
             {
                 rotateCurrenttPos = Input.mousePosition;
 
@@ -124,7 +124,7 @@ public class CameraController : MonoBehaviour
     }
     void HandlePlayerKeyboardInput()
     {
-        if (!IsMouseOverUI())
+        if (!IsMouseOverUI() && !GlobalVariables.UI_OPEN)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {

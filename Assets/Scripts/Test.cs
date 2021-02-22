@@ -70,69 +70,8 @@ public class Test : MonoBehaviour
     }
 
     private void Update()
-    {/*
-        Vector3 mouse = Input.mousePosition;
-        Ray castPoint = Camera.main.ScreenPointToRay(mouse);
-        RaycastHit hit;
-
-        if (Input.GetButtonDown("Fire1") && !IsMouseOverUI())
-        {
-            if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
-            {
-                if (hit.transform.gameObject.tag == "Floor")
-                {
-                    int x, z;
-                    grid.GetGridPos(hit.point, out x, out z);
-
-                    //if (Constructable(building,  x,  z))
-                    //{
-
-                    Instantiate(building.prefab, grid.GetWorldPosition(x + 1, z + 1), Quaternion.identity);
-
-                    //setValues(building,x,z);
-                    //}
-                }
-
-            }
-        } 
-        */
-    }
-
-    private void setValues(BuildingObjects building,int x, int z)
     {
-        for (int i = 0; i < building.xValues.Length; i++)
-        {
-            grid.SetCellValueXZ(x+building.xValues[i], z + building.yValues[i], 10);
-            gridTextMesh[x +building.xValues[i], z + building.yValues[i]].text = cuadricula[x + building.xValues[i], z + building.yValues[i]].ToString();
-        }
     }
 
-    private bool Constructable(BuildingObjects building, int x, int y)
-    {
-        if (building.symetric)
-        {
-            return CheckConstructable(building.xValues,building.yValues,x,y);
-        }
-        else return false;
-    }
-
-    private bool CheckConstructable(int[] xValues, int[] yValues,int x, int y)
-    {
-        for (int i = 0;i< xValues.Length; i++)
-        {
-            if (cuadricula[x,y] != 0) return false;
-
-            else if(cuadricula[x + building.xValues[i], y + building.yValues[i]] != 0)
-            {
-                return false;
-            }
-            
-        }
-        return true;
-    }
-
-    public bool aviableToBuild()
-    {
-        return transform == null;
-    }
+  
 }
