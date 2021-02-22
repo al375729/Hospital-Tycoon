@@ -24,6 +24,7 @@ public class OpenShopButton : MonoBehaviour
         shop.SetActive(true);
         antiClick.SetActive(true);
         GlobalVariables.UI_OPEN = true;
+        button.image.color = Color.green;
     }
 
     // Update is called once per frame

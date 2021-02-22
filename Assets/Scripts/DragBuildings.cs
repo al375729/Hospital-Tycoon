@@ -29,6 +29,8 @@ public class DragBuildings : MonoBehaviour
     private Quaternion objectToRotate;
 
     public static bool globalSelection = false;
+    private Vector3 position;
+    private Quaternion rotation;
     private void Start()
     {
 
@@ -44,6 +46,8 @@ public class DragBuildings : MonoBehaviour
             if (!isSelected && !globalSelection && GlobalVariables.EDIT_MODE)
             {
                 isSelected = true;
+                position = transform.position;
+                rotation = transform.rotation;
 
             }
             else if (!isSelected && !globalSelection && GlobalVariables.DELETE_MODE)
@@ -90,7 +94,13 @@ public class DragBuildings : MonoBehaviour
 
     private void Update()
     {
-
+        if(GlobalVariables.UI_OPEN)
+        {
+            transform.position = position;
+            transform.rotation = rotation;
+            renderer.material = materiales[0];
+            isSelected = false;
+        }
         if  (Input.GetMouseButtonDown(1))
         {
             if(isSelected)

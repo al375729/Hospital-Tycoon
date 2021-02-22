@@ -27,6 +27,8 @@ public class ShopUIManagement : MonoBehaviour
 
     public Button buttonTemplate;
 
+    public Button shopButton;
+
     
     
     void Start()
@@ -55,6 +57,8 @@ public class ShopUIManagement : MonoBehaviour
             antiClick.SetActive(false);
 
             GlobalVariables.MONEY -= price;
+
+            shopButton.image.color = Color.white;
 
             Instantiate(prefab, Input.mousePosition, Quaternion.identity);
         }

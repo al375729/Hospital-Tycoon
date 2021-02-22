@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Buttons\DeleteModeButton.cs" />
     <Compile Include="Assets\Scripts\Buttons\EditModeButton.cs" />
     <Compile Include="Assets\Scripts\Buttons\OpenShopButton.cs" />
+    <Compile Include="Assets\Scripts\Day &amp; Night Cycle\DayNightCycle.cs" />
     <Compile Include="Assets\Scripts\DragBuildings.cs" />
     <Compile Include="Assets\Scripts\GlobalVariables.cs" />
     <Compile Include="Assets\Scripts\Grid.cs" />
