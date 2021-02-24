@@ -60,6 +60,7 @@ public class ShopUIManagement : MonoBehaviour
 
             shopButton.image.color = Color.white;
 
+            Debug.Log(Input.mousePosition);
             Instantiate(prefab, Input.mousePosition, Quaternion.identity);
         }
         

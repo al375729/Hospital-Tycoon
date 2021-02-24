@@ -16,4 +16,4 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 21b5f4dd591d85a41a12ddbb37ce81e1, type: 3}
   description: Este es la descripcion
   price: 400
-  prefab: {fileID: 3757655827962246921, guid: 24dab7a1a18680243a221b0bb303aa7d, type: 3}
+  prefab: {fileID: 4649388217965712337, guid: 055e5e9e08956b5408e911ce10c645d4, type: 3}
