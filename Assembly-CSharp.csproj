@@ -64,25 +64,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BuildingsInShop.cs" />
-    <Compile Include="Assets\CameraController.cs" />
-    <Compile Include="Assets\Money.cs" />
-    <Compile Include="Assets\Scripts\BuildingObjects.cs" />
+    <Compile Include="Assets\Scripts\Buildings\BuildingObjects.cs" />
+    <Compile Include="Assets\Scripts\Buildings\BuildingsInShop.cs" />
+    <Compile Include="Assets\Scripts\Buildings\DragBuildings.cs" />
     <Compile Include="Assets\Scripts\Buttons\DeleteModeButton.cs" />
     <Compile Include="Assets\Scripts\Buttons\EditModeButton.cs" />
     <Compile Include="Assets\Scripts\Buttons\OpenShopButton.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Camera\GridDisplay.cs" />
+    <Compile Include="Assets\Scripts\Camera\RotateWithMouse.cs" />
+    <Compile Include="Assets\Scripts\Control\GameAssets.cs" />
     <Compile Include="Assets\Scripts\Day &amp; Night Cycle\DayNightCycle.cs" />
-    <Compile Include="Assets\Scripts\DragBuildings.cs" />
+    <Compile Include="Assets\Scripts\Effects\TextPopUp.cs" />
     <Compile Include="Assets\Scripts\GlobalVariables.cs" />
     <Compile Include="Assets\Scripts\Grid.cs" />
-    <Compile Include="Assets\Scripts\GridDisplay.cs" />
-    <Compile Include="Assets\Scripts\MouseHandler.cs" />
-    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
-    <Compile Include="Assets\Scripts\Prueba.cs" />
-    <Compile Include="Assets\Scripts\RotateWithMouse.cs" />
-    <Compile Include="Assets\Scripts\Seleccionador.cs" />
-    <Compile Include="Assets\Scripts\ShopUIManagement.cs" />
+    <Compile Include="Assets\Scripts\Money.cs" />
+    <Compile Include="Assets\Scripts\TaskManagement\TaskManagement.cs" />
+    <Compile Include="Assets\Scripts\TaskManagement\WorkerAI.cs" />
     <Compile Include="Assets\Scripts\Test.cs" />
+    <Compile Include="Assets\Scripts\UI\Seleccionador.cs" />
+    <Compile Include="Assets\Scripts\UI\ShopUIManagement.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
