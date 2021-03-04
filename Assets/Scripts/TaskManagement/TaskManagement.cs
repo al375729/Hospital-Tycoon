@@ -54,7 +54,7 @@ public class TaskManagement : MonoBehaviour
     {
         TaskClean task = new TaskClean(position,position2);
         taskList.Add(task);
-        Debug.Log("Añadido");
+        Debug.Log("add");
     }
 
     private void Update()

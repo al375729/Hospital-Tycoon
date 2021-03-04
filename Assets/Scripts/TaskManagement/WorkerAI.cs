@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 
 public class WorkerAI : MonoBehaviour
 {
@@ -29,6 +29,10 @@ public class WorkerAI : MonoBehaviour
     private bool runing = false;
 
     private TaskManagement.TaskClean taskClean;
+
+    private NavMeshAgent agent;
+
+    public GameObject mancha;
     private enum CurrentTask 
     {
         task1,
@@ -48,6 +52,8 @@ public class WorkerAI : MonoBehaviour
         //c = rend.material.color;
         state = State.WaitingForTask;
         currentTask = CurrentTask.nullTask;
+
+        agent = this.GetComponent<NavMeshAgent>();
     }
 
     private void Update()
@@ -65,7 +71,6 @@ public class WorkerAI : MonoBehaviour
 
         if (state == State.DoingTask)
         {
-            Debug.Log("Vamos a subrutina");
             ManageTaskClean(taskClean);
 
         }
@@ -84,23 +89,59 @@ public class WorkerAI : MonoBehaviour
             currentTask = CurrentTask.task1;
             callCoroutine();
         }
+
         else if (sub_task1 == true && !sub_task2 && !runing)
         {
-            target = taskClean.position2;
             currentTask = CurrentTask.task2;
             callCoroutine();
         }
-        else if (sub_task1 == true && sub_task2)
+
+        
+        else if (sub_task1 == true && sub_task2 &&  !sub_task3 && !runing)
+        {
+            Debug.Log("r2");
+            target = taskClean.position2;
+            currentTask = CurrentTask.task3;
+            callCoroutine();
+        }
+        else if (sub_task1 == true && sub_task2 && sub_task3)
         {
             Debug.Log("He acabado todo");
-            taskClean = null;
+
+           
+            
+            StopAllCoroutines();
+            RestartValues();
+
         }
     }
+
+    private void RestartValues()
+    {
+        //agent.isStopped = true;
+        taskClean = null;
+        
+        state = State.WaitingForTask;
+
+        sub_task1 = false;
+        sub_task2  = false;
+        sub_task3 = false;
+
+        runing = false;
+}
 
     public void callCoroutine()
     {
         runing = true;
-        StartCoroutine(ExampleFunction());
+        if (currentTask == CurrentTask.task2)
+        {
+            StartCoroutine(FadeOut());
+        }
+        else
+        {
+            StartCoroutine(ExampleFunction());
+        }
+        
     }
 
     public void RequestTask()
@@ -117,13 +158,10 @@ public class WorkerAI : MonoBehaviour
     IEnumerator ExampleFunction()
     {
         bool end = false;
-
+        agent.destination = target;
         while (!end)
         {
-            
-            transform.position = Vector3.MoveTowards(transform.position, target, 25f * Time.deltaTime);
-
-            if (Vector3.Distance(target, transform.position) <= 1f)
+            if (agent.remainingDistance <= 0.1f && agent.pathPending == false)
             {
                 end = true;
             }
@@ -139,10 +177,10 @@ public class WorkerAI : MonoBehaviour
                     runing = false;
                     yield break;
                 }
-                else if (currentTask == CurrentTask.task2)
+                else if (currentTask == CurrentTask.task3)
                 {
                     //Debug.Log("Fin de la tarea 2");
-                    sub_task2 = true;
+                    sub_task3 = true;
                     runing = false;
                     yield break;
                     
@@ -157,12 +195,10 @@ public class WorkerAI : MonoBehaviour
 
     IEnumerator FadeOut()
     {
-        for (float i = 0f; i <= 1; i += 0.5f)
-        {
-            c.a = i;
-            rend.material.color = c;
-            yield return new WaitForSeconds(0.05f);
-        }
+        iTween.FadeTo(mancha, 0f, 2f);
+        yield return new WaitForSeconds(2);
+        sub_task2 = true;
+        runing = false;
     }
 
 }
