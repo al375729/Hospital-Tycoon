@@ -64,6 +64,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GeneradorDePersonajes.cs" />
+    <Compile Include="Assets\ImageGenerator.cs" />
+    <Compile Include="Assets\ScriptableObjects\ScriptableWorkers\testing1.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingObjects.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingsInShop.cs" />
     <Compile Include="Assets\Scripts\Buildings\DragBuildings.cs" />
@@ -84,6 +87,7 @@
     <Compile Include="Assets\Scripts\Test.cs" />
     <Compile Include="Assets\Scripts\UI\Seleccionador.cs" />
     <Compile Include="Assets\Scripts\UI\ShopUIManagement.cs" />
+    <Compile Include="Assets\Scripts\Workers\WorkerScriptableObject.cs" />
     <Compile Include="Assets\fade.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
