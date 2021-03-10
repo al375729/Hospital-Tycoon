@@ -6,6 +6,7 @@ public class GlobalVariables : MonoBehaviour
 {
     public static bool EDIT_MODE;
     public static bool DELETE_MODE;
+    public static bool SHOP;
     public static bool UI_OPEN;
     public static int MONEY = 1000;
     void Awake()
@@ -13,6 +14,7 @@ public class GlobalVariables : MonoBehaviour
         EDIT_MODE = false;
         DELETE_MODE = false;
         UI_OPEN = false;
+        SHOP = false;
         MONEY = 1000;
     }
 

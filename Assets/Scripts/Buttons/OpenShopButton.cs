@@ -19,12 +19,22 @@ public class OpenShopButton : MonoBehaviour
 
     private void onButtonPressed()
     {
-        editModeButton.setEditMode(false);
-        deleteModeButton.setDeleteMode(false);
-        shop.SetActive(true);
-        antiClick.SetActive(true);
-        GlobalVariables.UI_OPEN = true;
-        button.image.color = Color.green;
+        if ((GlobalVariables.DELETE_MODE || GlobalVariables.EDIT_MODE) && !GlobalVariables.UI_OPEN)
+        {
+            if (GlobalVariables.DELETE_MODE) Console.setText("Desactiva primero el modo destruccion");
+            else if (GlobalVariables.EDIT_MODE) Console.setText("Desactiva primero el modo destruccion");
+        }
+
+        else if (!GlobalVariables.EDIT_MODE && !GlobalVariables.DELETE_MODE)
+        {
+                //editModeButton.setEditMode(false);
+                //deleteModeButton.setDeleteMode(false);
+                shop.SetActive(true);
+                antiClick.SetActive(true);
+                GlobalVariables.UI_OPEN = true;
+                button.image.color = Color.green;
+        }
+        
     }
 
     // Update is called once per frame

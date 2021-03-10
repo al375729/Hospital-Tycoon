@@ -15,7 +15,12 @@ public class DeleteModeButton : MonoBehaviour
 
     private void onButtonPressed()
     {
-        if (!GlobalVariables.DELETE_MODE)
+        if ((GlobalVariables.EDIT_MODE || GlobalVariables.UI_OPEN) && !GlobalVariables.DELETE_MODE)
+        {
+            if (GlobalVariables.EDIT_MODE) Console.setText("Desactiva primero el modo edicion");
+            else if (GlobalVariables.UI_OPEN) Console.setText("Sal primero de la tienda");
+        }
+        else if (!GlobalVariables.DELETE_MODE)
         {
             GlobalVariables.DELETE_MODE = true;
             button.image.color = Color.green;

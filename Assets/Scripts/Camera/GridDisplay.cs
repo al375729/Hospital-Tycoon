@@ -15,10 +15,6 @@ public class GridDisplay : MonoBehaviour
     private int columnas;
     public Material material;
 
-    float minFov = 15f;
-    float maxFov = 90.0f;
-    float sensitivity = 10.0f;
-
     private Vector3 Origin; // place where mouse is first pressed
     private Vector3 Diference; // change in position of mouse relative to origin
     void Start()

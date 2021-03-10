@@ -16,7 +16,13 @@ public class EditModeButton : MonoBehaviour
 
     private void onButtonPressed()
     {
-        if(!GlobalVariables.EDIT_MODE)
+        if((GlobalVariables.DELETE_MODE || GlobalVariables.UI_OPEN) && !GlobalVariables.EDIT_MODE)
+        {
+           if(GlobalVariables.DELETE_MODE) Console.setText("Desactiva primero el modo destruccion");
+           else if (GlobalVariables.UI_OPEN) Console.setText("Sal primero de la tienda");
+        }
+
+        else if(!GlobalVariables.EDIT_MODE)
         {
             GlobalVariables.EDIT_MODE = true;
             button.image.color = Color.green;

@@ -195,7 +195,7 @@ public class WorkerAI : MonoBehaviour
 
     IEnumerator FadeOut()
     {
-        iTween.FadeTo(mancha, 0f, 2f);
+        //iTween.FadeTo(mancha, 0f, 2f);
         yield return new WaitForSeconds(2);
         sub_task2 = true;
         runing = false;

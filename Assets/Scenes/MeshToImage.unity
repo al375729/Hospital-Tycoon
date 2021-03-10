@@ -646,7 +646,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e2214da8e491b304cacdd95c9accc162, type: 2}
   - {fileID: 2100000, guid: 011ef5fde8c6bbf4bb7e1672d5a61908, type: 2}
   genertaedCharacters: []
-  test: {fileID: 753907693}
+  workerShop: {fileID: 753907693}
 --- !u!4 &508017430
 Transform:
   m_ObjectHideFlags: 0

@@ -7,22 +7,16 @@ using UnityEngine;
 public class DragBuildings : MonoBehaviour
 {
     public bool placed = false;
-    private Vector3 offset;
     private float zCoord;
 
     public GameObject prefab;
         
     private Grid grid;
 
-    private Renderer renderer;
-    public Seleccionador seleccionador;
-
     bool isSelected = true;
     bool isColliding = false;
 
     public Material originalMaterial;
-
-    float speed = 300f;
 
     public Material[] materiales;
 
@@ -34,8 +28,6 @@ public class DragBuildings : MonoBehaviour
     private void Start()
     {
 
-        renderer = this.transform.GetComponent<Renderer>();
-        //originalMaterial = renderer.material;
     }
 
 
@@ -59,7 +51,9 @@ public class DragBuildings : MonoBehaviour
             {
                 if (!isColliding)
                 {
-                    renderer.material = originalMaterial;
+                    changeMaterialOfChildren(materiales[0]);
+                    position = transform.position;
+                    rotation = transform.rotation;
                     isSelected = false;
                 }
             }
@@ -71,34 +65,13 @@ public class DragBuildings : MonoBehaviour
     {
         return EventSystem.current.IsPointerOverGameObject();
     }
-    /*   void OnMouseUp()
-       {
-           if (isSelected)
-           {
-               if (!isColliding)
-               {
-                   renderer.material = originalMaterial;
-                   isSelected = false;
-               }
-               else
-               {
-                   //renderer.material = materiales[2];
-               }
-           }
-
-       }*/
-
-
-
-
-
     private void Update()
     {
         if(GlobalVariables.UI_OPEN)
         {
             transform.position = position;
             transform.rotation = rotation;
-            renderer.material = materiales[0];
+            changeMaterialOfChildren(materiales[0]);
             isSelected = false;
         }
         if  (Input.GetMouseButtonDown(1))
@@ -112,10 +85,10 @@ public class DragBuildings : MonoBehaviour
 
         if (isColliding && isSelected)
         {
-            renderer.material = materiales[2];
+            changeMaterialOfChildren(materiales[2]);
         }
 
-        else if (!isColliding && isSelected) renderer.material = materiales[1];
+        else if (!isColliding && isSelected) changeMaterialOfChildren(materiales[1]);
 
         if (isSelected == true)
         {
@@ -136,17 +109,23 @@ public class DragBuildings : MonoBehaviour
 
     }
 
+    private void changeMaterialOfChildren(Material material)
+    {
+        foreach (Transform child in transform)
+        {
+            Renderer rend = child.GetComponent<MeshRenderer>();
+            rend.material = material;
+        }
+    }
+
     private void LateUpdate()
     {
-        
         if(!IsQuaternionInvalid(transform.rotation) && !IsQuaternionInvalid(objectToRotate))
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, objectToRotate, 70f * Time.deltaTime);
-        }
-            
-      
-       
+        } 
     }
+
     private bool IsQuaternionInvalid(Quaternion q)
     {
         bool check = q.x == 0f;
@@ -166,9 +145,6 @@ public class DragBuildings : MonoBehaviour
 
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
-
-    // Update is called once per frame
- 
 
 
     public Vector3 GetWorldPosition(int x, int z)
