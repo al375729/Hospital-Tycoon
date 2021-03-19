@@ -8,6 +8,9 @@ public class CharacterGenerator : MonoBehaviour
 
     public Material[] materialesPelo;
     public Material[] materialesPiel;
+    public Material[] camsieta;
+    public Material[] pantalon;
+    public Material[] ojos;
 
     public GameObject[] pelos;
     public GameObject[] peloFacial;
@@ -17,8 +20,6 @@ public class CharacterGenerator : MonoBehaviour
     public PopulateWorkerShop workerShop;
 
     public Material bata;
-    public Material camsieta;
-    public Material pantalon;
 
     private int generatingCount = 5;
     void Start()
@@ -77,11 +78,18 @@ public class CharacterGenerator : MonoBehaviour
                     }
                     else if (genertaedCharacters[i].transform.GetChild(j).name == "Camiseta")
                     {
-                        genertaedCharacters[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = camsieta;
+                        int randomCamiseta = Random.Range(0, camsieta.Length);
+                        genertaedCharacters[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = camsieta[randomCamiseta];
                     }
                     else if (genertaedCharacters[i].transform.GetChild(j).name == "Pantalones")
                     {
-                        genertaedCharacters[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = pantalon;
+                        int randomPantalon = Random.Range(0, camsieta.Length);
+                        genertaedCharacters[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = pantalon[randomPantalon];
+                    }
+                    else if (genertaedCharacters[i].transform.GetChild(j).name == "Ojos")
+                    {
+                        int ojosRandom = Random.Range(0, ojos.Length);
+                        genertaedCharacters[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = ojos[ojosRandom];
                     }
                 }
                 else if (genertaedCharacters[i].transform.GetChild(j).GetComponent<MeshRenderer>() != null)
