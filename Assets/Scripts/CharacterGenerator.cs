@@ -24,6 +24,7 @@ public class CharacterGenerator : MonoBehaviour
     private int generatingCount = 5;
     void Start()
     {
+
         genertaedCharacters = new GameObject[generatingCount];
 
         for (int i = 0; i < generatingCount; i++)
@@ -101,17 +102,9 @@ public class CharacterGenerator : MonoBehaviour
 
             }
         }
-        
+
+        workerShop.setUI(genertaedCharacters);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log(genertaedCharacters.Length);
-            workerShop.setUI(genertaedCharacters);
-        }
-            
-    }
+
 }

@@ -69,9 +69,9 @@ public class GridDisplay : MonoBehaviour
                     texto.color = Color.white;
                     */
                 }
-
-                DrawLine(grid.GetWorldPosition(i, j), grid.GetWorldPosition(i, j + 1));
-                DrawLine(grid.GetWorldPosition(i, j), grid.GetWorldPosition(i + 1, j));
+                
+                DrawLine(grid.GetWorldPosition(i, j) - new Vector3(filas * 5, 0, columnas * 5) , grid.GetWorldPosition(i, j + 1) - new Vector3(filas * 5, 0, columnas * 5));
+                DrawLine(grid.GetWorldPosition(i, j) - new Vector3(filas * 5, 0, columnas * 5), grid.GetWorldPosition(i + 1, j) - new Vector3(filas * 5, 0, columnas * 5));
 
                 /*
                 if (i == 0)
@@ -81,8 +81,8 @@ public class GridDisplay : MonoBehaviour
                 }*/
             }
         }
-        DrawLine(grid.GetWorldPosition(0, columnas), grid.GetWorldPosition(filas, columnas));
-        DrawLine(grid.GetWorldPosition(filas, 0), grid.GetWorldPosition(filas, columnas));
+        DrawLine(grid.GetWorldPosition(0, columnas) - new Vector3(filas * 5, 0, columnas * 5), grid.GetWorldPosition(filas, columnas) - new Vector3(filas * 5, 0, columnas * 5));
+        DrawLine(grid.GetWorldPosition(filas, 0) - new Vector3(filas * 5, 0, columnas * 5), grid.GetWorldPosition(filas, columnas) - new Vector3(filas * 5, 0, columnas * 5));
     }
 
 
