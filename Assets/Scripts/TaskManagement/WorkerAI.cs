@@ -13,14 +13,16 @@ public class WorkerAI : MonoBehaviour
     private float waitingTime = 1f;
 
     //[SerializeField]
-    public TaskManagement taskManagement;
-    public TaskManagement.TaskClean task;
+    private TaskManagement taskManagement;
+    private TaskManagement.TaskClean task;
 
     private Vector3 target;
 
     Renderer rend;
 
     public Color c;
+
+    public bool working = false;
 
     private bool sub_task1 = false;
     private bool sub_task2 = false;
@@ -48,8 +50,7 @@ public class WorkerAI : MonoBehaviour
 
     private void Start()
     {
-        //rend = target1.GetComponent<Renderer>();
-        //c = rend.material.color;
+        taskManagement = TaskManagement.Instance;
         state = State.WaitingForTask;
         currentTask = CurrentTask.nullTask;
 
@@ -58,7 +59,12 @@ public class WorkerAI : MonoBehaviour
 
     private void Update()
     {
-        if (state == State.WaitingForTask)
+        if (target != null && agent.remainingDistance >= 0.25f)
+        {
+            this.gameObject.transform.LookAt(target);
+        }
+
+        if (state == State.WaitingForTask && working && gameObject.GetComponent<NavMeshAgent>()!= null)
         {
             waitingTime -= Time.deltaTime;
 
@@ -69,15 +75,11 @@ public class WorkerAI : MonoBehaviour
             }
         }
 
-        if (state == State.DoingTask)
+        if (state == State.DoingTask && working)
         {
             ManageTaskClean(taskClean);
 
         }
-
-        /*
-        if (Input.GetMouseButtonDown(0))
-            if(state == State.WaitingForTask) RequestTask(); */
         
     }
 
@@ -161,6 +163,7 @@ public class WorkerAI : MonoBehaviour
         agent.destination = target;
         while (!end)
         {
+
             if (agent.remainingDistance <= 0.1f && agent.pathPending == false)
             {
                 end = true;

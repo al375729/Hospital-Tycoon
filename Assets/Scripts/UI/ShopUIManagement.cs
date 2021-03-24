@@ -13,6 +13,14 @@ public static class ButtonExtension
            OnClick(param,param2);
        });
     }
+
+    public static void AddEventListenerWorkers<T, W,F>(this Button button, T param, W param2,F param3, Action<T, W,F> OnClick)
+    {
+        button.onClick.AddListener(delegate ()
+        {
+            OnClick(param, param2,param3);
+        });
+    }
 }
 
 

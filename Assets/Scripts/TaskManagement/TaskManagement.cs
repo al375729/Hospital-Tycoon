@@ -27,6 +27,15 @@ public class TaskManagement : MonoBehaviour
         MoveTo,
     }
 
+
+    public static TaskManagement Instance { get; private set; } // static singleton
+    void Awake()
+    {
+        if (Instance == null) { Instance = this; }
+        else { Destroy(gameObject); }
+
+    }
+
     private List<TaskClean> taskList;
 
     private void Start()
@@ -34,7 +43,7 @@ public class TaskManagement : MonoBehaviour
         taskList = new List<TaskClean>();
     }
 
-    
+   
     
     public TaskClean RequestTask()
     {
@@ -59,8 +68,7 @@ public class TaskManagement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)) AddTask(target1.transform.position, target2.transform.position);
-
+        if (Input.GetMouseButtonDown(2)) AddTask(target1.transform.position, target2.transform.position);
 
     }
 }

@@ -15,7 +15,7 @@ public class CharacterGenerator : MonoBehaviour
     public GameObject[] pelos;
     public GameObject[] peloFacial;
 
-    private GameObject[] genertaedCharacters;
+    private List<GameObject> genertaedCharactersList;
 
     public PopulateWorkerShop workerShop;
 
@@ -24,20 +24,20 @@ public class CharacterGenerator : MonoBehaviour
     private int generatingCount = 5;
     void Start()
     {
-
-        genertaedCharacters = new GameObject[generatingCount];
+        genertaedCharactersList = new List<GameObject>();
 
         for (int i = 0; i < generatingCount; i++)
         {
             int colorDePelo = Random.Range(0,materialesPelo.Length);
 
-            genertaedCharacters[i]  = Instantiate(prefab,this.transform.position + new Vector3((15*i)+50f,0,0),Quaternion.identity);
+            GameObject instance = Instantiate(prefab, this.transform.position + new Vector3((15 * i) + 50f, 0, 0), Quaternion.identity);
+            genertaedCharactersList.Add(instance);
 
             int randomPelo = Random.Range(0, pelos.Length);
             
             if (randomPelo != materialesPelo.Length)
             {
-                GameObject pelo = Instantiate(pelos[randomPelo], genertaedCharacters[i].transform, false);
+                GameObject pelo = Instantiate(pelos[randomPelo], genertaedCharactersList[i].transform, false);
                 pelo.name = "Pelo";
                 pelo.transform.rotation = Quaternion.Euler(-90f, 0, 0);
                 pelo.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -47,7 +47,7 @@ public class CharacterGenerator : MonoBehaviour
             int randomBarba = Random.Range(0, 11);
             if (randomBarba == 0 || randomBarba == 1)
             {
-                GameObject barba = Instantiate(peloFacial[randomBarba], genertaedCharacters[i].transform, false);
+                GameObject barba = Instantiate(peloFacial[randomBarba], genertaedCharactersList[i].transform, false);
                 barba.name = "PeloFacial";
                 barba.transform.rotation = Quaternion.Euler(-90f, 0, 0);
                 barba.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -57,45 +57,45 @@ public class CharacterGenerator : MonoBehaviour
 
 
 
-            int children = genertaedCharacters[i].transform.childCount;
+            int children = genertaedCharactersList[i].transform.childCount;
             
             for (int j = 0; j < children; ++j)
             {
                 int ran = Random.Range(0, materialesPiel.Length);
 
-                if(genertaedCharacters[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>() != null)
+                if(genertaedCharactersList[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>() != null)
                 {
-                    if (genertaedCharacters[i].transform.GetChild(j).name == "Cejas")
+                    if (genertaedCharactersList[i].transform.GetChild(j).name == "Cejas")
                     {
-                        genertaedCharacters[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = materialesPelo[colorDePelo];
+                        genertaedCharactersList[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = materialesPelo[colorDePelo];
                     }
-                    else if (genertaedCharacters[i].transform.GetChild(j).name == "Piel")
+                    else if (genertaedCharactersList[i].transform.GetChild(j).name == "Piel")
                     {
-                        genertaedCharacters[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = materialesPiel[ran];
+                        genertaedCharactersList[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = materialesPiel[ran];
                     }
-                    else if (genertaedCharacters[i].transform.GetChild(j).name == "Bata")
+                    else if (genertaedCharactersList[i].transform.GetChild(j).name == "Bata")
                     {
-                        genertaedCharacters[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = bata;
+                        genertaedCharactersList[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = bata;
                     }
-                    else if (genertaedCharacters[i].transform.GetChild(j).name == "Camiseta")
+                    else if (genertaedCharactersList[i].transform.GetChild(j).name == "Camiseta")
                     {
                         int randomCamiseta = Random.Range(0, camsieta.Length);
-                        genertaedCharacters[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = camsieta[randomCamiseta];
+                        genertaedCharactersList[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = camsieta[randomCamiseta];
                     }
-                    else if (genertaedCharacters[i].transform.GetChild(j).name == "Pantalones")
+                    else if (genertaedCharactersList[i].transform.GetChild(j).name == "Pantalones")
                     {
                         int randomPantalon = Random.Range(0, camsieta.Length);
-                        genertaedCharacters[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = pantalon[randomPantalon];
+                        genertaedCharactersList[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = pantalon[randomPantalon];
                     }
-                    else if (genertaedCharacters[i].transform.GetChild(j).name == "Ojos")
+                    else if (genertaedCharactersList[i].transform.GetChild(j).name == "Ojos")
                     {
                         int ojosRandom = Random.Range(0, ojos.Length);
-                        genertaedCharacters[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = ojos[ojosRandom];
+                        genertaedCharactersList[i].transform.GetChild(j).GetComponent<SkinnedMeshRenderer>().material = ojos[ojosRandom];
                     }
                 }
-                else if (genertaedCharacters[i].transform.GetChild(j).GetComponent<MeshRenderer>() != null)
+                else if (genertaedCharactersList[i].transform.GetChild(j).GetComponent<MeshRenderer>() != null)
                 {
-                    genertaedCharacters[i].transform.GetChild(j).GetComponent<MeshRenderer>().material = materialesPelo[colorDePelo];
+                    genertaedCharactersList[i].transform.GetChild(j).GetComponent<MeshRenderer>().material = materialesPelo[colorDePelo];
                 }
 
 
@@ -103,7 +103,7 @@ public class CharacterGenerator : MonoBehaviour
             }
         }
 
-        workerShop.setUI(genertaedCharacters);
+        workerShop.setUI(genertaedCharactersList);
     }
 
 

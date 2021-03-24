@@ -13,7 +13,7 @@ public class DragBuildings : MonoBehaviour
         
     private Grid grid;
 
-    bool isSelected = true;
+    public bool isSelected = true;
     bool isColliding = false;
 
     public Material originalMaterial;
