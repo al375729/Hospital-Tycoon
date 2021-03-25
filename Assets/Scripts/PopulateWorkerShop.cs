@@ -104,10 +104,10 @@ public class PopulateWorkerShop : MonoBehaviour
             prefab.gameObject.AddComponent<NavMeshAgent>();
             NavMeshAgent navAgent = prefab.gameObject.GetComponent<NavMeshAgent>();
             navAgent.baseOffset = 0.5f;
-            navAgent.speed = 18f;
-            navAgent.angularSpeed = 20f;
+            navAgent.speed = 5;
+            navAgent.angularSpeed = 5;
             navAgent.stoppingDistance = 0f;
-            navAgent.acceleration = 3f;
+            navAgent.acceleration = 5f;
             navAgent.radius = 0.1f;
             navAgent.height = 3.5f;
             navAgent.autoBraking = true;

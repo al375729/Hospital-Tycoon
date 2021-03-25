@@ -107,15 +107,36 @@ public class DragBuildings : MonoBehaviour
 
         }
 
+        if (GlobalVariables.EDIT_MODE && !isSelected && !isColliding)
+        {
+            transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material = materiales[3];
+            transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = true;
+            transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+
+        }
+        else if (GlobalVariables.EDIT_MODE && isSelected)
+        {
+            transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = false;
+            transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        else if (!GlobalVariables.EDIT_MODE && !isSelected && !isColliding)
+        {
+            transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material = materiales[0];
+            transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = false;
+            transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
+
     }
 
     private void changeMaterialOfChildren(Material material)
     {
-        foreach (Transform child in transform)
+        transform.GetComponent<MeshRenderer>().material = material;
+        for (int i = 0; i < transform.childCount-2; i++)
         {
-            Renderer rend = child.GetComponent<MeshRenderer>();
+            Renderer rend = transform.GetChild(i).GetComponent<MeshRenderer>();
             rend.material = material;
         }
+
     }
 
     private void LateUpdate()
