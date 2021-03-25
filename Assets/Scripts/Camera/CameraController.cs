@@ -16,10 +16,10 @@ public class CameraController : MonoBehaviour
     public float fastSpeed;
     public float time;
     public float rotation; 
-    public float xLimit = 200;
-    public float yLimit = 200;
+    public float xLimit = 100;
+    public float yLimit = 100;
     public int zoomInLimit = 100;
-    public int zoomOutLimit = 1000;
+    public int zoomOutLimit = 500;
 
 
     public Vector3 zoom;

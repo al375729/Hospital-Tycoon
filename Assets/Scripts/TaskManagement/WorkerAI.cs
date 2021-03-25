@@ -31,10 +31,15 @@ public class WorkerAI : MonoBehaviour
     private bool runing = false;
 
     private TaskManagement.TaskClean taskClean;
+    private TaskManagement.TaskCleanStain taskCleanStain;
 
     private NavMeshAgent agent;
 
     public GameObject mancha;
+
+    private GameObject Stain;
+
+    NavMeshAgent navMeshAgent;
     private enum CurrentTask 
     {
         task1,
@@ -46,10 +51,12 @@ public class WorkerAI : MonoBehaviour
     {
         WaitingForTask,
         DoingTask,
+        DoingTaskClean,
     }
 
     private void Start()
     {
+        navMeshAgent = this.GetComponent<NavMeshAgent>();
         taskManagement = TaskManagement.Instance;
         state = State.WaitingForTask;
         currentTask = CurrentTask.nullTask;
@@ -61,7 +68,11 @@ public class WorkerAI : MonoBehaviour
     {
         if (target != null && agent.remainingDistance >= 0.25f)
         {
-            this.gameObject.transform.LookAt(target);
+            
+           // Vector3 rotation = Quaternion.LookRotation(target).eulerAngles;
+            //rotation.y = 0f;
+
+            transform.LookAt(target);
         }
 
         if (state == State.WaitingForTask && working && gameObject.GetComponent<NavMeshAgent>()!= null)
@@ -72,6 +83,7 @@ public class WorkerAI : MonoBehaviour
             {
                 waitingTime = maxWaitingTime;
                 RequestTask();
+                RequestTaskClean();
             }
         }
 
@@ -80,7 +92,13 @@ public class WorkerAI : MonoBehaviour
             ManageTaskClean(taskClean);
 
         }
-        
+        else if (state == State.DoingTaskClean && working)
+        {
+            Stain = taskCleanStain.trash;
+            ManageTaskCleanStain(taskCleanStain);
+
+        }
+
     }
 
     private void ManageTaskClean(TaskManagement.TaskClean taskClean)
@@ -114,6 +132,35 @@ public class WorkerAI : MonoBehaviour
             
             StopAllCoroutines();
             RestartValues();
+            target = Vector3.zero;
+
+        }
+    }
+
+    private void ManageTaskCleanStain(TaskManagement.TaskCleanStain taskClean)
+    {
+        if (sub_task1 == false && !runing)
+        {
+            target = taskClean.position;
+            currentTask = CurrentTask.task1;
+            callCoroutine();
+        }
+
+        else if (sub_task1 == true && !sub_task2 && !runing)
+        {
+            currentTask = CurrentTask.task2;
+            callCoroutine();
+        }
+
+        else if (sub_task1 == true && sub_task2)
+        {
+            Debug.Log("He acabado todo");
+            Destroy(Stain.gameObject);
+            Stain = null;
+
+            StopAllCoroutines();
+            RestartValues();
+            navMeshAgent.isStopped = true; ;
 
         }
     }
@@ -135,15 +182,20 @@ public class WorkerAI : MonoBehaviour
     public void callCoroutine()
     {
         runing = true;
-        if (currentTask == CurrentTask.task2)
+        if (currentTask == CurrentTask.task2 && state == State.DoingTaskClean)
         {
             StartCoroutine(FadeOut());
+        }
+        else if (currentTask == CurrentTask.task2 && state == State.DoingTask)
+        {
+            sub_task2 = true;
+            runing = false;
         }
         else
         {
             StartCoroutine(ExampleFunction());
         }
-        
+
     }
 
     public void RequestTask()
@@ -152,6 +204,15 @@ public class WorkerAI : MonoBehaviour
         if (taskClean != null)
         {
             state = State.DoingTask;
+        }
+    }
+
+    public void RequestTaskClean()
+    {
+        taskCleanStain = taskManagement.RequestTaskClean();
+        if (taskCleanStain != null)
+        {
+            state = State.DoingTaskClean;
         }
     }
 
@@ -198,8 +259,8 @@ public class WorkerAI : MonoBehaviour
 
     IEnumerator FadeOut()
     {
-        //iTween.FadeTo(mancha, 0f, 2f);
-        yield return new WaitForSeconds(2);
+        LeanTween.alpha(Stain, 0f, 1f).setDelay(1f);
+        yield return new WaitForSeconds(1);
         sub_task2 = true;
         runing = false;
     }

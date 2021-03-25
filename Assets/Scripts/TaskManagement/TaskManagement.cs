@@ -22,6 +22,19 @@ public class TaskManagement : MonoBehaviour
         }
     }
 
+    public class TaskCleanStain
+    {
+        public Vector3 position;
+        public GameObject trash;
+
+
+        public TaskCleanStain(Vector3 position, GameObject objectToClean)
+        {
+            this.position = position;
+            trash = objectToClean;
+        }
+    }
+
     public enum TaskType
     {
         MoveTo,
@@ -37,10 +50,12 @@ public class TaskManagement : MonoBehaviour
     }
 
     private List<TaskClean> taskList;
+    private List<TaskCleanStain> taskListStain;
 
     private void Start()
     {
         taskList = new List<TaskClean>();
+        taskListStain = new List<TaskCleanStain>();
     }
 
    
@@ -58,7 +73,21 @@ public class TaskManagement : MonoBehaviour
             return null;
         }
     }
-    
+
+    public TaskCleanStain RequestTaskClean()
+    {
+        if (taskListStain.Count > 0)
+        {
+            TaskCleanStain task = taskListStain[0];
+            taskListStain.RemoveAt(0);
+            return task;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public void AddTask(Vector3 position,  Vector3 position2)
     {
         TaskClean task = new TaskClean(position,position2);
@@ -66,9 +95,16 @@ public class TaskManagement : MonoBehaviour
         Debug.Log("add");
     }
 
+    public void AddTaskCleanStain(Vector3 position, GameObject objectToClean)
+    {
+        TaskCleanStain task = new TaskCleanStain(position,objectToClean);
+        Debug.Log(task);
+        taskListStain.Add(task);
+    }
+
     private void Update()
     {
-        if (Input.GetMouseButtonDown(2)) AddTask(target1.transform.position, target2.transform.position);
+        if (Input.GetMouseButtonDown(1)) AddTask(target1.transform.position, target2.transform.position);
 
     }
 }

@@ -33,7 +33,6 @@ public class PopulateWorkerShop : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(this.gameObject.transform.childCount);
 
     }
 
@@ -68,7 +67,6 @@ public class PopulateWorkerShop : MonoBehaviour
             Button instance;
 
             instance = Instantiate(buttonTemplate, panel.transform);
-            Debug.Log(instance.transform.parent.gameObject);
             instance.gameObject.transform.GetChild(0).GetComponent<Text>().text = genertaedCharacters[i].name;
             instance.gameObject.transform.GetChild(1).GetComponent<Text>().text = "algo";
             instance.gameObject.transform.GetChild(2).GetComponent<Image>().sprite = generator.TakePhoto();
@@ -99,18 +97,21 @@ public class PopulateWorkerShop : MonoBehaviour
 
             shopButton.image.color = Color.white;
 
-            prefab.gameObject.transform.position = new Vector3(5,0.05f,-193);
+            prefab.gameObject.transform.position = new Vector3(5,0.05f,-98f);
             prefab.gameObject.transform.rotation = Quaternion.identity;
             prefab.gameObject.transform.localScale = new Vector3(1.5f, 1.5f,1.5f);
             
             prefab.gameObject.AddComponent<NavMeshAgent>();
             NavMeshAgent navAgent = prefab.gameObject.GetComponent<NavMeshAgent>();
             navAgent.baseOffset = 0.5f;
-            navAgent.speed = 10f;
-            navAgent.angularSpeed = 9f;
-            navAgent.acceleration = 8f;
-            navAgent.radius = 1f;
+            navAgent.speed = 18f;
+            navAgent.angularSpeed = 20f;
+            navAgent.stoppingDistance = 0f;
+            navAgent.acceleration = 3f;
+            navAgent.radius = 0.1f;
             navAgent.height = 3.5f;
+            navAgent.autoBraking = true;
+            //navAgent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
 
             prefab.gameObject.AddComponent<WorkerAI>();
 
