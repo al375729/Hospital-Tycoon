@@ -38,6 +38,7 @@ public class DragBuildings : MonoBehaviour
             if (!isSelected && !globalSelection && GlobalVariables.EDIT_MODE)
             {
                 isSelected = true;
+                globalSelection = true;
                 position = transform.position;
                 rotation = transform.rotation;
 
@@ -55,6 +56,7 @@ public class DragBuildings : MonoBehaviour
                     position = transform.position;
                     rotation = transform.rotation;
                     isSelected = false;
+                    globalSelection = false;
                 }
             }
         }
@@ -73,6 +75,7 @@ public class DragBuildings : MonoBehaviour
             transform.rotation = rotation;
             changeMaterialOfChildren(materiales[0]);
             isSelected = false;
+            globalSelection = false;
         }
         if  (Input.GetMouseButtonDown(1))
         {
