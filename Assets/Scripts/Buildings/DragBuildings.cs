@@ -25,6 +25,15 @@ public class DragBuildings : MonoBehaviour
     public static bool globalSelection = false;
     private Vector3 position;
     private Quaternion rotation;
+
+    private bool lastFrameWasEditMode;
+
+    private enum State
+    {
+        WaitingForTask,
+        DoingTask,
+        DoingTaskClean,
+    }
     private void Start()
     {
 
@@ -50,9 +59,9 @@ public class DragBuildings : MonoBehaviour
             }
             else
             {
-                if (!isColliding)
+                 if (!isColliding && isSelected)
                 {
-                    changeMaterialOfChildren(materiales[0]);
+                    changeMaterialOfChildren(0);
                     position = transform.position;
                     rotation = transform.rotation;
                     isSelected = false;
@@ -73,7 +82,7 @@ public class DragBuildings : MonoBehaviour
         {
             transform.position = position;
             transform.rotation = rotation;
-            changeMaterialOfChildren(materiales[0]);
+            changeMaterialOfChildren(0);
             isSelected = false;
             globalSelection = false;
         }
@@ -88,10 +97,10 @@ public class DragBuildings : MonoBehaviour
 
         if (isColliding && isSelected)
         {
-            changeMaterialOfChildren(materiales[2]);
+            changeMaterialOfChildren(2);
         }
 
-        else if (!isColliding && isSelected) changeMaterialOfChildren(materiales[1]);
+        else if (!isColliding && isSelected) changeMaterialOfChildren(1);
 
         if (isSelected == true)
         {
@@ -110,36 +119,55 @@ public class DragBuildings : MonoBehaviour
 
         }
 
-        if (GlobalVariables.EDIT_MODE && !isSelected && !isColliding)
-        {
-            transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material = materiales[3];
-            transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = true;
-            transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        
 
-        }
-        else if (GlobalVariables.EDIT_MODE && isSelected)
+        if(lastFrameWasEditMode != GlobalVariables.EDIT_MODE)
         {
-            transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = false;
-            transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        }
-        else if (!GlobalVariables.EDIT_MODE && !isSelected && !isColliding)
-        {
-            transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material = materiales[0];
-            transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = false;
-            transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            if (GlobalVariables.EDIT_MODE && !isSelected && !isColliding)
+            {
+                transform.GetChild(0).gameObject.GetComponent<Objects>().changeMaterial(0);
+                transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = true;
+                transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+
+            }
+            else if (GlobalVariables.EDIT_MODE && isSelected)
+            {
+                transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = false;
+                transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
+            else if (!GlobalVariables.EDIT_MODE && !isSelected && !isColliding)
+            {
+                transform.GetChild(0).gameObject.GetComponent<Objects>().changeMaterial(3);
+                transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = false;
+                transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
+
+            lastFrameWasEditMode = GlobalVariables.EDIT_MODE;
         }
 
     }
 
-    private void changeMaterialOfChildren(Material material)
+    private void changeMaterialOfChildren(int index)
     {
-        transform.GetComponent<MeshRenderer>().material = material;
-        for (int i = 0; i < transform.childCount-2; i++)
+        //transform.GetComponent<MeshRenderer>().material = material;
+        for (int i = 0; i < transform.childCount - 2; i++)
         {
-            Renderer rend = transform.GetChild(i).GetComponent<MeshRenderer>();
-            rend.material = material;
-        }
+            if (transform.GetChild(i).GetComponent<Objects>() != null)
+            {
+                transform.GetChild(i).GetComponent<Objects>().changeMaterial(index);
+            }
+            else
+            {
+                for (int j = 0; j < transform.GetChild(i).childCount; j++)
+                {
+                    if (transform.GetChild(i).GetChild(j).GetComponent<Objects>() != null) transform.GetChild(i).GetChild(j).GetComponent<Objects>().changeMaterial(index);
+                    //Debug.Log(i); Debug.Log(j); Debug.Log(i+j);
+                }
+                
 
+            }
+
+        }
     }
 
     private void LateUpdate()
@@ -187,6 +215,7 @@ public class DragBuildings : MonoBehaviour
         if ((col.gameObject.CompareTag("Building") && isSelected ))
         {
             isColliding = true;
+            Debug.Log("A");
         }
     }
 

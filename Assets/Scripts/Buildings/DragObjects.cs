@@ -16,7 +16,7 @@ public class DragObjects : MonoBehaviour
     public bool isSelected = true;
     bool isColliding = false;
 
-    public Material originalMaterial;
+    private Material originalMaterial;
 
     public Material[] materiales;
 
