@@ -80,8 +80,6 @@ public class DragBuildings : MonoBehaviour
     {
         if(GlobalVariables.UI_OPEN)
         {
-            transform.position = position;
-            transform.rotation = rotation;
             changeMaterialOfChildren(0);
             isSelected = false;
             globalSelection = false;
@@ -121,8 +119,8 @@ public class DragBuildings : MonoBehaviour
 
         
 
-        if(lastFrameWasEditMode != GlobalVariables.EDIT_MODE)
-        {
+        //if(lastFrameWasEditMode != GlobalVariables.EDIT_MODE)
+        //{
             if (GlobalVariables.EDIT_MODE && !isSelected && !isColliding)
             {
                 transform.GetChild(0).gameObject.GetComponent<Objects>().changeMaterial(0);
@@ -143,7 +141,7 @@ public class DragBuildings : MonoBehaviour
             }
 
             lastFrameWasEditMode = GlobalVariables.EDIT_MODE;
-        }
+        //}
 
     }
 
@@ -168,6 +166,8 @@ public class DragBuildings : MonoBehaviour
             }
 
         }
+
+        
     }
 
     private void LateUpdate()

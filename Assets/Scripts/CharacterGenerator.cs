@@ -12,7 +12,8 @@ public class CharacterGenerator : MonoBehaviour
     public Material[] pantalon;
     public Material[] ojos;
 
-    public GameObject[] pelos;
+    public GameObject[] pelosHombre;
+    public GameObject[] pelosMujer;
     public GameObject[] peloFacial;
 
     private List<GameObject> genertaedCharactersList;
@@ -22,36 +23,70 @@ public class CharacterGenerator : MonoBehaviour
     public Material bata;
 
     private int generatingCount = 5;
+
+    public GameObject parent;
     void Start()
     {
         genertaedCharactersList = new List<GameObject>();
 
         for (int i = 0; i < generatingCount; i++)
         {
+            int genero = Random.Range(0, 2);// 0 --> M || 1 --> F 
+            
+            
             int colorDePelo = Random.Range(0,materialesPelo.Length);
 
             GameObject instance = Instantiate(prefab, this.transform.position + new Vector3((15 * i) + 50f, 0, 0), Quaternion.identity);
+            instance.transform.SetParent(parent.transform);
             genertaedCharactersList.Add(instance);
 
-            int randomPelo = Random.Range(0, pelos.Length);
             
-            if (randomPelo != materialesPelo.Length)
+
+
+            if (genero == 0)
             {
-                GameObject pelo = Instantiate(pelos[randomPelo], genertaedCharactersList[i].transform, false);
-                pelo.name = "Pelo";
-                pelo.transform.rotation = Quaternion.Euler(-90f, 0, 0);
-                pelo.transform.localScale = new Vector3(1f, 1f, 1f);
-                pelo.transform.localPosition = new Vector3(0f, 0f, 0f);
+                int randomPelo = Random.Range(0, pelosHombre.Length);
+
+                string name = Names.getNameMale();
+                instance.GetComponent<Worker>().name = name;
+                instance.name = name;
+
+                if (randomPelo != materialesPelo.Length)
+                {
+                    GameObject pelo = Instantiate(pelosHombre[randomPelo], genertaedCharactersList[i].transform, false);
+                    pelo.name = "Pelo";
+                    pelo.transform.rotation = Quaternion.Euler(-90f, 0, 0);
+                    pelo.transform.localScale = new Vector3(1f, 1f, 1f);
+                    pelo.transform.localPosition = new Vector3(0f, 0f, 0f);
+                }
+
+                int randomBarba = Random.Range(0, 11);
+                if (randomBarba == 0 || randomBarba == 1)
+                {
+                    GameObject barba = Instantiate(peloFacial[randomBarba], genertaedCharactersList[i].transform, false);
+                    barba.name = "PeloFacial";
+                    barba.transform.rotation = Quaternion.Euler(-90f, 0, 0);
+                    barba.transform.localScale = new Vector3(1f, 1f, 1f);
+                    barba.transform.localPosition = new Vector3(0f, 0f, 0f);
+                }
             }
 
-            int randomBarba = Random.Range(0, 11);
-            if (randomBarba == 0 || randomBarba == 1)
+            else
             {
-                GameObject barba = Instantiate(peloFacial[randomBarba], genertaedCharactersList[i].transform, false);
-                barba.name = "PeloFacial";
-                barba.transform.rotation = Quaternion.Euler(-90f, 0, 0);
-                barba.transform.localScale = new Vector3(1f, 1f, 1f);
-                barba.transform.localPosition = new Vector3(0f, 0f, 0f);
+                int randomPelo = Random.Range(0, pelosMujer.Length);
+
+                string name = Names.getNameFemale();
+                instance.GetComponent<Worker>().name = name;
+                instance.name = name;
+
+                if (randomPelo != materialesPelo.Length)
+                {
+                    GameObject pelo = Instantiate(pelosMujer[randomPelo], genertaedCharactersList[i].transform, false);
+                    pelo.name = "Pelo";
+                    pelo.transform.rotation = Quaternion.Euler(-90f, 0, 0);
+                    pelo.transform.localScale = new Vector3(1f, 1f, 1f);
+                    pelo.transform.localPosition = new Vector3(0f, 0f, 0f);
+                }
             }
 
 

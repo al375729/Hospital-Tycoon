@@ -73,7 +73,9 @@
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTween.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTweenExt.cs" />
+    <Compile Include="Assets\Names.cs" />
     <Compile Include="Assets\Objects.cs" />
+    <Compile Include="Assets\Patient.cs" />
     <Compile Include="Assets\Scripts\BuildingManager.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingObjects.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingsInShop.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Assets\Scripts\Money.cs" />
     <Compile Include="Assets\Scripts\NavMesh\LocalNavMeshBuilder.cs" />
     <Compile Include="Assets\Scripts\NavMesh\NavMeshSourceTag.cs" />
+    <Compile Include="Assets\Scripts\PatientGenerator.cs" />
     <Compile Include="Assets\Scripts\PopulateWorkerShop.cs" />
     <Compile Include="Assets\Scripts\TabGroup.cs" />
     <Compile Include="Assets\Scripts\TapButton.cs" />
@@ -106,6 +109,7 @@
     <Compile Include="Assets\Scripts\UI\Seleccionador.cs" />
     <Compile Include="Assets\Scripts\UI\ShopUIManagement.cs" />
     <Compile Include="Assets\Scripts\Workers\WorkerScriptableObject.cs" />
+    <Compile Include="Assets\Worker.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\LeanTween\ReadMe.txt" />

@@ -104,7 +104,7 @@ public class TaskManagement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(2)) AddTask(target1.transform.position, target2.transform.position);
+        //if (Input.GetMouseButtonDown(2)) AddTask(target1.transform.position, target2.transform.position);
 
     }
 }
