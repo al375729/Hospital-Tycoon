@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PatientGenerator : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class PatientGenerator : MonoBehaviour
     public GameObject[] HairStyleWoman;
     public GameObject[] peloFacial;
 
+    public GameObject entradaHospital;
 
     private int generatingCount = 5;
 
@@ -68,8 +70,8 @@ public class PatientGenerator : MonoBehaviour
 
 
             GameObject instance = Instantiate(prefabs[numeroDePrefab], new Vector3(100f, 0,-105), Quaternion.identity);
-            instance.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-            instance.transform.SetParent(parent.transform);
+            createPatient(instance);
+            
 
             switch (numeroDePrefab)
             {
@@ -201,8 +203,7 @@ public class PatientGenerator : MonoBehaviour
             Debug.Log("Aparecio un especial");
             int especial = Random.Range(0, especialPrefabs.Length);
             GameObject instance = Instantiate(especialPrefabs[especial], new Vector3(100f, 0,-105), Quaternion.identity);
-            instance.transform.SetParent(parent.transform);
-            instance.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            createPatient(instance);
 
             string name = Names.getNameMale();
             instance.GetComponent<Patient>().name = name;
@@ -211,8 +212,16 @@ public class PatientGenerator : MonoBehaviour
 
     }
 
+    private void createPatient(GameObject instance)
+    {
+        instance.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        instance.transform.SetParent(parent.transform);
 
+        NavMeshAgent agente = instance.GetComponent<NavMeshAgent>();
+        agente.enabled = true;
 
-
+        agente.destination = entradaHospital.transform.position;
+        
+    }
 }
 

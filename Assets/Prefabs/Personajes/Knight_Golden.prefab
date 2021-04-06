@@ -734,6 +734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5063319300895133589}
   - component: {fileID: 1873869728128945887}
+  - component: {fileID: -4364653117487719073}
   m_Layer: 0
   m_Name: Knight_Golden
   m_TagString: Untagged
@@ -771,6 +772,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920cd313e94a98e42b250acf30695787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  patientName: 
+--- !u!195 &-4364653117487719073
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5552752244992742703}
+  m_Enabled: 0
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5668491402885006238
 GameObject:
   m_ObjectHideFlags: 0
