@@ -26,6 +26,8 @@ public class PatientGenerator : MonoBehaviour
     private int Xoffset = 0;
 
     public GameObject parent;
+
+    public WatingRoom waitingRoom;
     void Start()
     {
         GameObject[] personajes = new GameObject[10];
@@ -37,14 +39,13 @@ public class PatientGenerator : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            Debug.Log("ASD");
+            //Debug.Log("ASD");
             Xoffset += 15;
-            generatePatient();
+            //generatePatient();
         }
 
         if (Input.GetMouseButtonDown(2))
         {
-            Debug.Log("ASD");
             Xoffset += 15;
             generatePatient();
         }
@@ -220,7 +221,8 @@ public class PatientGenerator : MonoBehaviour
         NavMeshAgent agente = instance.GetComponent<NavMeshAgent>();
         agente.enabled = true;
 
-        agente.destination = entradaHospital.transform.position;
+        //agente.destination = entradaHospital.transform.position;
+
         
     }
 }

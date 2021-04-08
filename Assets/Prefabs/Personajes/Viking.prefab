@@ -1423,7 +1423,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920cd313e94a98e42b250acf30695787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patientName: 
+  c: {r: 0, g: 0, b: 0, a: 0}
+  mancha: {fileID: 0}
+  waitingRoom: {fileID: 0}
+  onQueue: 0
 --- !u!195 &6183828665371036278
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1433,11 +1436,11 @@ NavMeshAgent:
   m_GameObject: {fileID: 6181636244530993466}
   m_Enabled: 0
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Radius: 0.1
+  m_Speed: 5
+  m_Acceleration: 5
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 5
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1

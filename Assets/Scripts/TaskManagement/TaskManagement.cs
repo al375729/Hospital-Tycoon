@@ -35,9 +35,15 @@ public class TaskManagement : MonoBehaviour
         }
     }
 
-    public enum TaskType
+    public class PatientGoTo
     {
-        MoveTo,
+        public GameObject target;
+
+
+        public PatientGoTo(GameObject target)
+        {
+            this.target = target;
+        }
     }
 
 
@@ -51,11 +57,14 @@ public class TaskManagement : MonoBehaviour
 
     private List<TaskClean> taskList;
     private List<TaskCleanStain> taskListStain;
+    private List<PatientGoTo> taskPatientGoTo;
+    public GameObject prueba;
 
     private void Start()
     {
         taskList = new List<TaskClean>();
         taskListStain = new List<TaskCleanStain>();
+        taskPatientGoTo = new List<PatientGoTo>();
     }
 
    
@@ -88,6 +97,21 @@ public class TaskManagement : MonoBehaviour
         }
     }
 
+    public PatientGoTo RequestTaskPatientGoTo()
+    {
+        if (taskPatientGoTo.Count > 0)
+        {
+            PatientGoTo task = taskPatientGoTo[0];
+            taskPatientGoTo.RemoveAt(0);
+            Debug.Log(task + "12");
+            return task;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public void AddTask(Vector3 position,  Vector3 position2)
     {
         TaskClean task = new TaskClean(position,position2);
@@ -100,6 +124,12 @@ public class TaskManagement : MonoBehaviour
         TaskCleanStain task = new TaskCleanStain(position,objectToClean);
         Debug.Log(task);
         taskListStain.Add(task);
+    }
+
+    public void AddTaskPatientGoTo(GameObject target)
+    {
+        PatientGoTo task = new PatientGoTo(target);
+        taskPatientGoTo.Add(task);
     }
 
     private void Update()
