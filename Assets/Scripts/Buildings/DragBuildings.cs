@@ -10,7 +10,7 @@ public class DragBuildings : MonoBehaviour
     private float zCoord;
 
     public GameObject prefab;
-        
+
     private Grid grid;
 
     public bool isSelected = true;
@@ -28,6 +28,7 @@ public class DragBuildings : MonoBehaviour
 
     private bool lastFrameWasEditMode;
 
+    ConsultController consultController;
     private enum State
     {
         WaitingForTask,
@@ -36,13 +37,13 @@ public class DragBuildings : MonoBehaviour
     }
     private void Start()
     {
-
+        consultController = ConsultController.Instance;
     }
 
 
     void OnMouseDown()
     {
-        if(! IsMouseOverUI())
+        if (!IsMouseOverUI())
         {
             if (!isSelected && !globalSelection && GlobalVariables.EDIT_MODE)
             {
@@ -50,17 +51,20 @@ public class DragBuildings : MonoBehaviour
                 globalSelection = true;
                 position = transform.position;
                 rotation = transform.rotation;
+                deleteReferences();
 
             }
             else if (!isSelected && !globalSelection && GlobalVariables.DELETE_MODE)
             {
+                deleteReferences();
                 Destroy(this.gameObject);
 
             }
             else
             {
-                 if (!isColliding && isSelected)
+                if (!isColliding && isSelected)
                 {
+                    addReferences();
                     changeMaterialOfChildren(0);
                     position = transform.position;
                     rotation = transform.rotation;
@@ -69,7 +73,7 @@ public class DragBuildings : MonoBehaviour
                 }
             }
         }
-        
+
     }
 
     private bool IsMouseOverUI()
@@ -78,19 +82,19 @@ public class DragBuildings : MonoBehaviour
     }
     private void Update()
     {
-        if(GlobalVariables.UI_OPEN)
+        if (GlobalVariables.UI_OPEN)
         {
             changeMaterialOfChildren(0);
             isSelected = false;
             globalSelection = false;
         }
-        if  (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))
         {
-            if(isSelected)
+            if (isSelected)
             {
                 objectToRotate = this.transform.rotation * Quaternion.Euler(0, -90, 0);
             }
-          
+
         }
 
         if (isColliding && isSelected)
@@ -117,30 +121,30 @@ public class DragBuildings : MonoBehaviour
 
         }
 
-        
+
 
         //if(lastFrameWasEditMode != GlobalVariables.EDIT_MODE)
         //{
-            if (GlobalVariables.EDIT_MODE && !isSelected && !isColliding)
-            {
-                transform.GetChild(0).gameObject.GetComponent<Objects>().changeMaterial(0);
-                transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = true;
-                transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        if (GlobalVariables.EDIT_MODE && !isSelected && !isColliding)
+        {
+            transform.GetChild(0).gameObject.GetComponent<ObjectsOnRoom>().changeMaterial(0);
+            transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = true;
+            transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
 
-            }
-            else if (GlobalVariables.EDIT_MODE && isSelected)
-            {
-                transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = false;
-                transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            }
-            else if (!GlobalVariables.EDIT_MODE && !isSelected && !isColliding)
-            {
-                transform.GetChild(0).gameObject.GetComponent<Objects>().changeMaterial(3);
-                transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = false;
-                transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            }
+        }
+        else if (GlobalVariables.EDIT_MODE && isSelected)
+        {
+            transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = false;
+            transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        else if (!GlobalVariables.EDIT_MODE && !isSelected && !isColliding)
+        {
+            transform.GetChild(0).gameObject.GetComponent<ObjectsOnRoom>().changeMaterial(3);
+            transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = false;
+            transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
 
-            lastFrameWasEditMode = GlobalVariables.EDIT_MODE;
+        lastFrameWasEditMode = GlobalVariables.EDIT_MODE;
         //}
 
     }
@@ -150,32 +154,32 @@ public class DragBuildings : MonoBehaviour
         //transform.GetComponent<MeshRenderer>().material = material;
         for (int i = 0; i < transform.childCount - 2; i++)
         {
-            if (transform.GetChild(i).GetComponent<Objects>() != null)
+            if (transform.GetChild(i).GetComponent<ObjectsOnRoom>() != null)
             {
-                transform.GetChild(i).GetComponent<Objects>().changeMaterial(index);
+                transform.GetChild(i).GetComponent<ObjectsOnRoom>().changeMaterial(index);
             }
             else
             {
                 for (int j = 0; j < transform.GetChild(i).childCount; j++)
                 {
-                    if (transform.GetChild(i).GetChild(j).GetComponent<Objects>() != null) transform.GetChild(i).GetChild(j).GetComponent<Objects>().changeMaterial(index);
+                    if (transform.GetChild(i).GetChild(j).GetComponent<ObjectsOnRoom>() != null) transform.GetChild(i).GetChild(j).GetComponent<ObjectsOnRoom>().changeMaterial(index);
                     //Debug.Log(i); Debug.Log(j); Debug.Log(i+j);
                 }
-                
+
 
             }
 
         }
 
-        
+
     }
 
     private void LateUpdate()
     {
-        if(!IsQuaternionInvalid(transform.rotation) && !IsQuaternionInvalid(objectToRotate))
+        if (!IsQuaternionInvalid(transform.rotation) && !IsQuaternionInvalid(objectToRotate))
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, objectToRotate, 70f * Time.deltaTime);
-        } 
+        }
     }
 
     private bool IsQuaternionInvalid(Quaternion q)
@@ -210,9 +214,10 @@ public class DragBuildings : MonoBehaviour
         z = Mathf.FloorToInt(posicion.z / 10);
     }
 
+
     void OnCollisionStay(Collision col)
     {
-        if ((col.gameObject.CompareTag("Building") && isSelected ))
+        if ((col.gameObject.CompareTag("Building") && isSelected))
         {
             isColliding = true;
             Debug.Log("A");
@@ -226,6 +231,67 @@ public class DragBuildings : MonoBehaviour
             isColliding = false;
         }
     }
+
+
+    public void addReferences()
+    {
+        for (int i = 0; i < transform.childCount - 2; i++)
+        {
+            if (transform.GetChild(i).GetComponent<ObjectsOnRoom>() != null)
+            {
+                ObjectsOnRoom obj = transform.GetChild(i).GetComponent<ObjectsOnRoom>();
+
+                int index;
+
+                switch (obj.objectType)
+                {
+                    case ObjectsOnRoom.type.ConsultDoctor:
+                        index = consultController.addSeats(transform.GetChild(i).transform);
+                        obj.indexInList = index;
+                        break;
+
+                    case ObjectsOnRoom.type.ConsultPatient:
+                        index = consultController.addQueue(transform.GetChild(i).transform);
+                        obj.indexInList = index;
+                        break;
+
+                    case ObjectsOnRoom.type.None:
+                        break;
+                }
+            }
+        }
+    }
+
+    public void deleteReferences()
+    {
+        for (int i = 0; i < transform.childCount - 2; i++)
+        {
+            if (transform.GetChild(i).GetComponent<ObjectsOnRoom>() != null)
+            {
+                ObjectsOnRoom obj = transform.GetChild(i).GetComponent<ObjectsOnRoom>();
+
+                switch (obj.objectType)
+                {
+                    case ObjectsOnRoom.type.ConsultDoctor:
+                        consultController.updateIndexSeat(obj.indexInList);
+                        break;
+
+                    case ObjectsOnRoom.type.ConsultPatient:
+                        consultController.updateIndexQueue(obj.indexInList);
+                        break;
+
+                    case ObjectsOnRoom.type.None:
+                        break;
+                }
+            }
+        }
+
+    }
+
+
+
+
+
 
 }
 

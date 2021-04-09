@@ -1,5 +1,104 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3000612717071998706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5309026352183150780}
+  - component: {fileID: 5347214635317290971}
+  - component: {fileID: 7624200772361562840}
+  - component: {fileID: 4802933334749485095}
+  m_Layer: 0
+  m_Name: Marca Paciente
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5309026352183150780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000612717071998706}
+  m_LocalRotation: {x: 0.00000007549792, y: 0.00000008940697, z: 1, w: 7.1054274e-15}
+  m_LocalPosition: {x: 1.4788519, y: 0.10939926, z: 6.710109}
+  m_LocalScale: {x: -0.06178294, y: -0.016061392, z: -0.061782945}
+  m_Children: []
+  m_Father: {fileID: 5462340094114122091}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!33 &5347214635317290971
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000612717071998706}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &7624200772361562840
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000612717071998706}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 29bc901ba1eb1b84c99b07504a87eb01, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!114 &4802933334749485095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000612717071998706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c2c4f5c1a1fda7478de448d9bc6994f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materiales:
+  - {fileID: 2100000, guid: ca48180fd434bbe41878302dee92f6b4, type: 2}
+  - {fileID: 2100000, guid: ca48180fd434bbe41878302dee92f6b4, type: 2}
+  - {fileID: 2100000, guid: ca48180fd434bbe41878302dee92f6b4, type: 2}
+  objectType: 1
+  isSelected: 0
+  indexInList: -1
 --- !u!1 &3142156425887268852
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,7 +113,7 @@ GameObject:
   - component: {fileID: 1485992909254828227}
   - component: {fileID: 4947755678509741504}
   m_Layer: 0
-  m_Name: Cube.003
+  m_Name: Camilla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -109,6 +208,108 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 2100000, guid: 9dab5350f09e1db4f8dcf73656619713, type: 2}
   - {fileID: 2100000, guid: 629ac73f3a6145e41b0ff854b5283dab, type: 2}
+  objectType: 2
+  isSelected: 0
+  indexInList: -1
+--- !u!1 &3745623764355657626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 929582255446535457}
+  - component: {fileID: 3995769165567818089}
+  - component: {fileID: 1058277835024857668}
+  - component: {fileID: 8708565332276689639}
+  m_Layer: 0
+  m_Name: Marca Medico
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &929582255446535457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3745623764355657626}
+  m_LocalRotation: {x: 0.00000007549791, y: 0.000000059604645, z: 1, w: -3.5527137e-15}
+  m_LocalPosition: {x: 1.4788506, y: 0.10939932, z: -2.217526}
+  m_LocalScale: {x: -0.061782945, y: -0.016061394, z: -0.061782952}
+  m_Children: []
+  m_Father: {fileID: 5462340094114122091}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!33 &3995769165567818089
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3745623764355657626}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1058277835024857668
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3745623764355657626}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 29bc901ba1eb1b84c99b07504a87eb01, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!114 &8708565332276689639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3745623764355657626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c2c4f5c1a1fda7478de448d9bc6994f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materiales:
+  - {fileID: 2100000, guid: ca48180fd434bbe41878302dee92f6b4, type: 2}
+  - {fileID: 2100000, guid: ca48180fd434bbe41878302dee92f6b4, type: 2}
+  - {fileID: 2100000, guid: ca48180fd434bbe41878302dee92f6b4, type: 2}
+  objectType: 0
+  isSelected: 0
+  indexInList: -1
 --- !u!1 &3813423120194021169
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +339,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5462340094114122091}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &5219555403662849903
 SpriteRenderer:
@@ -300,6 +501,9 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 9dab5350f09e1db4f8dcf73656619713, type: 2}
   - {fileID: 2100000, guid: 629ac73f3a6145e41b0ff854b5283dab, type: 2}
   - {fileID: 2100000, guid: 86e3af14d5499c74480033c73023933e, type: 2}
+  objectType: 2
+  isSelected: 0
+  indexInList: -1
 --- !u!1 &4649388217965712337
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +540,8 @@ Transform:
   - {fileID: 1144715382834678312}
   - {fileID: 8762906397861680060}
   - {fileID: 6474605578362529893}
+  - {fileID: 929582255446535457}
+  - {fileID: 5309026352183150780}
   - {fileID: 5583459518687918042}
   - {fileID: 2924682902242824833}
   m_Father: {fileID: 0}
@@ -457,7 +663,7 @@ GameObject:
   - component: {fileID: 4054021566195505792}
   - component: {fileID: 959049296869949763}
   m_Layer: 0
-  m_Name: Cube.002
+  m_Name: Mesa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -552,6 +758,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 2100000, guid: 9dab5350f09e1db4f8dcf73656619713, type: 2}
   - {fileID: 2100000, guid: 629ac73f3a6145e41b0ff854b5283dab, type: 2}
+  objectType: 2
+  isSelected: 0
+  indexInList: -1
 --- !u!1 &5737350341612426133
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +775,7 @@ GameObject:
   - component: {fileID: 3553380249199731694}
   - component: {fileID: 52434164664358873}
   m_Layer: 0
-  m_Name: Cube.001
+  m_Name: Silla Medico
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -661,6 +870,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 2100000, guid: 9dab5350f09e1db4f8dcf73656619713, type: 2}
   - {fileID: 2100000, guid: 629ac73f3a6145e41b0ff854b5283dab, type: 2}
+  objectType: 2
+  isSelected: 0
+  indexInList: -1
 --- !u!1 &7966926719806738097
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +904,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5462340094114122091}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

@@ -110,6 +110,7 @@ public class Recepcionsit : MonoBehaviour
         if (attend.childCount > 0 && attend.GetChild(0).GetComponent<Patient>().state == Patient.State.WaitingForTask)
         {
             Debug.Log("Atendiendo a: " + attend.GetChild(0));
+
         }
         else Debug.Log("No hay nadie en ventanilla");
     }
@@ -178,6 +179,7 @@ public class Recepcionsit : MonoBehaviour
         Debug.Log("Esperar");
         yield return new WaitForSeconds(5);
         Debug.Log("Han paasado 5 segundos");
+
     }
 
 
