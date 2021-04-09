@@ -103,7 +103,6 @@ public class TaskManagement : MonoBehaviour
         {
             PatientGoTo task = taskPatientGoTo[0];
             taskPatientGoTo.RemoveAt(0);
-            Debug.Log(task + "12");
             return task;
         }
         else
