@@ -29,7 +29,10 @@ public class Patient : MonoBehaviour
 
     public WatingRoom waitingRoom;
 
-    ConsultController consultController;
+    public  Diseases diseases;
+    public Diseases.Disease patientDisease;
+
+    public int stars;
 
     public bool onQueue = false;
     private enum CurrentTask
@@ -64,6 +67,23 @@ public class Patient : MonoBehaviour
 
     private void Start()
     {
+        int ran = Random.Range(0, 101);
+
+        if (ran < 80)
+        {
+            stars = 1;
+            int ran2 = Random.Range(0, Diseases.diseasesLevel1.Count);
+            patientDisease = Diseases.diseasesLevel1[ran2];
+        }
+        else
+        {
+            stars = 2;
+            int ran2 = Random.Range(0, Diseases.diseasesLevel2.Count);
+            patientDisease = Diseases.diseasesLevel2[ran2];
+        }
+
+        Debug.Log(patientDisease.name);
+
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         state = State.WaitingForTask;
         currentTask = CurrentTask.nullTask;
@@ -74,6 +94,9 @@ public class Patient : MonoBehaviour
 
         waitingRoom.searchPlace(this.gameObject);
 
+        diseases = Diseases.Instance;
+
+       
     }
 
     private void Update()

@@ -29,6 +29,7 @@ public class PopulateWorkerShop : MonoBehaviour
     public Button shopButton;
     private Button buttonPressed;
 
+    public Sprite star;
     List<GameObject> genertaedCharacters;
 
     void Start()
@@ -70,6 +71,14 @@ public class PopulateWorkerShop : MonoBehaviour
             instance.gameObject.transform.GetChild(0).GetComponent<Text>().text = genertaedCharacters[i].name;
             instance.gameObject.transform.GetChild(1).GetComponent<Text>().text = genertaedCharacters[i].GetComponent<Worker>().getType();
             instance.gameObject.transform.GetChild(2).GetComponent<Image>().sprite = generator.TakePhoto();
+
+            for (int j = 0; j < genertaedCharacters[i].GetComponent<Worker>().stars; j++)
+            {
+                Color tempColor = instance.gameObject.transform.GetChild(3 + i).GetComponent<Image>().color;
+                tempColor.a = 1f;
+                instance.gameObject.transform.GetChild(j+3).GetComponent<Image>().color = tempColor;
+
+            }
 
             genertaedCharacters[i].transform.position = g2.transform.position;
 
