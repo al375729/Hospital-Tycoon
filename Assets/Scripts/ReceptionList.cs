@@ -29,14 +29,15 @@ public class ReceptionList : MonoBehaviour
 
     public void searchPlace(GameObject patient)
     {
-        Debug.Log("Buscando");
         for (int i = 0; i < seats.Length; i++) 
         {
             if (seats[i].childCount == 0 && seats[i].GetComponent<Reception>().isActive)
             {
                 patient.GetComponent<Recepcionsit>().goTo(seats[i]);
                 patient.GetComponent<Recepcionsit>().indexOfWindow = i;
+                patient.GetComponent<Recepcionsit>().state = Recepcionsit.State.DoingTask;
                 patient.transform.SetParent(seats[i]);
+
                 break;
             }
         }

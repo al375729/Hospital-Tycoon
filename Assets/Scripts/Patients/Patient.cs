@@ -8,10 +8,7 @@ public class Patient : MonoBehaviour
     public State state = State.WaitingForTask;
     private CurrentTask currentTask = CurrentTask.nullTask;
 
-    private float maxWaitingTime = 1f;
-    private float waitingTime = 1f;
 
-    private TaskManagement taskManagement;
     private TaskManagement.PatientGoTo task;
 
     private Vector3 target;
@@ -19,10 +16,6 @@ public class Patient : MonoBehaviour
     public Color c;
 
     private bool working = true;
-
-    private bool sub_task1 = false;
-    private bool sub_task2 = false;
-    private bool sub_task3 = false;
 
     private bool runing = false;
 
@@ -36,6 +29,8 @@ public class Patient : MonoBehaviour
 
     public WatingRoom waitingRoom;
 
+    ConsultController consultController;
+
     public bool onQueue = false;
     private enum CurrentTask
     {
@@ -48,22 +43,28 @@ public class Patient : MonoBehaviour
     {
         WaitingForTask,
         DoingTask,
-        DoingTaskClean
+        GettinAttended,
+        WaitingForConsult,
+        SearchingConsult
     }
 
     public void addTask(TaskManagement.PatientGoTo task1)
     {
         task = task1;
+           
         if (task != null)
         {
             state = State.DoingTask;
+            currentTask = CurrentTask.task1;
+            this.transform.SetParent(task.target.transform);
+            target = task.target.transform.position;
+            callCoroutine();
         }
     }
 
     private void Start()
     {
         navMeshAgent = this.GetComponent<NavMeshAgent>();
-        taskManagement = TaskManagement.Instance;
         state = State.WaitingForTask;
         currentTask = CurrentTask.nullTask;
 
@@ -83,53 +84,22 @@ public class Patient : MonoBehaviour
             transform.LookAt(target);
         }
 
-        
-        if (state == State.WaitingForTask && working && gameObject.GetComponent<NavMeshAgent>() != null && !onQueue)
-        {
-            waitingTime -= Time.deltaTime;
-
-            if (waitingTime <= 0)
-            {
-                waitingTime = maxWaitingTime;
-                RequestTask();
-            }
-        }
-
-        if (state == State.DoingTask && working)
-        {
-            ManageTaskClean(task);
-
-        }
-    }
-
-    private void ManageTaskClean(TaskManagement.PatientGoTo task)
-    {
-        if (sub_task1 == false && !runing)
-        {
-            this.transform.SetParent(task.target.transform);
-            target = task.target.transform.position;
-            currentTask = CurrentTask.task1;
-            callCoroutine();
-        }
 
         else if (endedTask)
         {
+            Debug.Log("Stop");
             StopAllCoroutines();
             RestartValues();
             target = Vector3.zero;
 
         }
-    }
 
 
+    } 
     private void RestartValues()
     {
 
         state = State.WaitingForTask;
-
-        sub_task1 = false;
-        sub_task2 = false;
-        sub_task3 = false;
 
         runing = false;
 
@@ -138,34 +108,16 @@ public class Patient : MonoBehaviour
 
     public void callCoroutine()
     {
-        runing = true;
-        if (currentTask == CurrentTask.task2 && state == State.DoingTaskClean)
-        {
-           
-        }
-        else if (currentTask == CurrentTask.task2 && state == State.DoingTask)
-        {
-            sub_task2 = true;
-            runing = false;
-        }
-        else
-        {
-            StartCoroutine(MoveToTarget());
-        }
+
+        StartCoroutine(MoveToTarget());
 
     }
 
-    public void RequestTask()
-    {
-        task = taskManagement.RequestTaskPatientGoTo();
-        if (task != null)
-        {
-            state = State.DoingTask;
-        }
-    }
+
 
     IEnumerator MoveToTarget()
     {
+        Debug.Log("Move");
         bool end = false;
         agent.destination = target;
         while (!end)
@@ -181,8 +133,6 @@ public class Patient : MonoBehaviour
 
                 if (currentTask == CurrentTask.task1)
                 {
-                    //Debug.Log("Fin de la tarea 1");
-                    sub_task1 = true;
                     runing = false;
                     endedTask = true;
                     onQueue = true;

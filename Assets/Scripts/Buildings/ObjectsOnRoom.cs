@@ -11,6 +11,8 @@ public class ObjectsOnRoom : MonoBehaviour
     public bool isSelected;
 
     public int indexInList = -1;
+    public int indexInList2 = -1;
+
     public enum type 
     {
         ConsultDoctor,

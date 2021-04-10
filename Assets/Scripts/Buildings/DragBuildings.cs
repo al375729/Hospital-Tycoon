@@ -220,7 +220,6 @@ public class DragBuildings : MonoBehaviour
         if ((col.gameObject.CompareTag("Building") && isSelected))
         {
             isColliding = true;
-            Debug.Log("A");
         }
     }
 

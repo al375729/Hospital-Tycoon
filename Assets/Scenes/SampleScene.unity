@@ -705,10 +705,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seats: []
-  queue:
-  - {fileID: 1608540050}
-  - {fileID: 827526714}
-  trs: {fileID: 0}
+  queue: []
+  taskManagement: {fileID: 0}
 --- !u!1 &129788490
 GameObject:
   m_ObjectHideFlags: 0
@@ -4174,7 +4172,7 @@ GameObject:
   - component: {fileID: 672898225}
   - component: {fileID: 672898226}
   m_Layer: 0
-  m_Name: Marcas Cola (1)
+  m_Name: Marcas Reciepionistas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5586,13 +5584,13 @@ MonoBehaviour:
     m_Right: 10
     m_Top: 10
     m_Bottom: 10
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 300, y: 100}
-  m_Spacing: {x: 30, y: 30}
+  m_CellSize: {x: 670, y: 100}
+  m_Spacing: {x: 30, y: 0}
   m_Constraint: 1
-  m_ConstraintCount: 2
+  m_ConstraintCount: 1
 --- !u!114 &923675340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5874,7 +5872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 942067254}
   m_Layer: 0
-  m_Name: Marcas Cola
+  m_Name: Marcas Ventanilla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7529,7 +7527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1226271571
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11465,7 +11463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1872304957
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13454,7 +13452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2126123991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13643,6 +13641,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!23 &523044817955020332
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14191,6 +14190,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!23 &2139391373777609858
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14313,6 +14313,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!33 &3189032923490918244
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14509,6 +14510,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!23 &4187925683904445600
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14603,6 +14605,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!33 &4334769889677860554
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14688,6 +14691,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!1 &4507050501133298701
 GameObject:
   m_ObjectHideFlags: 0
@@ -14727,6 +14731,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!4 &4507846456380966169
 Transform:
   m_ObjectHideFlags: 0
@@ -14902,6 +14907,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!1 &5042241113129120892
 GameObject:
   m_ObjectHideFlags: 0
@@ -14940,6 +14946,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!33 &5050176037293927092
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15051,6 +15058,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!33 &5361816849842333513
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15158,6 +15166,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!1 &6212388318979934753
 GameObject:
   m_ObjectHideFlags: 0
@@ -15196,6 +15205,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!1 &6223277079454027808
 GameObject:
   m_ObjectHideFlags: 0
@@ -15235,6 +15245,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!1 &6320936636340967764
 GameObject:
   m_ObjectHideFlags: 0
@@ -15273,6 +15284,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!23 &6440740813157940769
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15350,6 +15362,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!1 &6614026473817901660
 GameObject:
   m_ObjectHideFlags: 0
@@ -15390,6 +15403,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!23 &6678840720224898182
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15505,6 +15519,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!1 &7042504097031693309
 GameObject:
   m_ObjectHideFlags: 0
@@ -15544,6 +15559,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!4 &7133625224786655794
 Transform:
   m_ObjectHideFlags: 0
@@ -15636,6 +15652,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!4 &7346802135228631076
 Transform:
   m_ObjectHideFlags: 0
@@ -15796,6 +15813,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!23 &7982184485797070890
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16090,6 +16108,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!33 &8474315332894000022
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16161,6 +16180,7 @@ MonoBehaviour:
   objectType: 0
   isSelected: 0
   indexInList: -1
+  indexInList2: -1
 --- !u!33 &8886997852576528460
 MeshFilter:
   m_ObjectHideFlags: 0

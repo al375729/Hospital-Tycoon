@@ -28,6 +28,8 @@ public class PatientGenerator : MonoBehaviour
     public GameObject parent;
 
     public WatingRoom waitingRoom;
+
+    Vector3 positionSpawn = new Vector3(0f,0f,-95f);
     void Start()
     {
         GameObject[] personajes = new GameObject[10];
@@ -63,7 +65,7 @@ public class PatientGenerator : MonoBehaviour
             int randomAdorno2 = Random.Range(0, todosColores.Length);
 
 
-            GameObject instance = Instantiate(prefabs[numeroDePrefab], new Vector3(100f, 0,-105), Quaternion.identity);
+            GameObject instance = Instantiate(prefabs[numeroDePrefab], positionSpawn, Quaternion.identity);
             createPatient(instance);
             
 
@@ -196,7 +198,7 @@ public class PatientGenerator : MonoBehaviour
         {
             Debug.Log("Aparecio un especial");
             int especial = Random.Range(0, especialPrefabs.Length);
-            GameObject instance = Instantiate(especialPrefabs[especial], new Vector3(100f, 0,-105), Quaternion.identity);
+            GameObject instance = Instantiate(especialPrefabs[especial], positionSpawn, Quaternion.identity);
             createPatient(instance);
 
             string name = Names.getNameMale();

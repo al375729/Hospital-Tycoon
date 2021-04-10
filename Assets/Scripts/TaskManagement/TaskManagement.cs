@@ -131,6 +131,12 @@ public class TaskManagement : MonoBehaviour
         taskPatientGoTo.Add(task);
     }
 
+    public PatientGoTo createTaskPatientToGo(GameObject target)
+    {
+        PatientGoTo task = new PatientGoTo(target);
+        return task;
+    }
+
     private void Update()
     {
         //if (Input.GetMouseButtonDown(2)) AddTask(target1.transform.position, target2.transform.position);

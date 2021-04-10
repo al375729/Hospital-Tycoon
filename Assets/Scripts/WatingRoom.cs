@@ -35,6 +35,7 @@ public class WatingRoom : MonoBehaviour
         {
 
             GameObject patient = queue[0].GetChild(0).gameObject;
+            //patient.transform.SetParent(null)
             receptionEmpty(patient.transform.parent);
             Destroy(patient);
         }*/
@@ -46,7 +47,10 @@ public class WatingRoom : MonoBehaviour
         {
             if (seat.childCount == 0 && seat.GetComponent<Reception>().isActive)
             {
-                taskManagement.AddTaskPatientGoTo(seat.gameObject);
+                TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(seat.gameObject);
+                patient.GetComponent<Patient>().addTask(task1);
+               
+                //taskManagement.AddTaskPatientGoTo(seat.gameObject);
                 found = true;
                 break;
             }
@@ -54,24 +58,34 @@ public class WatingRoom : MonoBehaviour
 
         if(!found)
         {
+            Debug.Log("No he encintrado");
             foreach (Transform seat in seats)
             {
                 if (seat.childCount == 0)
                 {
-                    taskManagement.AddTaskPatientGoTo(seat.gameObject);
+                    TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(seat.gameObject);
+                    patient.GetComponent<Patient>().addTask(task1);
+                    //taskManagement.AddTaskPatientGoTo(seat.gameObject);
                     attendancePriority.Enqueue(patient);
+                    patient.GetComponent<Patient>().state = Patient.State.DoingTask;
+
                     break;
                 }
             }
         }
     }
 
-    public void receptionEmpty(Transform target)
+    public void receptionEmpty(int index)
     {
-        GameObject patient = attendancePriority.Peek();
-        attendancePriority.Dequeue();
+        if(attendancePriority.Count !=0)
+        {
+            Transform target = queue[index];
 
-        TaskManagement.PatientGoTo task = new TaskManagement.PatientGoTo(target.gameObject);
-        patient.GetComponent<Patient>().addTask(task);
+            GameObject patient = attendancePriority.Peek();
+            attendancePriority.Dequeue();
+
+            TaskManagement.PatientGoTo task = new TaskManagement.PatientGoTo(target.gameObject);
+            patient.GetComponent<Patient>().addTask(task);
+        }
     }
 }

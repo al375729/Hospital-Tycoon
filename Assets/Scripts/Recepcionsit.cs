@@ -10,7 +10,7 @@ public class Recepcionsit : MonoBehaviour
 
     private bool sub_task1 = false;
 
-    private State state = State.WaitingForTask;
+    public State state = State.WaitingForTask;
 
     private bool runing = false;
 
@@ -29,6 +29,10 @@ public class Recepcionsit : MonoBehaviour
     public int indexOfWindow;
 
     private CurrentTask currentTask = CurrentTask.nullTask;
+
+    ConsultController consultController;
+
+    WatingRoom waitingRoom;
     private enum CurrentTask
     {
         task1,
@@ -36,7 +40,7 @@ public class Recepcionsit : MonoBehaviour
         task3,
         nullTask,
     }
-    private enum State
+    public enum State
     {
         WaitingForTask,
         DoingTask,
@@ -50,13 +54,14 @@ public class Recepcionsit : MonoBehaviour
 
     private Vector3 target;
 
-
+    Transform patient;
 
 
     private void Start()
     {
-        StartCoroutine(DoWork());
 
+        consultController = ConsultController.Instance;
+        waitingRoom = WatingRoom.Instance;
 
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         state = State.WaitingForTask;
@@ -80,7 +85,7 @@ public class Recepcionsit : MonoBehaviour
             transform.LookAt(target);
         }
 
-        if (this.gameObject.GetComponent<Worker>().isWorking() && Input.GetKeyDown("space"))
+        if (this.gameObject.GetComponent<Worker>().isWorking() && state == State.WaitingForTask)
         {
             reception.searchPlace(this.gameObject);
 
@@ -109,10 +114,13 @@ public class Recepcionsit : MonoBehaviour
 
         if (attend.childCount > 0 && attend.GetChild(0).GetComponent<Patient>().state == Patient.State.WaitingForTask)
         {
-            Debug.Log("Atendiendo a: " + attend.GetChild(0));
+            attend.GetChild(0).GetComponent<Patient>().state = Patient.State.GettinAttended;
+            patient = attend.GetChild(0);
+            StartCoroutine(DoWork());
+
 
         }
-        else Debug.Log("No hay nadie en ventanilla");
+        else;
     }
 
     public void goTo(Transform target)
@@ -155,7 +163,6 @@ public class Recepcionsit : MonoBehaviour
 
                 if (currentTask == CurrentTask.task1)
                 {
-                    Debug.Log("Fin de la tarea 1");
                     sub_task1 = true;
                     runing = false;
                     endedTask = true;
@@ -176,10 +183,13 @@ public class Recepcionsit : MonoBehaviour
 
     IEnumerator DoWork()
     {
-        Debug.Log("Esperar");
-        yield return new WaitForSeconds(5);
-        Debug.Log("Han paasado 5 segundos");
+        Debug.Log("wORK");
+        yield return new WaitForSeconds(0.1f);
+        consultController.searchConsultPatient(patient.gameObject);
 
+        waitingRoom.receptionEmpty(indexOfWindow);
+
+        yield break;
     }
 
 
