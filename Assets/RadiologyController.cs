@@ -174,18 +174,18 @@ public class RadiologyController : MonoBehaviour
 
         if (!found)
         {
-            
-
-            patient.GetComponent<Radiologist>().state = Radiologist.State.DoingTask;
-            priorityRadiologyDoctor.Enqueue(patient);
-            Debug.Log(priorityRadiologyDoctor.Peek());
-            Debug.Log(priorityRadiologyDoctor.Count);
-            patient.GetComponent<Worker>().goToRestRoom(patient);
-
-
-
+            goToRestRoom(patient);
         }
 
+    }
+
+    private void goToRestRoom(GameObject patient)
+    {
+        patient.GetComponent<Radiologist>().state = Radiologist.State.DoingTask;
+        priorityRadiologyDoctor.Enqueue(patient);
+        Debug.Log(priorityRadiologyDoctor.Peek());
+        Debug.Log(priorityRadiologyDoctor.Count);
+        patient.GetComponent<Worker>().goToRestRoom(patient);
     }
 
     internal void searchPatient(GameObject patient)
@@ -209,7 +209,7 @@ public class RadiologyController : MonoBehaviour
         }
         else
         {
-            //returnToWaitingRoom(doctor);
+            goToRestRoom(doctor);
         }
 
     }

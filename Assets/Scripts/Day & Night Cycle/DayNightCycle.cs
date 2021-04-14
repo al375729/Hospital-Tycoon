@@ -89,6 +89,7 @@ public class DayNightCycle : MonoBehaviour
         {
             _dayNumber++;
             _timeOfDay -= 1;
+            Debug.Log("DayPassed");
         } 
 
         if( _dayNumber > _yearLength) //New Year

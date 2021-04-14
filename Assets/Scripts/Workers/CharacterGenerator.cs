@@ -35,7 +35,7 @@ public class CharacterGenerator : MonoBehaviour
         for (int i = 0; i < generatingCount; i++)
         {
             int genero = Random.Range(0, 2);// 0 --> M || 1 --> F 
-            int ranType = Random.Range(0, 3);
+            int ranType = Random.Range(0, 4);
 
             int colorDePelo = Random.Range(0,materialesPelo.Length);
 
@@ -58,6 +58,11 @@ public class CharacterGenerator : MonoBehaviour
                 case 2:
                     instance.GetComponent<Worker>().setType("Radiologist");
                     instance.AddComponent<Radiologist>();
+                    break;
+
+                case 3:
+                    instance.GetComponent<Worker>().setType("Analist");
+                    instance.AddComponent<Analist>();
                     break;
             }
 

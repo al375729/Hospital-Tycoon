@@ -18,7 +18,9 @@ public class ObjectsOnRoom : MonoBehaviour
         ConsultPatient,
         None,
         RadiologyDoctor,
-        RadiologyPatient
+        RadiologyPatient,
+        AnalysisDoctor,
+        AnalysisPatient
     }
     void Start()
     {

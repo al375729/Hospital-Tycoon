@@ -30,6 +30,7 @@ public class DragBuildings : MonoBehaviour
 
     ConsultController consultController;
     RadiologyController radiologyController;
+    AnalisisController analisisController;
     private enum State
     {
         WaitingForTask,
@@ -40,6 +41,7 @@ public class DragBuildings : MonoBehaviour
     {
         consultController = ConsultController.Instance;
         radiologyController = RadiologyController.Instance;
+        analisisController = AnalisisController.Instance;
     }
 
 
@@ -267,6 +269,17 @@ public class DragBuildings : MonoBehaviour
                         index = radiologyController.addPatient(transform.GetChild(i).transform);
                         obj.indexInList = index;
                         break;
+
+                    case ObjectsOnRoom.type.AnalysisDoctor:
+                        index = analisisController.addDoctor(transform.GetChild(i).transform);
+                        obj.indexInList = index;
+                        break;
+
+                    case ObjectsOnRoom.type.AnalysisPatient:
+                        index = analisisController.addPatient(transform.GetChild(i).transform);
+                        obj.indexInList = index;
+                        break;
+
                 }
             }
         }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2f70de18b061d47a7e0fd10efa227f, type: 3}
+  m_Name: Sala de Analisis
+  m_EditorClassIdentifier: 
+  buildingName: Analisis
+  image: {fileID: 21300000, guid: 387b3753278e0ac4aab7a5514a7da346, type: 3}
+  description: Sala de analisis
+  price: 1
+  prefab: {fileID: 2340728338996645139, guid: 89f72b2dc559b7b4396781bdeba68df5, type: 3}
