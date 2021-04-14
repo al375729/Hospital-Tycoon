@@ -22,20 +22,20 @@ public class CharacterGenerator : MonoBehaviour
 
     public Material bata;
 
-    private int generatingCount = 5;
+    private int generatingCount = 18;
 
     public GameObject parent;
 
     void Start()
     {
-        genertaedCharactersList = new List<GameObject>();
+        genertaedCharactersList = new List<GameObject>(20);
 
         
 
         for (int i = 0; i < generatingCount; i++)
         {
             int genero = Random.Range(0, 2);// 0 --> M || 1 --> F 
-            int ranType = Random.Range(0, 2);
+            int ranType = Random.Range(0, 3);
 
             int colorDePelo = Random.Range(0,materialesPelo.Length);
 
@@ -53,6 +53,11 @@ public class CharacterGenerator : MonoBehaviour
                 case 1:
                     instance.GetComponent<Worker>().setType("Consult");
                     instance.AddComponent<Consult>();
+                    break;
+
+                case 2:
+                    instance.GetComponent<Worker>().setType("Radiologist");
+                    instance.AddComponent<Radiologist>();
                     break;
             }
 

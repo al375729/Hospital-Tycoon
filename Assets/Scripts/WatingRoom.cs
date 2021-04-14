@@ -31,14 +31,6 @@ public class WatingRoom : MonoBehaviour
     void Update()
     {
 
-        /*if (Input.GetKeyDown("space"))
-        {
-
-            GameObject patient = queue[0].GetChild(0).gameObject;
-            //patient.transform.SetParent(null)
-            receptionEmpty(patient.transform.parent);
-            Destroy(patient);
-        }*/
     }
     public void searchPlace(GameObject patient)
     {
@@ -50,7 +42,6 @@ public class WatingRoom : MonoBehaviour
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(seat.gameObject);
                 patient.GetComponent<Patient>().addTask(task1);
                
-                //taskManagement.AddTaskPatientGoTo(seat.gameObject);
                 found = true;
                 break;
             }
@@ -58,14 +49,12 @@ public class WatingRoom : MonoBehaviour
 
         if(!found)
         {
-            Debug.Log("No he encintrado");
             foreach (Transform seat in seats)
             {
                 if (seat.childCount == 0)
                 {
                     TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(seat.gameObject);
                     patient.GetComponent<Patient>().addTask(task1);
-                    //taskManagement.AddTaskPatientGoTo(seat.gameObject);
                     attendancePriority.Enqueue(patient);
                     patient.GetComponent<Patient>().state = Patient.State.DoingTask;
 

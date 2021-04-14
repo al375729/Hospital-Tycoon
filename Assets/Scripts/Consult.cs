@@ -67,8 +67,6 @@ public class Consult : MonoBehaviour
 
         target = comporbation;
 
-        //reception.searchPlace(this.gameObject);
-
     }
 
     private void Update()
@@ -82,7 +80,7 @@ public class Consult : MonoBehaviour
 
         if (this.gameObject.GetComponent<Worker>().isWorking() && state == State.WaitingForTask)
         {
-            consultController.searchConsultDoctor(this.gameObject);
+            consultController.searchDoctor(this.gameObject);
 
         }
 
@@ -108,6 +106,7 @@ public class Consult : MonoBehaviour
         Transform attend = consultController.attend(indexOfWindow);
         if (attend.childCount > 0 && attend.GetChild(0).GetComponent<Patient>().state == Patient.State.WaitingForTask)
         {
+            Debug.Log("atendiendo a:" + attend.GetChild(0).GetComponent<Patient>().name);
             attend.GetChild(0).GetComponent<Patient>().state = Patient.State.GettinAttended;
             patient = attend.GetChild(0);
             StartCoroutine(DoWork());
@@ -178,8 +177,9 @@ public class Consult : MonoBehaviour
 
     IEnumerator DoWork()
     {
-        yield return new WaitForSeconds(9.1F);
-        Destroy(consultController.queue[indexOfWindow].GetChild(0).gameObject);
+       yield return new WaitForSeconds(3);
+        consultController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().state = Patient.State.GoingToRadiology;
+        consultController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().ChangeState();
 
     }
 }

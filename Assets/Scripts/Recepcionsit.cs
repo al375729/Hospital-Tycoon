@@ -6,8 +6,6 @@ using UnityEngine.AI;
 
 public class Recepcionsit : MonoBehaviour
 {
-    private bool working = false;
-
     private bool sub_task1 = false;
 
     public State state = State.WaitingForTask;
@@ -120,7 +118,7 @@ public class Recepcionsit : MonoBehaviour
 
 
         }
-        else;
+        //else;
     }
 
     public void goTo(Transform target)
@@ -185,7 +183,7 @@ public class Recepcionsit : MonoBehaviour
     {
         Debug.Log("wORK");
         yield return new WaitForSeconds(0.1f);
-        consultController.searchConsultPatient(patient.gameObject);
+        consultController.searchPatient(patient.gameObject);
 
         waitingRoom.receptionEmpty(indexOfWindow);
 

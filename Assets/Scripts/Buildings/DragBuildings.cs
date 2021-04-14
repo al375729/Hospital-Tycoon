@@ -29,6 +29,7 @@ public class DragBuildings : MonoBehaviour
     private bool lastFrameWasEditMode;
 
     ConsultController consultController;
+    RadiologyController radiologyController;
     private enum State
     {
         WaitingForTask,
@@ -38,6 +39,7 @@ public class DragBuildings : MonoBehaviour
     private void Start()
     {
         consultController = ConsultController.Instance;
+        radiologyController = RadiologyController.Instance;
     }
 
 
@@ -163,7 +165,6 @@ public class DragBuildings : MonoBehaviour
                 for (int j = 0; j < transform.GetChild(i).childCount; j++)
                 {
                     if (transform.GetChild(i).GetChild(j).GetComponent<ObjectsOnRoom>() != null) transform.GetChild(i).GetChild(j).GetComponent<ObjectsOnRoom>().changeMaterial(index);
-                    //Debug.Log(i); Debug.Log(j); Debug.Log(i+j);
                 }
 
 
@@ -245,16 +246,26 @@ public class DragBuildings : MonoBehaviour
                 switch (obj.objectType)
                 {
                     case ObjectsOnRoom.type.ConsultDoctor:
-                        index = consultController.addSeats(transform.GetChild(i).transform);
+                        index = consultController.addDoctor(transform.GetChild(i).transform);
                         obj.indexInList = index;
                         break;
 
                     case ObjectsOnRoom.type.ConsultPatient:
-                        index = consultController.addQueue(transform.GetChild(i).transform);
+                        index = consultController.addPatient(transform.GetChild(i).transform);
                         obj.indexInList = index;
                         break;
 
                     case ObjectsOnRoom.type.None:
+                        break;
+
+                    case ObjectsOnRoom.type.RadiologyDoctor:
+                        index = radiologyController.addDoctor(transform.GetChild(i).transform);
+                        obj.indexInList = index;
+                        break;
+
+                    case ObjectsOnRoom.type.RadiologyPatient:
+                        index = radiologyController.addPatient(transform.GetChild(i).transform);
+                        obj.indexInList = index;
                         break;
                 }
             }
@@ -272,11 +283,11 @@ public class DragBuildings : MonoBehaviour
                 switch (obj.objectType)
                 {
                     case ObjectsOnRoom.type.ConsultDoctor:
-                        consultController.updateIndexSeat(obj.indexInList);
+                        consultController.updateIndexOfDoctors(obj.indexInList);
                         break;
 
                     case ObjectsOnRoom.type.ConsultPatient:
-                        consultController.updateIndexQueue(obj.indexInList);
+                        consultController.updateIndexOfPatients(obj.indexInList);
                         break;
 
                     case ObjectsOnRoom.type.None:

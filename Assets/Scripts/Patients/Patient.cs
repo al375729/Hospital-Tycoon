@@ -28,6 +28,7 @@ public class Patient : MonoBehaviour
     NavMeshAgent navMeshAgent;
 
     public WatingRoom waitingRoom;
+    public RadiologyController radiologyController;
 
     public  Diseases diseases;
     public Diseases.Disease patientDisease;
@@ -48,7 +49,9 @@ public class Patient : MonoBehaviour
         DoingTask,
         GettinAttended,
         WaitingForConsult,
-        SearchingConsult
+        SearchingConsult,
+        NextTask,
+        GoingToRadiology
     }
 
     public void addTask(TaskManagement.PatientGoTo task1)
@@ -96,6 +99,8 @@ public class Patient : MonoBehaviour
 
         diseases = Diseases.Instance;
 
+        radiologyController = RadiologyController.Instance;
+
        
     }
 
@@ -110,13 +115,11 @@ public class Patient : MonoBehaviour
 
         else if (endedTask)
         {
-            Debug.Log("Stop");
             StopAllCoroutines();
             RestartValues();
             target = Vector3.zero;
 
         }
-
 
     } 
     private void RestartValues()
@@ -127,6 +130,16 @@ public class Patient : MonoBehaviour
         runing = false;
 
         endedTask = false;
+    }
+
+    public void ChangeState()
+    {
+
+        if (state == State.GoingToRadiology)
+        {
+            Debug.Log(this.gameObject.name);
+            radiologyController.searchPatient(this.gameObject);
+        }
     }
 
     public void callCoroutine()

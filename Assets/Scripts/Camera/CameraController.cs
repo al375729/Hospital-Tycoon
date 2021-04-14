@@ -7,7 +7,9 @@ using UnityEngine.EventSystems;
 public class CameraController : MonoBehaviour
 {
     public static CameraController instance;
+#pragma warning disable CS0108 // El miembro oculta el miembro heredado. Falta una contraseña nueva
     public Transform camera;
+#pragma warning restore CS0108 // El miembro oculta el miembro heredado. Falta una contraseña nueva
     public Transform objectToFollow;
 
     public float movementSpeed;

@@ -101,6 +101,8 @@ public class WorkerAI : MonoBehaviour
 
     }
 
+
+
     private void ManageTaskClean(TaskManagement.TaskClean taskClean)
     {
         if (sub_task1 == false && !runing)
@@ -177,7 +179,7 @@ public class WorkerAI : MonoBehaviour
         sub_task3 = false;
 
         runing = false;
-}
+    }
 
     public void callCoroutine()
     {

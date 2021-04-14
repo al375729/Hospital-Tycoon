@@ -74,6 +74,8 @@
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTween.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTweenExt.cs" />
+    <Compile Include="Assets\RadiologyController.cs" />
+    <Compile Include="Assets\RestRoom.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingManager.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingObjects.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingsInShop.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="Assets\Scripts\UI\TapButton.cs" />
     <Compile Include="Assets\Scripts\WatingRoom.cs" />
     <Compile Include="Assets\Scripts\Workers\CharacterGenerator.cs" />
+    <Compile Include="Assets\Scripts\Workers\Radiologist.cs" />
     <Compile Include="Assets\Scripts\Workers\Worker.cs" />
     <Compile Include="Assets\Scripts\Workers\WorkerScriptableObject.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

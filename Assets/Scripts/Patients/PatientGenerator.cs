@@ -21,7 +21,6 @@ public class PatientGenerator : MonoBehaviour
 
     public GameObject entradaHospital;
 
-    private int generatingCount = 5;
 
     private int Xoffset = 0;
 

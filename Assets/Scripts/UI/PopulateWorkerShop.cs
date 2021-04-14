@@ -74,7 +74,7 @@ public class PopulateWorkerShop : MonoBehaviour
 
             for (int j = 0; j < genertaedCharacters[i].GetComponent<Worker>().stars; j++)
             {
-                Color tempColor = instance.gameObject.transform.GetChild(3 + i).GetComponent<Image>().color;
+                Color tempColor = instance.gameObject.transform.GetChild(3 + j).GetComponent<Image>().color;
                 tempColor.a = 1f;
                 instance.gameObject.transform.GetChild(j+3).GetComponent<Image>().color = tempColor;
 
