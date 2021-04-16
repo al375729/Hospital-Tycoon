@@ -66,7 +66,10 @@
   <ItemGroup>
     <Compile Include="Assets\AnalisisController.cs" />
     <Compile Include="Assets\Analist.cs" />
+    <Compile Include="Assets\CleanerController.cs" />
     <Compile Include="Assets\ConsultController.cs" />
+    <Compile Include="Assets\DateController.cs" />
+    <Compile Include="Assets\DetectClicksOnCharacters.cs" />
     <Compile Include="Assets\Diseases.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescr.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescrOptional.cs" />
@@ -76,6 +79,7 @@
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTween.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTweenExt.cs" />
+    <Compile Include="Assets\PatientInfo.cs" />
     <Compile Include="Assets\RadiologyController.cs" />
     <Compile Include="Assets\RestRoom.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingManager.cs" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class Patient : MonoBehaviour
 {
     public State state = State.WaitingForTask;
@@ -25,10 +26,13 @@ public class Patient : MonoBehaviour
 
     private bool endedTask = false;
 
+    public string gender;
+
     NavMeshAgent navMeshAgent;
 
     public WatingRoom waitingRoom;
     public RadiologyController radiologyController;
+    public TaskManagement taskManagement;
 
     public  Diseases diseases;
     public Diseases.Disease patientDisease;
@@ -36,6 +40,8 @@ public class Patient : MonoBehaviour
     public int stars;
 
     public bool onQueue = false;
+
+    public GameObject exit;
     private enum CurrentTask
     {
         task1,
@@ -51,8 +57,18 @@ public class Patient : MonoBehaviour
         WaitingForConsult,
         SearchingConsult,
         NextTask,
-        GoingToRadiology
+        GoingToRadiology,
+        GoingHome
     }
+
+    public void addPos(Vector3 pos)
+    {
+        state = State.DoingTask;
+        currentTask = CurrentTask.task1;
+        this.transform.SetParent(null);
+        target = pos;
+        callCoroutine();
+    } 
 
     public void addTask(TaskManagement.PatientGoTo task1)
     {
@@ -106,7 +122,7 @@ public class Patient : MonoBehaviour
 
     private void Update()
     {
-        if (target != null && agent.remainingDistance >= 0.25f)
+        if (target != null && agent.remainingDistance >= 1.25f)
         {
 
             transform.LookAt(target);
@@ -137,8 +153,23 @@ public class Patient : MonoBehaviour
 
         if (state == State.GoingToRadiology)
         {
-            Debug.Log(this.gameObject.name);
-            radiologyController.searchPatient(this.gameObject);
+            //Debug.Log(this.gameObject.name);
+            if (patientDisease.stars == 1)
+            {
+                addPos(new Vector3(-103f,0f,-103f));
+            }
+            else
+            {
+               
+                if(patientDisease.tasks.Count>0)
+                {
+                    patientDisease.tasks.Dequeue();
+                    radiologyController.searchPatient(this.gameObject);
+                }
+                else addPos(new Vector3(-103f, 0f, -103f));
+
+            }
+            
         }
     }
 

@@ -39,6 +39,8 @@ public class WorkerAI : MonoBehaviour
 
     private GameObject Stain;
 
+    private Vector3 comprobacion = new Vector3(123f, 321f, 456f);
+
     NavMeshAgent navMeshAgent;
     private enum CurrentTask 
     {
@@ -66,11 +68,12 @@ public class WorkerAI : MonoBehaviour
 
     private void Update()
     {
-        if (target != null && agent.remainingDistance >= 0.25f)
+        if (target != null && target != comprobacion && agent.remainingDistance >= 1.5f)
         {
-            
-           // Vector3 rotation = Quaternion.LookRotation(target).eulerAngles;
+            //target = comprobacion;
+            //Vector3 rotation = Quaternion.LookRotation(target).eulerAngles;
             //rotation.y = 0f;
+            //rotation.z = 0f;
 
             transform.LookAt(target);
         }
@@ -186,6 +189,7 @@ public class WorkerAI : MonoBehaviour
         runing = true;
         if (currentTask == CurrentTask.task2 && state == State.DoingTaskClean)
         {
+            target = comprobacion;
             StartCoroutine(FadeOut());
         }
         else if (currentTask == CurrentTask.task2 && state == State.DoingTask)
@@ -261,8 +265,8 @@ public class WorkerAI : MonoBehaviour
 
     IEnumerator FadeOut()
     {
-        LeanTween.alpha(Stain, 0f, 1f).setDelay(1f);
-        yield return new WaitForSeconds(1);
+        LeanTween.alpha(Stain, 0f, 2f).setDelay(0f);
+        yield return new WaitForSeconds(2);
         sub_task2 = true;
         runing = false;
     }

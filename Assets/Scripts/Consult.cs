@@ -113,7 +113,7 @@ public class Consult : MonoBehaviour
 
 
         }
-        else Debug.Log("No hay nadie en ventanilla");
+        //else Debug.Log("No hay nadie en ventanilla");
     }
 
     public void goTo(Transform target)

@@ -47,6 +47,8 @@ public class DragBuildings : MonoBehaviour
 
     void OnMouseDown()
     {
+        PatientInfo.disablePanel();
+
         if (!IsMouseOverUI())
         {
             if (!isSelected && !globalSelection && GlobalVariables.EDIT_MODE)

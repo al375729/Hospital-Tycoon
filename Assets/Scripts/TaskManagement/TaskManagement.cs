@@ -50,21 +50,23 @@ public class TaskManagement : MonoBehaviour
     public static TaskManagement Instance { get; private set; } // static singleton
     void Awake()
     {
+        taskList = new List<TaskClean>();
+        taskListStain = new List<TaskCleanStain>();
+        taskPatientGoTo = new List<PatientGoTo>();
+
         if (Instance == null) { Instance = this; }
         else { Destroy(gameObject); }
 
     }
 
-    private List<TaskClean> taskList;
-    private List<TaskCleanStain> taskListStain;
-    private List<PatientGoTo> taskPatientGoTo;
+    public List<TaskClean> taskList;
+    public List<TaskCleanStain> taskListStain;
+    public List<PatientGoTo> taskPatientGoTo;
     public GameObject prueba;
 
     private void Start()
     {
-        taskList = new List<TaskClean>();
-        taskListStain = new List<TaskCleanStain>();
-        taskPatientGoTo = new List<PatientGoTo>();
+        
     }
 
    
@@ -121,8 +123,9 @@ public class TaskManagement : MonoBehaviour
     public void AddTaskCleanStain(Vector3 position, GameObject objectToClean)
     {
         TaskCleanStain task = new TaskCleanStain(position,objectToClean);
-        Debug.Log(task);
+        Debug.Log(task.position);
         taskListStain.Add(task);
+        Debug.Log(taskListStain.Count);
     }
 
     public void AddTaskPatientGoTo(GameObject target)

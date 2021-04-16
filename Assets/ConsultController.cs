@@ -73,7 +73,7 @@ public class ConsultController : MonoBehaviour
     {
         for (int i = 0; i < arrayForPatients.Count; i++)
         {
-            if (arrayForPatients[i].childCount == 0)
+            if (arrayForPatients[i].childCount == 0 && arrayForDoctors[i].childCount != 0)
             {
                 attendancePriorityConsult.Dequeue();
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(arrayForPatients[i].gameObject);
@@ -144,7 +144,7 @@ public class ConsultController : MonoBehaviour
         bool found = false;
         for (int i = 0; i < arrayForPatients.Count; i++)
         {
-            if (arrayForPatients[i].childCount == 0)
+            if (arrayForPatients[i].childCount == 0 && arrayForDoctors[i].childCount != 0)
             {
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(arrayForPatients[i].gameObject);
                 patient.GetComponent<Patient>().addTask(task1);
@@ -179,10 +179,7 @@ public class ConsultController : MonoBehaviour
 
         if (!found)
         {
-            patient.GetComponent<Consult>().state = Consult.State.DoingTask;
-            priorityDoctorConsult.Enqueue(patient);
-            Debug.Log(priorityDoctorConsult.Peek());
-            patient.GetComponent<Worker>().goToRestRoom(patient);
+            goToRestRoom(patient);
 
 
 
@@ -205,13 +202,13 @@ public class ConsultController : MonoBehaviour
 
     public void searchDoctor(GameObject doctor)
     {
-        if (attendancePriorityConsult.Count == 0)
+        if (priorityDoctorConsult.Count == 0)
         {
             searchConsultDoctor(doctor);
         }
         else
         {
-            //returnToWaitingRoom(doctor);
+            goToRestRoom(doctor);
         }
 
     }
@@ -236,6 +233,15 @@ public class ConsultController : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private void goToRestRoom(GameObject patient)
+    {
+        patient.GetComponent<Consult>().state = Consult.State.DoingTask;
+        priorityDoctorConsult.Enqueue(patient);
+        Debug.Log(priorityDoctorConsult.Peek());
+        Debug.Log(priorityDoctorConsult.Count);
+        patient.GetComponent<Worker>().goToRestRoom(patient);
     }
 }
 

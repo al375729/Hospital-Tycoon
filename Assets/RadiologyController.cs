@@ -74,7 +74,7 @@ public class RadiologyController : MonoBehaviour
     {
         for (int i = 0; i < arrayForPatients.Count; i++)
         {
-            if (arrayForPatients[i].childCount == 0)
+            if (arrayForPatients[i].childCount == 0 && arrayForDoctors[i].childCount != 0)
             {
                 attendancePriorityRadiology.Dequeue();
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(arrayForPatients[i].gameObject);
@@ -138,7 +138,7 @@ public class RadiologyController : MonoBehaviour
         bool found = false;
         for (int i = 0; i < arrayForPatients.Count; i++)
         {
-            if (arrayForPatients[i].childCount == 0)
+            if (arrayForPatients[i].childCount == 0 && arrayForDoctors[i].childCount != 0)
             {
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(arrayForPatients[i].gameObject);
                 patient.GetComponent<Patient>().addTask(task1);

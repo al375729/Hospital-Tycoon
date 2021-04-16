@@ -124,7 +124,7 @@ public class Worker : MonoBehaviour
 
         if(state == State.None)
         {
-            if (this.gameObject.GetComponent<Consult>() != null) Debug.Log("111234");
+            //if (this.gameObject.GetComponent<Consult>() != null) Debug.Log("111234");
 
 
         }

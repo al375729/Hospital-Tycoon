@@ -1,10 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DayNightCycle : MonoBehaviour
 {
+    private int day = 1;
+    private int month = 12;
+    private int year = 2021;
+
     private float SECONDS_IN_A_DAY = 86400;
 
     [SerializeField]
@@ -89,7 +94,7 @@ public class DayNightCycle : MonoBehaviour
         {
             _dayNumber++;
             _timeOfDay -= 1;
-            Debug.Log("DayPassed");
+            dayPassed();
         } 
 
         if( _dayNumber > _yearLength) //New Year
@@ -97,6 +102,65 @@ public class DayNightCycle : MonoBehaviour
             _yearNumber++;
             _dayNumber = 0;
         }
+    }
+
+    private void dayPassed()
+    {
+        day++;
+
+        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 )
+        {
+            if (day > 31) 
+            {
+                monthPassed();
+            }
+
+        }
+
+        else if ( month == 4 || month == 6 || month == 9 || month == 11)
+        {
+            if (day > 30)
+            {
+                monthPassed();
+            }
+
+        }
+
+        else if (month == 12)
+        {
+            if (day > 31)
+            {
+                yearPassed();
+            }
+
+        }
+        else if (month == 2 && day >28)
+        {
+            monthPassed();
+        }
+
+        DateController.setDay(this.day);
+        DateController.changeDate();
+    }
+
+    private void yearPassed()
+    {
+        year++;
+        month = 1;
+        day = 1;
+        DateController.setYear(this.year);
+        DateController.setMonth(this.month);
+        DateController.setDay(this.day);
+        DateController.changeDate();
+    }
+
+    private void monthPassed()
+    {
+        month++;
+        day = 1;
+        DateController.setMonth(this.month);
+        DateController.setDay(this.day);
+        DateController.changeDate();
     }
 
     private void SunRotation() 

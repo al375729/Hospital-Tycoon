@@ -152,6 +152,7 @@ public class PatientGenerator : MonoBehaviour
                 
                 string name = Names.getNameMale();
                 instance.GetComponent<Patient>().name = name;
+                instance.GetComponent<Patient>().gender = "Male";
                 instance.name = name;
                 int randomPelo = Random.Range(0, HairStyleMen.Length);
 
@@ -182,6 +183,7 @@ public class PatientGenerator : MonoBehaviour
             {
                 string name = Names.getNameFemale();
                 instance.GetComponent<Patient>().name = name;
+                instance.GetComponent<Patient>().gender = "Female";
                 instance.name = name;
 
                 int randomPelo = Random.Range(0, HairStyleWoman.Length);
