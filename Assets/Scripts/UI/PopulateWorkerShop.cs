@@ -60,6 +60,8 @@ public class PopulateWorkerShop : MonoBehaviour
 
     public void setUI(List<GameObject> charactersList)
     {
+        Debug.Log("popu");
+
         genertaedCharacters = charactersList;
         for (int i = 0; i < genertaedCharacters.Count; i++)
         {
@@ -80,6 +82,36 @@ public class PopulateWorkerShop : MonoBehaviour
 
             }
 
+            int ranBonuses = Random.Range(0, 10);
+            Color tempColor2;
+
+            switch (ranBonuses)
+            {
+               
+                case 0:
+                     tempColor2 = instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount -3).GetComponent<Image>().color;
+                    tempColor2.a = 1f;
+                    instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount -3).GetComponent<Image>().color = tempColor2;
+
+                    genertaedCharacters[i].GetComponent<Worker>().walkingSpeedBonus = 3;
+                    break;
+
+                case 1:
+                     tempColor2 = instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 2).GetComponent<Image>().color;
+                    tempColor2.a = 1f;
+                    instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 2).GetComponent<Image>().color = tempColor2;
+
+                    genertaedCharacters[i].GetComponent<Worker>().treatingSpeedBonus = 9; 
+                    break;
+
+                case 2:
+                     tempColor2 = instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 1).GetComponent<Image>().color;
+                    tempColor2.a = 1f;
+                    instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 1).GetComponent<Image>().color = tempColor2;
+
+                    genertaedCharacters[i].GetComponent<Worker>().moneyBonus = 15;
+                    break;
+            }
             genertaedCharacters[i].transform.position = g2.transform.position;
 
             instance.GetComponent<Button>().AddEventListener(i, 2, SpawnBuilding);
@@ -113,9 +145,9 @@ public class PopulateWorkerShop : MonoBehaviour
             prefab.gameObject.AddComponent<NavMeshAgent>();
             NavMeshAgent navAgent = prefab.gameObject.GetComponent<NavMeshAgent>();
             navAgent.baseOffset = 0.5f;
-            navAgent.speed = 8;
-            navAgent.angularSpeed = 5;
-            navAgent.stoppingDistance = 0f;
+            navAgent.speed = 7;
+            navAgent.angularSpeed = 15;
+            navAgent.stoppingDistance = 0.1f;
             navAgent.acceleration = 5f;
             navAgent.radius = 0.1f;
             navAgent.height = 3.5f;

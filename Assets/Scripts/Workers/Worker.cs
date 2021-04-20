@@ -37,6 +37,9 @@ public class Worker : MonoBehaviour
 
     RestRoom restRoom;
 
+    public int walkingSpeedBonus;
+    public int treatingSpeedBonus;
+    public int moneyBonus;
     private enum CurrentTask
     {
         task1,

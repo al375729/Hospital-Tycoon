@@ -161,7 +161,8 @@ public class CharacterGenerator : MonoBehaviour
             }
         }
 
-        workerShop.setUI(genertaedCharactersList);
+        workerShop
+            .setUI(genertaedCharactersList);
     }
 
 

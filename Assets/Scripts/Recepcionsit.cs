@@ -182,7 +182,8 @@ public class Recepcionsit : MonoBehaviour
     IEnumerator DoWork()
     {
         Debug.Log("wORK");
-        yield return new WaitForSeconds(0.1f);
+        float workingTime = 15 - this.gameObject.GetComponent<Worker>().treatingSpeedBonus;
+        yield return new WaitForSeconds(workingTime);
         consultController.searchPatient(patient.gameObject);
 
         waitingRoom.receptionEmpty(indexOfWindow);
