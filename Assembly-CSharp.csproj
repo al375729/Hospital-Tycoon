@@ -80,8 +80,11 @@
     <Compile Include="Assets\LeanTween\Framework\LeanTween.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTweenExt.cs" />
     <Compile Include="Assets\PatientInfo.cs" />
+    <Compile Include="Assets\PaySalaries.cs" />
     <Compile Include="Assets\RadiologyController.cs" />
     <Compile Include="Assets\RestRoom.cs" />
+    <Compile Include="Assets\RoomComprobations.cs" />
+    <Compile Include="Assets\RoomStatus.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingManager.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingObjects.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingsInShop.cs" />

@@ -12,6 +12,7 @@ public class ObjectsOnRoom : MonoBehaviour
 
     public int indexInList = -1;
 
+    public Material materialBase;
     public enum type 
     {
         ConsultDoctor,
@@ -25,7 +26,9 @@ public class ObjectsOnRoom : MonoBehaviour
     void Start()
     {
         materiales[0] = this.gameObject.GetComponent<MeshRenderer>().material;
-}
+        materialBase = this.gameObject.GetComponent<MeshRenderer>().material;
+
+    }
 
     // Update is called once per frame
     void Update()

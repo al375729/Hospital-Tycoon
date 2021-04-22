@@ -38,6 +38,8 @@ public class ReceptionList : MonoBehaviour
                 patient.GetComponent<Recepcionsit>().state = Recepcionsit.State.DoingTask;
                 patient.transform.SetParent(seats[i]);
 
+                this.gameObject.transform.parent.GetChild(this.gameObject.transform.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
+                this.gameObject.transform.parent.GetChild(this.gameObject.transform.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
                 break;
             }
         }

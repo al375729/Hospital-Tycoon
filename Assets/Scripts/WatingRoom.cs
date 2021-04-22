@@ -11,6 +11,8 @@ public class WatingRoom : MonoBehaviour
     static public Queue<GameObject> attendancePriority;
     TaskManagement taskManagement;
 
+    public int workersOnRoom = 0;
+
     private bool found;
 
     public static WatingRoom Instance { get; private set; } // static singleton

@@ -16,4 +16,4 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 387b3753278e0ac4aab7a5514a7da346, type: 3}
   description: Sala de analisis
   price: 1
-  prefab: {fileID: 2340728338996645139, guid: 89f72b2dc559b7b4396781bdeba68df5, type: 3}
+  prefab: {fileID: 8082207803388138420, guid: cc13b84ddf405ae4dbcd9c833230b991, type: 3}

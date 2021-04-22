@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
+using TMPro;
 
 public class DragBuildings : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class DragBuildings : MonoBehaviour
 
     private bool lastFrameWasEditMode;
 
+    private bool addedReferences = false;
+
     ConsultController consultController;
     RadiologyController radiologyController;
     AnalisisController analisisController;
@@ -42,6 +45,11 @@ public class DragBuildings : MonoBehaviour
         consultController = ConsultController.Instance;
         radiologyController = RadiologyController.Instance;
         analisisController = AnalisisController.Instance;
+
+        transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = false;
+        this.gameObject.transform.GetChild(gameObject.transform.childCount - 2).GetComponent<RoomStatus>().workers = "No hay trabajadores asignados " + "\n";
+        
+        //this.gameObject.transform.GetChild(gameObject.transform.childCount - 2).GetComponent<RoomStatus>().updateText();
     }
 
 
@@ -57,12 +65,22 @@ public class DragBuildings : MonoBehaviour
                 globalSelection = true;
                 position = transform.position;
                 rotation = transform.rotation;
-                deleteReferences();
+
+                if(addedReferences)
+                {
+                    deleteReferences();
+                    addedReferences = false;
+                }
+               
 
             }
             else if (!isSelected && !globalSelection && GlobalVariables.DELETE_MODE)
             {
-                deleteReferences();
+                if (addedReferences)
+                {
+                    deleteReferences();
+                    addedReferences = false;
+                }
                 Destroy(this.gameObject);
 
             }
@@ -70,7 +88,20 @@ public class DragBuildings : MonoBehaviour
             {
                 if (!isColliding && isSelected)
                 {
-                    addReferences();
+                    if(this.gameObject.GetComponent<RoomComprobations>().isReachable())
+                    {
+                        addReferences();
+                        addedReferences = true;
+   
+                        this.gameObject.transform.GetChild(this.gameObject.transform.childCount - 2).GetComponent<RoomStatus>().reachable = "";
+                        this.gameObject.transform.GetChild(this.gameObject.transform.childCount - 2).GetComponent<RoomStatus>().updateText();
+                    }
+                    else
+                    {
+                        this.gameObject.transform.GetChild(this.gameObject.transform.childCount - 2).GetComponent<RoomStatus>().reachable = "Esta sala es inancanzable" + "\n";
+                        this.gameObject.transform.GetChild(this.gameObject.transform.childCount - 2).GetComponent<RoomStatus>().updateText();
+                    }
+                   
                     changeMaterialOfChildren(0);
                     position = transform.position;
                     rotation = transform.rotation;
@@ -134,6 +165,7 @@ public class DragBuildings : MonoBehaviour
         if (GlobalVariables.EDIT_MODE && !isSelected && !isColliding)
         {
             transform.GetChild(0).gameObject.GetComponent<ObjectsOnRoom>().changeMaterial(0);
+            this.gameObject.transform.GetChild(gameObject.transform.childCount - 2).GetComponent<RoomStatus>().updateText();
             transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = true;
             transform.GetChild(transform.childCount - 1).gameObject.GetComponent<SpriteRenderer>().enabled = true;
 

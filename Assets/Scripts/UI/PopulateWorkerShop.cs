@@ -32,9 +32,11 @@ public class PopulateWorkerShop : MonoBehaviour
     public Sprite star;
     List<GameObject> genertaedCharacters;
 
+    PaySalaries paySalaries;
+
     void Start()
     {
-
+        paySalaries = PaySalaries.Instance;
     }
 
     public static class ButtonExtension
@@ -60,7 +62,6 @@ public class PopulateWorkerShop : MonoBehaviour
 
     public void setUI(List<GameObject> charactersList)
     {
-        Debug.Log("popu");
 
         genertaedCharacters = charactersList;
         for (int i = 0; i < genertaedCharacters.Count; i++)
@@ -85,36 +86,37 @@ public class PopulateWorkerShop : MonoBehaviour
             int ranBonuses = Random.Range(0, 10);
             Color tempColor2;
 
-            switch (ranBonuses)
+            if(genertaedCharacters[i].GetComponent<Worker>().walkingSpeedBonus != 0)
             {
-               
-                case 0:
-                     tempColor2 = instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount -3).GetComponent<Image>().color;
-                    tempColor2.a = 1f;
-                    instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount -3).GetComponent<Image>().color = tempColor2;
-
-                    genertaedCharacters[i].GetComponent<Worker>().walkingSpeedBonus = 3;
-                    break;
-
-                case 1:
-                     tempColor2 = instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 2).GetComponent<Image>().color;
-                    tempColor2.a = 1f;
-                    instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 2).GetComponent<Image>().color = tempColor2;
-
-                    genertaedCharacters[i].GetComponent<Worker>().treatingSpeedBonus = 9; 
-                    break;
-
-                case 2:
-                     tempColor2 = instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 1).GetComponent<Image>().color;
-                    tempColor2.a = 1f;
-                    instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 1).GetComponent<Image>().color = tempColor2;
-
-                    genertaedCharacters[i].GetComponent<Worker>().moneyBonus = 15;
-                    break;
+                tempColor2 = instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 3).GetComponent<Image>().color;
+                tempColor2.a = 1f;
+                instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 3).GetComponent<Image>().color = tempColor2;
+                genertaedCharacters[i].GetComponent<Worker>().salary += 50;
             }
+
+            else if(genertaedCharacters[i].GetComponent<Worker>().treatingSpeedBonus != 0)
+            {
+                tempColor2 = instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 2).GetComponent<Image>().color;
+                tempColor2.a = 1f;
+                instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 2).GetComponent<Image>().color = tempColor2;
+                genertaedCharacters[i].GetComponent<Worker>().salary += 50;
+            }
+            else if (genertaedCharacters[i].GetComponent<Worker>().moneyBonus != 0)
+            {
+                tempColor2 = instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 1).GetComponent<Image>().color;
+                tempColor2.a = 1f;
+                instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 1).GetComponent<Image>().color = tempColor2;
+                genertaedCharacters[i].GetComponent<Worker>().salary += 50;
+            }
+            genertaedCharacters[i].GetComponent<Worker>().salary += 500;
+            int salary = genertaedCharacters[i].GetComponent<Worker>().salary;
+            instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 4).GetComponent<Text>().text = salary.ToString();
+
             genertaedCharacters[i].transform.position = g2.transform.position;
+            
 
             instance.GetComponent<Button>().AddEventListener(i, 2, SpawnBuilding);
+            
         }
     }
 
@@ -158,8 +160,10 @@ public class PopulateWorkerShop : MonoBehaviour
 
             Worker worker = prefab.gameObject.GetComponent<Worker>();
             worker.setWorking(true);
-    
+            
             buttons.ResetAll();
+
+            paySalaries.addSalary(prefab.GetComponent<Worker>().salary);
         }
 
     }

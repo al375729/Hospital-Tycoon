@@ -12,6 +12,8 @@ public class DayNightCycle : MonoBehaviour
 
     private float SECONDS_IN_A_DAY = 86400;
 
+    PaySalaries paySalaries;
+
     [SerializeField]
     private Transform rotation;
 
@@ -30,6 +32,11 @@ public class DayNightCycle : MonoBehaviour
 
     [SerializeField]
     private Gradient sunGradient;
+
+    private void Start()
+    {
+        paySalaries = PaySalaries.Instance;
+    }
     public float targetDayLength
     {
         get
@@ -152,6 +159,7 @@ public class DayNightCycle : MonoBehaviour
         DateController.setMonth(this.month);
         DateController.setDay(this.day);
         DateController.changeDate();
+        paySalaries.paySalaries();
     }
 
     private void monthPassed()
@@ -161,6 +169,8 @@ public class DayNightCycle : MonoBehaviour
         DateController.setMonth(this.month);
         DateController.setDay(this.day);
         DateController.changeDate();
+
+        paySalaries.paySalaries();
     }
 
     private void SunRotation() 

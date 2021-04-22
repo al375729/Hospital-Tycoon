@@ -96,6 +96,9 @@ public class RadiologyController : MonoBehaviour
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(arrayForDoctors[i].gameObject);
                 patient.GetComponent<Radiologist>().goTo(task1.target.transform);
                 patient.transform.SetParent(arrayForDoctors[i]);
+
+                patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
+                patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
                 break;
             }
         }
@@ -168,6 +171,10 @@ public class RadiologyController : MonoBehaviour
                 patient.GetComponent<Radiologist>().state = Radiologist.State.DoingTask;
                 patient.transform.SetParent(arrayForDoctors[i]);
                 found = true;
+
+                patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
+                patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
+
                 break;
             }
         }

@@ -9,6 +9,7 @@ public class Money : MonoBehaviour
     void Start()
     {
         text = this.GetComponent<Text>();
+        text.text = GlobalVariables.MONEY.ToString();
     }
 
     // Update is called once per frame

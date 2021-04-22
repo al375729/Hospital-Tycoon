@@ -66,6 +66,27 @@ public class CharacterGenerator : MonoBehaviour
                     break;
             }
 
+            int ranBonuses = Random.Range(0, 10);
+
+            switch (ranBonuses)
+            {
+
+                case 0:
+
+                    instance.GetComponent<Worker>().walkingSpeedBonus = 3;
+                    break;
+
+                case 1:
+
+                    instance.GetComponent<Worker>().treatingSpeedBonus = 9;
+                    break;
+
+                case 2:
+
+                    instance.GetComponent<Worker>().moneyBonus = 15;
+                    break;
+            }
+
             if (genero == 0)
             {
                 int randomPelo = Random.Range(0, pelosHombre.Length);

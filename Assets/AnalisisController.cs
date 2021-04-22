@@ -96,6 +96,9 @@ public class AnalisisController : MonoBehaviour
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(arrayForDoctors[i].gameObject);
                 patient.GetComponent<Analist>().goTo(task1.target.transform);
                 patient.transform.SetParent(arrayForDoctors[i]);
+
+                patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
+                patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
                 break;
             }
         }
@@ -144,6 +147,7 @@ public class AnalisisController : MonoBehaviour
                 patient.GetComponent<Patient>().addTask(task1);
                 patient.transform.SetParent(arrayForPatients[i]);
                 found = true;
+
                 break;
             }
         }
@@ -168,6 +172,10 @@ public class AnalisisController : MonoBehaviour
                 patient.GetComponent<Analist>().state = Analist.State.DoingTask;
                 patient.transform.SetParent(arrayForDoctors[i]);
                 found = true;
+
+                patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
+                patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
+
                 break;
             }
         }

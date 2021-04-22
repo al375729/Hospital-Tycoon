@@ -37,6 +37,8 @@ public class Worker : MonoBehaviour
 
     RestRoom restRoom;
 
+    public int salary;
+
     public int walkingSpeedBonus;
     public int treatingSpeedBonus;
     public int moneyBonus;
@@ -189,7 +191,6 @@ public class Worker : MonoBehaviour
             if (agent.remainingDistance <= 0.1f && agent.pathPending == false)
             {
                 end = true;
-                Debug.Log(target);
             }
 
             if (end)
@@ -197,7 +198,6 @@ public class Worker : MonoBehaviour
 
                 if (currentTask == CurrentTask.task1)
                 {
-                    Debug.Log("Fin de la tarea 1");
                     sub_task1 = true;
                     runing = false;
                     endedTask = true;
@@ -216,7 +216,6 @@ public class Worker : MonoBehaviour
 
     public void goToRestRoom(GameObject patient)
     {
-        Debug.Log(patient.gameObject.name);
         restRoom.searchPlace(patient);
     }
 }

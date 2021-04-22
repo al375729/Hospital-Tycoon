@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class prueba123 : MonoBehaviour
+public class DetectClicksOnCharacters : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

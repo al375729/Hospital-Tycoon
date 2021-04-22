@@ -21,6 +21,7 @@ public class ConsultController : MonoBehaviour
     private float maxWaitingTime = 1f;
     private float waitingTime = 1f;
 
+    public int workersOnRoom = 0;
     void Awake()
     {
         if (Instance == null) { Instance = this; }
@@ -62,7 +63,6 @@ public class ConsultController : MonoBehaviour
                 waitingTime = maxWaitingTime;
 
                 GameObject patient = priorityDoctorConsult.Peek();
-                Debug.Log(patient.gameObject.name);
                 DoctorSearchIfIsAnEmptyConsult(patient);
             }
         }
@@ -95,6 +95,9 @@ public class ConsultController : MonoBehaviour
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(arrayForDoctors[i].gameObject);
                 patient.GetComponent<Consult>().goTo(task1.target.transform);
                 patient.transform.SetParent(arrayForDoctors[i]);
+
+                patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
+                patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
                 break;
             }
         }
@@ -172,6 +175,10 @@ public class ConsultController : MonoBehaviour
                 patient.GetComponent<Consult>().indexOfWindow = i;
                 patient.GetComponent<Consult>().state = Consult.State.DoingTask;
                 patient.transform.SetParent(arrayForDoctors[i]);
+                found = true;
+
+                patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
+                patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
 
                 break;
             }
@@ -239,8 +246,6 @@ public class ConsultController : MonoBehaviour
     {
         patient.GetComponent<Consult>().state = Consult.State.DoingTask;
         priorityDoctorConsult.Enqueue(patient);
-        Debug.Log(priorityDoctorConsult.Peek());
-        Debug.Log(priorityDoctorConsult.Count);
         patient.GetComponent<Worker>().goToRestRoom(patient);
     }
 }

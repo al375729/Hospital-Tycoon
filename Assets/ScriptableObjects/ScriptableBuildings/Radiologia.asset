@@ -16,4 +16,4 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 9db88dd40d0117e4b820a5d24b6245b5, type: 3}
   description: Radiologia
   price: 1
-  prefab: {fileID: 3328278623516310503, guid: 3418f1bc87720ff48831f7eb654edc87, type: 3}
+  prefab: {fileID: 8639330880580438473, guid: 9716930120a365f4da2b0fcd3c20e187, type: 3}
