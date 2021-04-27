@@ -79,6 +79,10 @@ public class ConsultController : MonoBehaviour
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(arrayForPatients[i].gameObject);
                 patient.GetComponent<Patient>().addTask(task1);
                 patient.transform.SetParent(arrayForPatients[i]);
+
+                patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToConsult;
+                PatientInfo.DisplayState(patient.gameObject);
+
                 break;
             }
         }
@@ -153,6 +157,10 @@ public class ConsultController : MonoBehaviour
                 patient.GetComponent<Patient>().addTask(task1);
                 patient.transform.SetParent(arrayForPatients[i]);
                 found = true;
+
+                patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToConsult;
+                PatientInfo.DisplayState(patient.gameObject);
+
                 break;
             }
         }
@@ -160,6 +168,10 @@ public class ConsultController : MonoBehaviour
 
         if (!found)
         {
+            Debug.Log("9009");
+            patient.gameObject.GetComponent<Patient>().state = Patient.State.WaitingForConsult;
+            PatientInfo.DisplayState(patient.gameObject);
+
             returnToWaitingRoom(patient);
         }
     }
@@ -230,13 +242,15 @@ public class ConsultController : MonoBehaviour
     {
         foreach (Transform seat in waitingRoom.seats)
         {
-            if (seat.childCount == 0 && patient.GetComponent<Patient>().state != Patient.State.SearchingConsult)
+            if (seat.childCount == 0)
             {
 
-                patient.GetComponent<Patient>().state = Patient.State.SearchingConsult;
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(seat.gameObject);
                 patient.GetComponent<Patient>().addTask(task1);
                 attendancePriorityConsult.Enqueue(patient);
+
+                patient.gameObject.GetComponent<Patient>().state = Patient.State.WaitingForConsult;
+                PatientInfo.DisplayState(patient.gameObject);
                 break;
             }
         }

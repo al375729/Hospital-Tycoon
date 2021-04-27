@@ -47,7 +47,7 @@ public class DragBuildings : MonoBehaviour
         analisisController = AnalisisController.Instance;
 
         transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = false;
-        this.gameObject.transform.GetChild(gameObject.transform.childCount - 2).GetComponent<RoomStatus>().workers = "No hay trabajadores asignados " + "\n";
+        this.gameObject.transform.GetChild(gameObject.transform.childCount - 2).GetComponent<RoomStatus>().workers = "NO HAY TRABAJADORES ASIGNADOS " + "\n" + "\n";
         
         //this.gameObject.transform.GetChild(gameObject.transform.childCount - 2).GetComponent<RoomStatus>().updateText();
     }
@@ -98,7 +98,7 @@ public class DragBuildings : MonoBehaviour
                     }
                     else
                     {
-                        this.gameObject.transform.GetChild(this.gameObject.transform.childCount - 2).GetComponent<RoomStatus>().reachable = "Esta sala es inancanzable" + "\n";
+                        this.gameObject.transform.GetChild(this.gameObject.transform.childCount - 2).GetComponent<RoomStatus>().reachable = "ESTA SALA ES INALCANZABLE" + "\n" + "\n";
                         this.gameObject.transform.GetChild(this.gameObject.transform.childCount - 2).GetComponent<RoomStatus>().updateText();
                     }
                    

@@ -43,7 +43,10 @@ public class WatingRoom : MonoBehaviour
             {
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(seat.gameObject);
                 patient.GetComponent<Patient>().addTask(task1);
-               
+
+                patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToQueue;
+                PatientInfo.DisplayState(patient.gameObject);
+
                 found = true;
                 break;
             }
@@ -58,7 +61,10 @@ public class WatingRoom : MonoBehaviour
                     TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(seat.gameObject);
                     patient.GetComponent<Patient>().addTask(task1);
                     attendancePriority.Enqueue(patient);
-                    patient.GetComponent<Patient>().state = Patient.State.DoingTask;
+
+                    
+                    patient.gameObject.GetComponent<Patient>().state = Patient.State.WaitingToBeAttended;
+                    PatientInfo.DisplayState(patient.gameObject);
 
                     break;
                 }
@@ -77,6 +83,9 @@ public class WatingRoom : MonoBehaviour
 
             TaskManagement.PatientGoTo task = new TaskManagement.PatientGoTo(target.gameObject);
             patient.GetComponent<Patient>().addTask(task);
+
+            patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToQueue;
+            PatientInfo.DisplayState(patient.gameObject);
         }
     }
 }

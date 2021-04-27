@@ -80,6 +80,10 @@ public class RadiologyController : MonoBehaviour
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(arrayForPatients[i].gameObject);
                 patient.GetComponent<Patient>().addTask(task1);
                 patient.transform.SetParent(arrayForPatients[i]);
+
+                patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToRadiology;
+                PatientInfo.DisplayState(patient.gameObject);
+
                 break;
             }
         }
@@ -147,6 +151,10 @@ public class RadiologyController : MonoBehaviour
                 patient.GetComponent<Patient>().addTask(task1);
                 patient.transform.SetParent(arrayForPatients[i]);
                 found = true;
+
+                patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToRadiology;
+                PatientInfo.DisplayState(patient.gameObject);
+
                 break;
             }
         }
@@ -154,6 +162,9 @@ public class RadiologyController : MonoBehaviour
 
         if (!found)
         {
+            patient.gameObject.GetComponent<Patient>().state = Patient.State.WaitingForRadiology;
+            PatientInfo.DisplayState(patient.gameObject);
+
             returnToWaitingRoom(patient);
         }
     }
@@ -188,7 +199,7 @@ public class RadiologyController : MonoBehaviour
 
     private void goToRestRoom(GameObject patient)
     {
-        patient.GetComponent<Radiologist>().state = Radiologist.State.DoingTask;
+        //patient.GetComponent<Radiologist>().state = Radiologist.State.DoingTask;
         priorityRadiologyDoctor.Enqueue(patient);
         Debug.Log(priorityRadiologyDoctor.Peek());
         Debug.Log(priorityRadiologyDoctor.Count);
@@ -239,6 +250,9 @@ public class RadiologyController : MonoBehaviour
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(seat.gameObject);
                 patient.GetComponent<Patient>().addTask(task1);
                 attendancePriorityRadiology.Enqueue(patient);
+
+                patient.gameObject.GetComponent<Patient>().state = Patient.State.WaitingForRadiology;
+                PatientInfo.DisplayState(patient.gameObject);
                 break;
             }
         }

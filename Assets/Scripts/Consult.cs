@@ -177,9 +177,12 @@ public class Consult : MonoBehaviour
 
     IEnumerator DoWork()
     {
-       yield return new WaitForSeconds(3);
-        consultController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().state = Patient.State.GoingToRadiology;
-        consultController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().ChangeState();
+        patient.gameObject.GetComponent<Patient>().state = Patient.State.GettingConsult;
+        PatientInfo.DisplayState(patient.gameObject);
+
+        yield return new WaitForSeconds(3);
+       consultController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().state = Patient.State.GoingToRadiology;
+       consultController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().ChangeState();
 
     }
 }

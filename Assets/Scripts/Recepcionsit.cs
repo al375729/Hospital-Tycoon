@@ -110,9 +110,11 @@ public class Recepcionsit : MonoBehaviour
     {
        Transform attend = reception.attendWindow(indexOfWindow);
 
-        if (attend.childCount > 0 && attend.GetChild(0).GetComponent<Patient>().state == Patient.State.WaitingForTask)
+        if (attend.childCount > 0 && attend.GetChild(0).GetComponent<Patient>().state == Patient.State.WaitingToBeAttendedQueue)
         {
             attend.GetChild(0).GetComponent<Patient>().state = Patient.State.GettinAttended;
+            PatientInfo.DisplayState(attend.GetChild(0).gameObject);
+
             patient = attend.GetChild(0);
             StartCoroutine(DoWork());
 
@@ -181,10 +183,14 @@ public class Recepcionsit : MonoBehaviour
 
     IEnumerator DoWork()
     {
+        patient.gameObject.GetComponent<Patient>().state = Patient.State.GettinAttended;
+        PatientInfo.DisplayState(patient.gameObject);
         Debug.Log("wORK");
-        float workingTime = 15 - this.gameObject.GetComponent<Worker>().treatingSpeedBonus;
+        float workingTime = 5;//- this.gameObject.GetComponent<Worker>().treatingSpeedBonus;
         yield return new WaitForSeconds(workingTime);
         consultController.searchPatient(patient.gameObject);
+
+        
 
         waitingRoom.receptionEmpty(indexOfWindow);
 

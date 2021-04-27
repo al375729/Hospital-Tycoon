@@ -53,12 +53,28 @@ public class Patient : MonoBehaviour
     {
         WaitingForTask,
         DoingTask,
-        GettinAttended,
-        WaitingForConsult,
         SearchingConsult,
         NextTask,
+        GoingHome,
+        
+        GoingToReception,
+        GoingToQueue,
+        WaitingToBeAttended,
+        WaitingToBeAttendedQueue,
+        GettinAttended,
+
+        WaitingForConsult,
+        GoingToConsult,
+        GettingConsult,
+
+        WaitingForRadiology,
         GoingToRadiology,
-        GoingHome
+        GettingRadiology,
+
+        WaitingForAnalysis,
+        GoingToAnalysis,
+        GettingAnalysis,
+
     }
 
     public void addPos(Vector3 pos)
@@ -76,7 +92,6 @@ public class Patient : MonoBehaviour
            
         if (task != null)
         {
-            state = State.DoingTask;
             currentTask = CurrentTask.task1;
             this.transform.SetParent(task.target.transform);
             target = task.target.transform.position;
@@ -104,14 +119,19 @@ public class Patient : MonoBehaviour
         Debug.Log(patientDisease.name);
 
         navMeshAgent = this.GetComponent<NavMeshAgent>();
-        state = State.WaitingForTask;
         currentTask = CurrentTask.nullTask;
 
         agent = this.GetComponent<NavMeshAgent>();
 
         waitingRoom = WatingRoom.Instance;
 
+        
+        state = State.GoingToReception;
+        PatientInfo.DisplayState(this.gameObject);
+
         waitingRoom.searchPlace(this.gameObject);
+
+        
 
         diseases = Diseases.Instance;
 
@@ -141,7 +161,6 @@ public class Patient : MonoBehaviour
     private void RestartValues()
     {
 
-        state = State.WaitingForTask;
 
         runing = false;
 
@@ -204,6 +223,12 @@ public class Patient : MonoBehaviour
                     endedTask = true;
                     onQueue = true;
                     transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+                    if(state == State.GoingToQueue)
+                    {
+                        Debug.Log("asd");
+                        state = State.WaitingToBeAttendedQueue;
+                    }
                     yield break;
 
                 }

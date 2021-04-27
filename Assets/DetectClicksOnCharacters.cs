@@ -26,6 +26,7 @@ public class DetectClicksOnCharacters : MonoBehaviour
                 {
                     PatientInfo.name.text = hit.collider.gameObject.GetComponent<Patient>().name;
                     PatientInfo.gender.text = hit.collider.gameObject.GetComponent<Patient>().gender;
+                    PatientInfo.DisplayState(hit.collider.gameObject);
 
                     PatientInfo.showPanel();
                 }
