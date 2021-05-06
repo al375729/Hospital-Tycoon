@@ -80,6 +80,10 @@ public class AnalisisController : MonoBehaviour
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(arrayForPatients[i].gameObject);
                 patient.GetComponent<Patient>().addTask(task1);
                 patient.transform.SetParent(arrayForPatients[i]);
+
+                patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToAnalysis;
+                PatientInfo.DisplayState(patient.gameObject);
+
                 break;
             }
         }
@@ -99,6 +103,9 @@ public class AnalisisController : MonoBehaviour
 
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
+
+
+
                 break;
             }
         }
@@ -148,6 +155,9 @@ public class AnalisisController : MonoBehaviour
                 patient.transform.SetParent(arrayForPatients[i]);
                 found = true;
 
+                patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToAnalysis;
+                PatientInfo.DisplayState(patient.gameObject);
+
                 break;
             }
         }
@@ -155,6 +165,9 @@ public class AnalisisController : MonoBehaviour
 
         if (!found)
         {
+            patient.gameObject.GetComponent<Patient>().state = Patient.State.WaitingForAnalysis;
+            PatientInfo.DisplayState(patient.gameObject);
+
             returnToWaitingRoom(patient);
         }
     }
@@ -169,10 +182,9 @@ public class AnalisisController : MonoBehaviour
                 Debug.Log("a");
                 patient.GetComponent<Analist>().goTo(arrayForDoctors[i]);
                 patient.GetComponent<Analist>().indexOfWindow = i;
-                patient.GetComponent<Analist>().state = Analist.State.DoingTask;
                 patient.transform.SetParent(arrayForDoctors[i]);
                 found = true;
-
+                patient.GetComponent<Analist>().state = Analist.State.DoingTask;
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
 
@@ -183,16 +195,17 @@ public class AnalisisController : MonoBehaviour
         if (!found)
         {
             goToRestRoom(patient);
+            patient.GetComponent<Analist>().state = Analist.State.DoingTask;
         }
 
     }
 
     private void goToRestRoom(GameObject patient)
     {
-        patient.GetComponent<Analist>().state = Analist.State.DoingTask;
         priorityAnalisisDoctor.Enqueue(patient);
         Debug.Log(priorityAnalisisDoctor.Peek());
         Debug.Log(priorityAnalisisDoctor.Count);
+
         patient.GetComponent<Worker>().goToRestRoom(patient);
     }
 
@@ -233,13 +246,14 @@ public class AnalisisController : MonoBehaviour
     {
         foreach (Transform seat in waitingRoom.seats)
         {
-            if (seat.childCount == 0 && patient.GetComponent<Patient>().state != Patient.State.SearchingConsult)
+            if (seat.childCount == 0 )
             {
-
-                patient.GetComponent<Patient>().state = Patient.State.SearchingConsult;
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(seat.gameObject);
                 patient.GetComponent<Patient>().addTask(task1);
                 attendancePriorityAnalisis.Enqueue(patient);
+
+                patient.gameObject.GetComponent<Patient>().state = Patient.State.WaitingForAnalysis;
+                PatientInfo.DisplayState(patient.gameObject);
                 break;
             }
         }

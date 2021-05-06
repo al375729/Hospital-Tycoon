@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Worker : MonoBehaviour
 {
@@ -65,8 +66,9 @@ public class Worker : MonoBehaviour
     private Vector3 target;
 
     Transform patient;
+    public string gender;
 
-
+    public Sprite sprite;
     private void Start()
     {
 

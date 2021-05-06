@@ -9,6 +9,8 @@ public class GlobalVariables : MonoBehaviour
     public static bool SHOP;
     public static bool UI_OPEN;
     public static int MONEY = 10000;
+    public static int MONTH_INCOMES = 3;
+    public static int MONTH_EXPENSES = 5;
     void Awake()
     {
         EDIT_MODE = false;

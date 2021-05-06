@@ -73,19 +73,15 @@ public class Diseases : MonoBehaviour
         
     }
 
-    public Disease GetDisease()
+    public static Disease GetDisease(int random)
     {
-        int ran = Random.Range(0, 101);
+       Disease disease = diseasesLevel2[random];
+            return disease;
+        
+    }
 
-        if(ran<80)
-        {
-            Disease disease = diseasesLevel1[Random.Range(0, diseasesLevel1.Count)];
-            return disease;
-        }
-        else 
-        {
-            Disease disease = diseasesLevel2[Random.Range(0, diseasesLevel2.Count)];
-            return disease;
-        }
+    internal static Disease getDiseaseLevel1(int ran2)
+    {
+        throw new System.NotImplementedException();
     }
 }

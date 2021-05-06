@@ -35,6 +35,8 @@ public class CharacterGenerator : MonoBehaviour
         for (int i = 0; i < generatingCount; i++)
         {
             int genero = Random.Range(0, 2);// 0 --> M || 1 --> F 
+            
+
             int ranType = Random.Range(0, 4);
 
             int colorDePelo = Random.Range(0,materialesPelo.Length);
@@ -42,6 +44,8 @@ public class CharacterGenerator : MonoBehaviour
             GameObject instance = Instantiate(prefab, this.transform.position + new Vector3((15 * i) + 50f, 0, 0), Quaternion.identity);
             instance.transform.SetParent(parent.transform);
             genertaedCharactersList.Add(instance);
+
+            
 
             switch (ranType)
             {
@@ -89,6 +93,7 @@ public class CharacterGenerator : MonoBehaviour
 
             if (genero == 0)
             {
+                instance.GetComponent<Worker>().gender = "Male";
                 int randomPelo = Random.Range(0, pelosHombre.Length);
 
                 string name = Names.getNameMale();
@@ -122,7 +127,7 @@ public class CharacterGenerator : MonoBehaviour
                 string name = Names.getNameFemale();
                 instance.GetComponent<Worker>().name = name;
                 instance.name = name;
-
+                instance.GetComponent<Worker>().gender = "Female";
                 if (randomPelo != materialesPelo.Length)
                 {
                     GameObject pelo = Instantiate(pelosMujer[randomPelo], genertaedCharactersList[i].transform, false);

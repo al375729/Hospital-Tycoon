@@ -37,11 +37,23 @@ public class Patient : MonoBehaviour
     public  Diseases diseases;
     public Diseases.Disease patientDisease;
 
+    private Queue<string> copiaCola;
+
     public int stars;
 
     public bool onQueue = false;
 
     public GameObject exit;
+
+    private int ran;
+
+    public float patience = 1;
+
+    public bool patienceBool = false;
+
+    public bool waiting = false;
+
+    public Sprite sprite;
     private enum CurrentTask
     {
         task1,
@@ -56,7 +68,8 @@ public class Patient : MonoBehaviour
         SearchingConsult,
         NextTask,
         GoingHome,
-        
+        WaitingForDoctor,
+
         GoingToReception,
         GoingToQueue,
         WaitingToBeAttended,
@@ -101,20 +114,29 @@ public class Patient : MonoBehaviour
 
     private void Start()
     {
-        int ran = Random.Range(0, 101);
 
-        if (ran < 80)
+         ran = Random.Range(0, Diseases.diseasesLevel2.Count-1);
+
+        /*if (ran < 80)
         {
             stars = 1;
             int ran2 = Random.Range(0, Diseases.diseasesLevel1.Count);
-            patientDisease = Diseases.diseasesLevel1[ran2];
-        }
-        else
-        {
+            patientDisease = Diseases.GetDisease(ran);
+            copyPatientDisease = patientDisease;
+        }*/
+        //else
+        //{
             stars = 2;
-            int ran2 = Random.Range(0, Diseases.diseasesLevel2.Count);
-            patientDisease = Diseases.diseasesLevel2[ran2];
+            //int ran2 = Random.Range(0, Diseases.diseasesLevel2.Count);
+            patientDisease = Diseases.GetDisease(ran);
+
+            copiaCola = new Queue<string>();
+
+        foreach (string item in patientDisease.tasks)
+        {
+            copiaCola.Enqueue(item);
         }
+       // }
 
         Debug.Log(patientDisease.name);
 
@@ -157,7 +179,24 @@ public class Patient : MonoBehaviour
 
         }
 
-    } 
+        if (waiting && patience > 0 && !patienceBool) InvokeRepeating("DoSomething", 0, 0.1F);
+        else if (!waiting) CancelInvoke();
+        else if (patience < 0) 
+        {
+            CancelInvoke();
+            Debug.Log("Ya ta");
+        } 
+        
+    }
+
+    // happens every 1.0 seconds
+    void DoSomething()
+    {
+        patienceBool = true;
+        patience -= 0.00083f;
+    }
+
+
     private void RestartValues()
     {
 
@@ -169,23 +208,31 @@ public class Patient : MonoBehaviour
 
     public void ChangeState()
     {
+       
+        if (copiaCola.Count <= 0)
+            {
+                Debug.Log("111");
+                //state = State.GoingHome;
+                addPos(new Vector3(-103f, 0f, -103f));
+        }
 
-        if (state == State.GoingToRadiology)
+        else if (state == State.GoingToRadiology)
         {
-            //Debug.Log(this.gameObject.name);
             if (patientDisease.stars == 1)
             {
                 addPos(new Vector3(-103f,0f,-103f));
             }
             else
             {
-               
-                if(patientDisease.tasks.Count>0)
+                if(copiaCola.Count>0)
                 {
-                    patientDisease.tasks.Dequeue();
                     radiologyController.searchPatient(this.gameObject);
+                    Debug.Log("Delete");
+                    copiaCola.Dequeue();
+
                 }
-                else addPos(new Vector3(-103f, 0f, -103f));
+                
+                   
 
             }
             
@@ -203,7 +250,6 @@ public class Patient : MonoBehaviour
 
     IEnumerator MoveToTarget()
     {
-        Debug.Log("Move");
         bool end = false;
         agent.destination = target;
         while (!end)
@@ -226,9 +272,13 @@ public class Patient : MonoBehaviour
 
                     if(state == State.GoingToQueue)
                     {
-                        Debug.Log("asd");
                         state = State.WaitingToBeAttendedQueue;
                     }
+                    else if (state == State.GoingToRadiology || state == State.GoingToConsult || state == State.GoingToConsult)
+                    {
+                        state = State.WaitingForDoctor;
+                    }
+                        
                     yield break;
 
                 }

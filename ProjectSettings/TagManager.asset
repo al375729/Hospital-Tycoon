@@ -7,6 +7,7 @@ TagManager:
   - Building
   - Floor
   - Patient
+  - Doctor
   layers:
   - Default
   - TransparentFX

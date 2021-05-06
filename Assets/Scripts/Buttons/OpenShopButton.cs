@@ -25,7 +25,7 @@ public class OpenShopButton : MonoBehaviour
             else if (GlobalVariables.EDIT_MODE) Console.setText("Desactiva primero el modo destruccion");
         }
 
-        else if (!GlobalVariables.EDIT_MODE && !GlobalVariables.DELETE_MODE)
+        else if (!GlobalVariables.EDIT_MODE && !GlobalVariables.DELETE_MODE && !GlobalVariables.UI_OPEN)
         {
                 //editModeButton.setEditMode(false);
                 //deleteModeButton.setDeleteMode(false);

@@ -73,7 +73,8 @@ public class PopulateWorkerShop : MonoBehaviour
             instance = Instantiate(buttonTemplate, panel.transform);
             instance.gameObject.transform.GetChild(0).GetComponent<Text>().text = genertaedCharacters[i].name;
             instance.gameObject.transform.GetChild(1).GetComponent<Text>().text = genertaedCharacters[i].GetComponent<Worker>().getType();
-            instance.gameObject.transform.GetChild(2).GetComponent<Image>().sprite = generator.TakePhoto();
+            genertaedCharacters[i].GetComponent<Worker>().sprite = generator.TakePhoto();
+            instance.gameObject.transform.GetChild(2).GetComponent<Image>().sprite = genertaedCharacters[i].GetComponent<Worker>().sprite;
 
             for (int j = 0; j < genertaedCharacters[i].GetComponent<Worker>().stars; j++)
             {

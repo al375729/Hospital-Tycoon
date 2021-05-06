@@ -55,7 +55,6 @@ public class RadiologyController : MonoBehaviour
 
         if (priorityRadiologyDoctor.Count != 0)
         {
-            Debug.Log("acb");
             waitingTime -= Time.deltaTime;
 
             if (waitingTime <= 0)
@@ -63,7 +62,6 @@ public class RadiologyController : MonoBehaviour
                 waitingTime = maxWaitingTime;
 
                 GameObject patient = priorityRadiologyDoctor.Peek();
-                Debug.Log(patient.gameObject.name);
                 DoctorSearchIfIsAnEmptyRadiology(patient);
             }
         }
@@ -95,7 +93,6 @@ public class RadiologyController : MonoBehaviour
         {
             if (arrayForDoctors[i].childCount == 0)
             {
-                Debug.Log(priorityRadiologyDoctor.Peek());
                 priorityRadiologyDoctor.Dequeue();
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(arrayForDoctors[i].gameObject);
                 patient.GetComponent<Radiologist>().goTo(task1.target.transform);
@@ -152,6 +149,7 @@ public class RadiologyController : MonoBehaviour
                 patient.transform.SetParent(arrayForPatients[i]);
                 found = true;
 
+                Debug.Log("PRUEBA");
                 patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToRadiology;
                 PatientInfo.DisplayState(patient.gameObject);
 
@@ -176,13 +174,12 @@ public class RadiologyController : MonoBehaviour
         {
             if (arrayForDoctors[i].childCount == 0)
             {
-                Debug.Log("a");
                 patient.GetComponent<Radiologist>().goTo(arrayForDoctors[i]);
                 patient.GetComponent<Radiologist>().indexOfWindow = i;
-                patient.GetComponent<Radiologist>().state = Radiologist.State.DoingTask;
                 patient.transform.SetParent(arrayForDoctors[i]);
                 found = true;
 
+                patient.GetComponent<Radiologist>().state = Radiologist.State.DoingTask;
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
 
@@ -192,6 +189,7 @@ public class RadiologyController : MonoBehaviour
 
         if (!found)
         {
+            patient.GetComponent<Radiologist>().state = Radiologist.State.DoingTask;
             goToRestRoom(patient);
         }
 
@@ -199,9 +197,8 @@ public class RadiologyController : MonoBehaviour
 
     private void goToRestRoom(GameObject patient)
     {
-        //patient.GetComponent<Radiologist>().state = Radiologist.State.DoingTask;
+        patient.GetComponent<Radiologist>().state = Radiologist.State.DoingTask;
         priorityRadiologyDoctor.Enqueue(patient);
-        Debug.Log(priorityRadiologyDoctor.Peek());
         Debug.Log(priorityRadiologyDoctor.Count);
         patient.GetComponent<Worker>().goToRestRoom(patient);
     }
@@ -243,16 +240,15 @@ public class RadiologyController : MonoBehaviour
     {
         foreach (Transform seat in waitingRoom.seats)
         {
-            if (seat.childCount == 0 && patient.GetComponent<Patient>().state != Patient.State.SearchingConsult)
+            if (seat.childCount == 0)
             {
-
-                patient.GetComponent<Patient>().state = Patient.State.SearchingConsult;
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(seat.gameObject);
                 patient.GetComponent<Patient>().addTask(task1);
                 attendancePriorityRadiology.Enqueue(patient);
 
                 patient.gameObject.GetComponent<Patient>().state = Patient.State.WaitingForRadiology;
                 PatientInfo.DisplayState(patient.gameObject);
+                patient.gameObject.GetComponent<Patient>().waiting = true;
                 break;
             }
         }

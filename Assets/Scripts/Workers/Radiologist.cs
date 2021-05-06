@@ -81,7 +81,6 @@ public class Radiologist : MonoBehaviour
         if (this.gameObject.GetComponent<Worker>().isWorking() && state == State.WaitingForTask)
         {
             radiologyController.searchDoctor(this.gameObject);
-
         }
 
         if (endedTask)
@@ -104,7 +103,7 @@ public class Radiologist : MonoBehaviour
     private void attendWindow()
     {
         Transform attend = radiologyController.attend(indexOfWindow);
-        if (attend.childCount > 0 && attend.GetChild(0).GetComponent<Patient>().state == Patient.State.WaitingForTask)
+        if (attend.childCount > 0 && attend.GetChild(0).GetComponent<Patient>().state == Patient.State.WaitingForDoctor)
         {
             Debug.Log("atendiendo a:" + attend.GetChild(0).GetComponent<Patient>().name);
             attend.GetChild(0).GetComponent<Patient>().state = Patient.State.GettinAttended;
@@ -177,8 +176,9 @@ public class Radiologist : MonoBehaviour
 
     IEnumerator DoWork()
     {
-        yield return new WaitForSeconds(3);
-        radiologyController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().state = Patient.State.GoingToRadiology;
+        Debug.Log("Workinh");
+        yield return new WaitForSeconds(1);
+        radiologyController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().state = Patient.State.GettingRadiology;
         radiologyController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().ChangeState();
 
     }

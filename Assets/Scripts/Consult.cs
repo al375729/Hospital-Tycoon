@@ -104,9 +104,9 @@ public class Consult : MonoBehaviour
     private void attendWindow()
     {
         Transform attend = consultController.attend(indexOfWindow);
-        if (attend.childCount > 0 && attend.GetChild(0).GetComponent<Patient>().state == Patient.State.WaitingForTask)
+        if (attend.childCount > 0 && attend.GetChild(0).GetComponent<Patient>().state == Patient.State.WaitingForDoctor)
         {
-            Debug.Log("atendiendo a:" + attend.GetChild(0).GetComponent<Patient>().name);
+
             attend.GetChild(0).GetComponent<Patient>().state = Patient.State.GettinAttended;
             patient = attend.GetChild(0);
             StartCoroutine(DoWork());
@@ -180,7 +180,9 @@ public class Consult : MonoBehaviour
         patient.gameObject.GetComponent<Patient>().state = Patient.State.GettingConsult;
         PatientInfo.DisplayState(patient.gameObject);
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
+
+        Debug.Log("Tira para radiologia");
        consultController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().state = Patient.State.GoingToRadiology;
        consultController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().ChangeState();
 

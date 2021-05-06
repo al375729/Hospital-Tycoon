@@ -15,6 +15,7 @@ public class WatingRoom : MonoBehaviour
 
     private bool found;
 
+    public static int patientsWaiting = 0;
     public static WatingRoom Instance { get; private set; } // static singleton
     void Awake()
     {
@@ -66,6 +67,9 @@ public class WatingRoom : MonoBehaviour
                     patient.gameObject.GetComponent<Patient>().state = Patient.State.WaitingToBeAttended;
                     PatientInfo.DisplayState(patient.gameObject);
 
+                    patient.gameObject.GetComponent<Patient>().waiting = true;
+                    DisplayStatistics.changeNumberOfPatientsWaiting(+1);
+
                     break;
                 }
             }
@@ -86,6 +90,9 @@ public class WatingRoom : MonoBehaviour
 
             patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToQueue;
             PatientInfo.DisplayState(patient.gameObject);
+
+            patient.gameObject.GetComponent<Patient>().waiting = false;
+            DisplayStatistics.changeNumberOfPatientsWaiting(-1);
         }
     }
 }

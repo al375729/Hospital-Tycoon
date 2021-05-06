@@ -188,7 +188,7 @@ public class ConsultController : MonoBehaviour
                 patient.GetComponent<Consult>().state = Consult.State.DoingTask;
                 patient.transform.SetParent(arrayForDoctors[i]);
                 found = true;
-
+                patient.GetComponent<Consult>().state = Consult.State.DoingTask;
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
 
@@ -199,7 +199,7 @@ public class ConsultController : MonoBehaviour
         if (!found)
         {
             goToRestRoom(patient);
-
+            patient.GetComponent<Consult>().state = Consult.State.DoingTask;
 
 
         }
@@ -248,9 +248,12 @@ public class ConsultController : MonoBehaviour
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(seat.gameObject);
                 patient.GetComponent<Patient>().addTask(task1);
                 attendancePriorityConsult.Enqueue(patient);
+                Debug.Log(attendancePriorityConsult.Count);
 
                 patient.gameObject.GetComponent<Patient>().state = Patient.State.WaitingForConsult;
                 PatientInfo.DisplayState(patient.gameObject);
+                patient.gameObject.GetComponent<Patient>().waiting = true;
+                patient.gameObject.GetComponent<Patient>().patienceBool = false;
                 break;
             }
         }
@@ -258,8 +261,11 @@ public class ConsultController : MonoBehaviour
 
     private void goToRestRoom(GameObject patient)
     {
+
         patient.GetComponent<Consult>().state = Consult.State.DoingTask;
         priorityDoctorConsult.Enqueue(patient);
+        Debug.Log(priorityDoctorConsult.Count);
+
         patient.GetComponent<Worker>().goToRestRoom(patient);
     }
 }

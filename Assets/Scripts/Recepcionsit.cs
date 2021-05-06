@@ -185,8 +185,7 @@ public class Recepcionsit : MonoBehaviour
     {
         patient.gameObject.GetComponent<Patient>().state = Patient.State.GettinAttended;
         PatientInfo.DisplayState(patient.gameObject);
-        Debug.Log("wORK");
-        float workingTime = 5;//- this.gameObject.GetComponent<Worker>().treatingSpeedBonus;
+        float workingTime = 1;//- this.gameObject.GetComponent<Worker>().treatingSpeedBonus;
         yield return new WaitForSeconds(workingTime);
         consultController.searchPatient(patient.gameObject);
 

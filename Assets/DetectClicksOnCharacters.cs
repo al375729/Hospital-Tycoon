@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class DetectClicksOnCharacters : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -24,9 +25,11 @@ public class DetectClicksOnCharacters : MonoBehaviour
 
                 if (hit.collider.gameObject.tag == "Patient")
                 {
+                    PatientInfo.setActiveCharacter(hit.collider.gameObject);
                     PatientInfo.name.text = hit.collider.gameObject.GetComponent<Patient>().name;
                     PatientInfo.gender.text = hit.collider.gameObject.GetComponent<Patient>().gender;
                     PatientInfo.DisplayState(hit.collider.gameObject);
+                    PatientInfo.activatePatientBar(hit.collider.gameObject.GetComponent<Patient>().patience);
 
                     PatientInfo.showPanel();
                 }
@@ -38,4 +41,6 @@ public class DetectClicksOnCharacters : MonoBehaviour
             }
         }
     }
+
 }
+

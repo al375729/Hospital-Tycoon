@@ -28,7 +28,11 @@ public class PatientGenerator : MonoBehaviour
 
     public WatingRoom waitingRoom;
 
+    public ImageGenerator generator;
+
     Vector3 positionSpawn = new Vector3(0f,0f,-95f);
+
+    public Transform g1;
     void Start()
     {
         GameObject[] personajes = new GameObject[10];
@@ -177,6 +181,12 @@ public class PatientGenerator : MonoBehaviour
                     barba.transform.localScale = new Vector3(1f, 1f, 1f);
                     barba.transform.localPosition = new Vector3(0f, 0f, 0f);
                 }
+                instance.transform.position = g1.transform.position;
+                instance.transform.localScale = new Vector3(10f, 10f, 10f);
+                instance.GetComponent<Patient>().sprite = generator.TakePhoto();
+                instance.transform.position = positionSpawn;
+                instance.transform.rotation = Quaternion.identity;
+                instance.transform.localScale = new Vector3(1f, 1f, 1f);
             }
 
             else
@@ -193,7 +203,15 @@ public class PatientGenerator : MonoBehaviour
                 pelo.transform.rotation = Quaternion.Euler(-90f, 0, 0);
                 pelo.transform.localScale = new Vector3(1f, 1f, 1f);
                 pelo.transform.localPosition = new Vector3(0f, 0f, 0f);
-            }        }
+
+                instance.transform.position = g1.transform.position;
+                instance.transform.localScale = new Vector3(10f, 10f, 10f);
+                instance.GetComponent<Patient>().sprite = generator.TakePhoto();
+                instance.transform.position = positionSpawn;
+                instance.transform.rotation = Quaternion.identity;
+                instance.transform.localScale = new Vector3(1f, 1f, 1f);
+            }        
+        }
 
         else
         {
@@ -205,7 +223,16 @@ public class PatientGenerator : MonoBehaviour
             string name = Names.getNameMale();
             instance.GetComponent<Patient>().name = name;
             instance.name = name;
+
+            instance.transform.position = g1.transform.position;
+            instance.transform.localScale = new Vector3(10f, 10f, 10f);
+            instance.GetComponent<Patient>().sprite = generator.TakePhoto();
+            instance.transform.position = positionSpawn;
+            instance.transform.rotation = Quaternion.identity;
+            instance.transform.localScale = new Vector3(1f, 1f, 1f);
         }
+
+        
 
     }
 

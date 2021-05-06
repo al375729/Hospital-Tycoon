@@ -16,7 +16,6 @@ public class RoomStatus : MonoBehaviour
     {
         baseMaterial = this.gameObject.transform.parent.GetChild(0).GetComponent<MeshRenderer>().material;
 
-        Debug.Log(gameObject.name);
         textPro = gameObject.GetComponent<TextMeshPro>();
     }
 

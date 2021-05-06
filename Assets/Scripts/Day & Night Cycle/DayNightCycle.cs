@@ -6,9 +6,14 @@ using UnityEngine.UI;
 
 public class DayNightCycle : MonoBehaviour
 {
+    public DisplayController displayController;
+    public InstantiateHeaderYear instantiateHeader;
+
     private int day = 1;
-    private int month = 12;
+    private int month = 1;
     private int year = 2021;
+
+    public static int yearCounter = 0;
 
     private float SECONDS_IN_A_DAY = 86400;
 
@@ -88,6 +93,8 @@ public class DayNightCycle : MonoBehaviour
 
     public bool pause = false;
 
+  
+
     private void UpdateTimeScale()
     {
         _timeScale = 24 / (_targetDayLength / 60); 
@@ -137,7 +144,9 @@ public class DayNightCycle : MonoBehaviour
         {
             if (day > 31)
             {
+                updateDecember();
                 yearPassed();
+                
             }
 
         }
@@ -160,10 +169,19 @@ public class DayNightCycle : MonoBehaviour
         DateController.setDay(this.day);
         DateController.changeDate();
         paySalaries.paySalaries();
+
+        DisplayController.Year years = displayController.addNewYear(yearCounter);
+
+        instantiateHeader.addYear(years);
+
+        
+        yearCounter++;
     }
 
     private void monthPassed()
     {
+        displayController.updateMonth(month,GlobalVariables.MONTH_INCOMES,GlobalVariables.MONTH_EXPENSES);
+
         month++;
         day = 1;
         DateController.setMonth(this.month);
@@ -171,6 +189,11 @@ public class DayNightCycle : MonoBehaviour
         DateController.changeDate();
 
         paySalaries.paySalaries();
+    }
+
+    private void updateDecember()
+    {
+        displayController.updateMonth(month, GlobalVariables.MONTH_INCOMES, GlobalVariables.MONTH_EXPENSES);
     }
 
     private void SunRotation() 

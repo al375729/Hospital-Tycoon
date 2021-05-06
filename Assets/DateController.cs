@@ -9,7 +9,7 @@ public class DateController : MonoBehaviour
     public static Text date;
 
     public static int day = 1;
-    public static int month = 12;
+    public static int month = 1;
     public static int year = 2021;
     void Start()
     {
