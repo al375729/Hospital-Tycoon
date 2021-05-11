@@ -29,6 +29,7 @@ public class YearTabGroup : MonoBehaviour
     internal void setYear(int year)
     {
         display.changeDisplay(year);
+        DisplayController.yearDisplayed = year;
     }
 
     public void Suscribe(YearTabs button)

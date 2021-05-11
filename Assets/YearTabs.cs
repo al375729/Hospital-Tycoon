@@ -17,7 +17,6 @@ public class YearTabs : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         buttonGroup.OnSelected(this);
-        Debug.Log(year.yearIndex);
         buttonGroup.setYear(year.yearIndex);
     }
 

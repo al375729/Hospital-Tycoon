@@ -66,8 +66,10 @@
   <ItemGroup>
     <Compile Include="Assets\AnalisisController.cs" />
     <Compile Include="Assets\Analist.cs" />
+    <Compile Include="Assets\ChartMoney.cs" />
     <Compile Include="Assets\CleanerController.cs" />
     <Compile Include="Assets\ConsultController.cs" />
+    <Compile Include="Assets\DataBaseYears.cs" />
     <Compile Include="Assets\DateController.cs" />
     <Compile Include="Assets\DetectClicksOnCharacters.cs" />
     <Compile Include="Assets\DetectClicksOnDoctors.cs" />
