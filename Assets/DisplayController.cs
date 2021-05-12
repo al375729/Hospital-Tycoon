@@ -23,6 +23,7 @@ public class DisplayController : MonoBehaviour
         public Vector2 minMaxValues = new Vector2(0,0);
         public bool normalized = false;
         public int countValues = 0;
+        public Vector2 definitiveMinMax = new Vector2(0, 0);
 
         public Year(int yearIndex)
         {
@@ -116,8 +117,6 @@ public class DisplayController : MonoBehaviour
 
     private void normalizeAll(int yearIndex,Vector2 minMax)
     {
-        Debug.Log("Normal");
-        Debug.Log(yearIndex);
         Year chartYear = DataBaseYears.GetYear(yearIndex);
         drawGraphIncome.points = new List<Vector2>(0);
         drawGraphExpenses.points = new List<Vector2>(0);
@@ -129,20 +128,10 @@ public class DisplayController : MonoBehaviour
 
             if (chartYear.statistics[i] != new Vector2 (0,0))
             {
-                Debug.Log(chartYear.statistics[i].x);
-                Debug.Log(chartYear.statistics[i].y);
-
 
                 Vector2 vec = allYears[yearIndex].statistics[i];
                 vec.x = (chartYear.statistics[i].x - allYears[yearIndex].minMaxValues.x) / valor;
                 vec.y = (chartYear.statistics[i].y - allYears[yearIndex].minMaxValues.x) / valor;
-
-                Debug.Log(valor);
-                Debug.Log(vec.x);
-                Debug.Log(vec.y);
-
-
-                Debug.Log(allYears[yearIndex].minMaxValues.x);
 
                 allYears[yearIndex].statistics[i] = vec;
 
@@ -159,7 +148,6 @@ public class DisplayController : MonoBehaviour
 
     private void normalizeNotDisplayingYear(int yearIndex, Vector2 minMax)
     {
-        Debug.Log("------------------------------------------------------------------------------------------------------------------------");
         Year chartYear = DataBaseYears.GetYear(yearIndex);
         drawGraphIncome.points = new List<Vector2>(0);
         drawGraphExpenses.points = new List<Vector2>(0);
@@ -178,12 +166,10 @@ public class DisplayController : MonoBehaviour
         }
 
         currentYear.normalized = true;
-        Debug.Log("END");
     }
 
     private Vector2 updateChartsWithoutUpdate(int yearIndex)
     {
-        Debug.Log(yearIndex);
         Year chartYear = DataBaseYears.GetYear(yearIndex);
         float min = Mathf.Infinity;
         float max = -Mathf.Infinity;
@@ -208,7 +194,6 @@ public class DisplayController : MonoBehaviour
 
     private Vector2 updateCharts(int yearIndex)
     {
-        Debug.Log(yearIndex);
         Year chartYear = DataBaseYears.GetYear(yearIndex);
         float min = Mathf.Infinity;
         float max = -Mathf.Infinity;
@@ -253,21 +238,17 @@ public class DisplayController : MonoBehaviour
         Vector2 value = new Vector2(income, expenses);
         currentYear.statistics.Add(value);
 
+
         DataBaseYears.setStatisticYear(value, currentYear.yearIndex, month);
 
 
         if (yearDisplayed == currentYear.yearIndex) 
         {
-            Debug.Log(currentYear.minMaxValues);
             Vector2 minMax = updateCharts(currentYear.yearIndex);
-
-            Debug.Log(minMax);
-            Debug.Log(allYears[currentYear.yearIndex].statistics.Count);
             //if (currentYear.minMaxValues == new Vector2(0, 0)) currentYear.minMaxValues = minMax;
 
             if (allYears[currentYear.yearIndex].statistics.Count >2 && minMax !=currentYear.minMaxValues) 
             {
-                Debug.Log("Displayed 1");
                 currentYear.minMaxValues = minMax;
 
                 normalizeAll(currentYear.yearIndex, minMax);
@@ -280,17 +261,22 @@ public class DisplayController : MonoBehaviour
             {
                if(currentYear.normalized)
                {
-                    Debug.Log("Displayed 2");
                     normalizeValues(currentYear.yearIndex,month);
                     drawGraphIncome.points.Add(new Vector2(month, allYears[currentYear.yearIndex].statistics[month].x));
                     drawGraphIncome.SetVerticesDirty();
 
                     drawGraphExpenses.points.Add(new Vector2(month, allYears[currentYear.yearIndex].statistics[month].y));
                     drawGraphExpenses.SetVerticesDirty();
+
+                    if (drawGraphExpenses.points.Count == 12)
+                    {
+                        currentYear.definitiveMinMax = currentYear.minMaxValues;
+                    }
+                        
+                       
                }
                else
                {
-                    Debug.Log("Displayed 3");
                     drawGraphIncome.points.Add(new Vector2(month, allYears[currentYear.yearIndex].statistics[month].x));
                     drawGraphIncome.SetVerticesDirty();
 
@@ -309,7 +295,6 @@ public class DisplayController : MonoBehaviour
 
             if (allYears[currentYear.yearIndex].statistics.Count > 2 && minMax != currentYear.minMaxValues)
             {
-                Debug.Log("NO Displayed 1");
                 currentYear.minMaxValues = minMax;
                 normalizeNotDisplayingYear(currentYear.yearIndex, currentYear.minMaxValues);
             }
@@ -317,7 +302,6 @@ public class DisplayController : MonoBehaviour
             {
                 if (currentYear.normalized)
                 {
-                    Debug.Log("NO Displayed 2");
                     normalizeValues(currentYear.yearIndex, month);
                 }
                 else
@@ -327,7 +311,7 @@ public class DisplayController : MonoBehaviour
 
             }
         }
-        allYears[currentYear.yearIndex] = currentYear;
+        //allYears[currentYear.yearIndex] = currentYear;
     }
 
 
@@ -345,7 +329,6 @@ public class DisplayController : MonoBehaviour
         currentYear.normalized = false;
         currentYear.minMaxValues = new Vector2(0, 0);
 
-        Debug.Log("76988888888888888888888888888888888888888888888888888"+currentYear.minMaxValues);
         //Vector2 value = new Vector2(0, 0);
         //currentYear.statistics.Add(value);
 

@@ -188,8 +188,6 @@ public class DayNightCycle : MonoBehaviour
     {
         displayController.updateMonth(month-1,GlobalVariables.MONTH_INCOMES,GlobalVariables.MONTH_EXPENSES);
 
-        //GlobalVariables.MONTH_INCOMES = 300;
-        //GlobalVariables.MONTH_EXPENSES = 5000;
         month++;
         day = 1;
         DateController.setMonth(this.month);
