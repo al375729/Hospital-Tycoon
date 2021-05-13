@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class DoctorInfo : MonoBehaviour
@@ -11,6 +13,12 @@ public class DoctorInfo : MonoBehaviour
     public static GameObject panel;
     public static GameObject clickedDoctor;
     public static Image image;
+    public static Button button;
+    public static Button changebutton;
+    public static GameObject canvas;
+    public Color color;
+
+    public GameObject changeJobsPanel;
     //public static GameObject patienceBar;
 
     //public static bool isCharacterWaiting;
@@ -27,7 +35,39 @@ public class DoctorInfo : MonoBehaviour
         gender = transform.GetChild(1).GetComponent<Text>();
         state = transform.GetChild(2).GetComponent<Text>();
         image = transform.GetChild(4).GetComponent<Image>();
+        button = transform.GetChild(5).GetComponent<Button>();
+        changebutton = transform.GetChild(6).GetComponent<Button>();
         //patienceBar = transform.GetChild(3).gameObject;
+        canvas = this.gameObject.transform.parent.gameObject;
+
+        button.onClick.AddListener(lockPanel);
+        changebutton.onClick.AddListener(openChangeJobs);
+
+        color = button.colors.normalColor;
+    }
+
+    private void openChangeJobs()
+    {
+        changeJobsPanel.SetActive(true);
+    }
+
+    void lockPanel()
+    {
+        Debug.Log("click");
+        if (DetectClicksOnDoctors.locked == true)
+        {
+            DetectClicksOnDoctors.locked = false;
+            button.gameObject.GetComponent<Image>().color = Color.white;
+        }
+
+        else 
+        {
+            button.gameObject.GetComponent<Image>().color = Color.green;
+            DetectClicksOnDoctors.locked = true;
+        }
+
+
+
     }
 
     // Update is called once per frame
@@ -132,13 +172,15 @@ public class DoctorInfo : MonoBehaviour
         tempColor.a = 1f;
         panel.gameObject.GetComponent<Image>().color = tempColor;
 
+        canvas.gameObject.SetActive(true);
         name.gameObject.SetActive(true);
         image.gameObject.SetActive(true);
         image.gameObject.GetComponent<Image>().sprite = clickedDoctor.GetComponent<Worker>().sprite;
         gender.gameObject.SetActive(true);
         state.gameObject.SetActive(true);
         state.gameObject.SetActive(true);
-
+        button.gameObject.SetActive(true);
+        changebutton.gameObject.SetActive(true);
 
         startAnimationPatienceBar();
 
@@ -194,7 +236,16 @@ public class DoctorInfo : MonoBehaviour
         image.gameObject.SetActive(false);
         gender.gameObject.SetActive(false);
         state.gameObject.SetActive(false);
+        canvas.gameObject.SetActive(false);
+        button.gameObject.SetActive(false);
+        changebutton.gameObject.SetActive(false);
         //patienceBar.SetActive(false);
         //stopAnimationPatienceBar();
+    }
+
+    public static bool checkMouse()
+    {
+        if (EventSystem.current.IsPointerOverGameObject()) return true;
+        else return false;
     }
 }

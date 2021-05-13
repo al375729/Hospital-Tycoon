@@ -25,7 +25,7 @@ public class InstantiateHeaderYear : MonoBehaviour
     {
         GameObject go = Instantiate(prefab);
 
-        go.transform.parent = this.gameObject.transform;
+        go.transform.SetParent(this.gameObject.transform);
 
         go.GetComponent<YearTabs>().year = years;
 

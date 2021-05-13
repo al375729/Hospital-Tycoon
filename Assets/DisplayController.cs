@@ -151,14 +151,15 @@ public class DisplayController : MonoBehaviour
         Year chartYear = DataBaseYears.GetYear(yearIndex);
         drawGraphIncome.points = new List<Vector2>(0);
         drawGraphExpenses.points = new List<Vector2>(0);
+        float valor = (allYears[yearIndex].minMaxValues.y - currentYear.minMaxValues.x) / 10;
 
         for (int i = 0; i < allYears[yearIndex].statistics.Count; i++)
         {
             if (chartYear.statistics[i] != new Vector2(0, 0))
             {
                 Vector2 vec = allYears[yearIndex].statistics[i];
-                vec.x = (allYears[yearIndex].statistics[i].x * 10) / minMax.y;
-                vec.y = (allYears[yearIndex].statistics[i].y * 10) / minMax.y;
+                vec.x = (chartYear.statistics[i].x - allYears[yearIndex].minMaxValues.x) / valor;
+                vec.y = (chartYear.statistics[i].y - allYears[yearIndex].minMaxValues.x) / valor;
 
                 allYears[yearIndex].statistics[i] = vec;
             }

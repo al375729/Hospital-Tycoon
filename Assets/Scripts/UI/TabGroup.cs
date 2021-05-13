@@ -81,7 +81,7 @@ public class TabGroup : MonoBehaviour
     {
         buttonSelected = null;
 
-        activePanel.SetActive(false);
+        if(activePanel != null)activePanel.SetActive(false);
         foreach (TapButton button in buttons)
         {
             button.text.color = textColorIdle;

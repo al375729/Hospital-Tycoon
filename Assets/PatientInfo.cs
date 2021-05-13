@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class PatientInfo : MonoBehaviour
 {
@@ -12,6 +14,9 @@ public class PatientInfo : MonoBehaviour
     public static GameObject panel;
     public static GameObject clickedCharacter;
     public static GameObject patienceBar;
+    public Button button;
+    public static Button lockButton;
+    public static GameObject canvas;
 
     public static bool isCharacterWaiting;
     public static bool change = false;
@@ -19,21 +24,42 @@ public class PatientInfo : MonoBehaviour
     private static LTDescr animation;
 
     public static float clickedCharachterPatient;
-
+    public Color color;
     public static Image image;
     void Start()
     {
+        lockButton = button;
         panel = this.gameObject;
         name = transform.GetChild(0).GetComponent<Text>();
         gender = transform.GetChild(1).GetComponent<Text>();
         state = transform.GetChild(2).GetComponent<Text>();
         patienceBar = transform.GetChild(3).gameObject;
         image = transform.GetChild(4).GetComponent<Image>();
+        canvas = this.gameObject.transform.parent.gameObject;
+
+        lockButton.onClick.AddListener(lockPanel);
+        color = button.colors.normalColor;
+    }
+
+    void lockPanel()
+    {
+        if (DetectClicksOnCharacters.locked == true)
+        {
+            DetectClicksOnCharacters.locked = false;
+            button.gameObject.GetComponent<Image>().color = Color.white;
+        }
+
+        else
+        {
+            button.gameObject.GetComponent<Image>().color = Color.green;
+            DetectClicksOnCharacters.locked = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (clickedCharacter != null)
         {
             detectState();
@@ -133,11 +159,13 @@ public class PatientInfo : MonoBehaviour
         tempColor.a = 1f;
         panel.gameObject.GetComponent<Image>().color = tempColor;
 
+        canvas.gameObject.SetActive(true);
         name.gameObject.SetActive(true);
         gender.gameObject.SetActive(true);
         state.gameObject.SetActive(true);
         state.gameObject.SetActive(true);
         image.gameObject.SetActive(true);
+        lockButton.gameObject.SetActive(true);
         image.gameObject.GetComponent<Image>().sprite = clickedCharacter.GetComponent<Patient>().sprite;
 
 
@@ -189,11 +217,19 @@ public class PatientInfo : MonoBehaviour
 
         clickedCharacter = null;
 
+        canvas.gameObject.SetActive(false);
         name.gameObject.SetActive(false);
         gender.gameObject.SetActive(false);
         state.gameObject.SetActive(false);
         patienceBar.SetActive(false);
         stopAnimationPatienceBar();
         image.gameObject.SetActive(false);
+        lockButton.gameObject.SetActive(false);
+    }
+
+    public static bool checkMouse()
+    {
+        if (EventSystem.current.IsPointerOverGameObject()) return true;
+        else return false;
     }
 }

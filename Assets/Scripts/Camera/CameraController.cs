@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
 #pragma warning disable CS0108 // El miembro oculta el miembro heredado. Falta una contraseña nueva
     public Transform camera;
 #pragma warning restore CS0108 // El miembro oculta el miembro heredado. Falta una contraseña nueva
-    public Transform objectToFollow;
+    public static Transform objectToFollow;
 
     public float movementSpeed;
     public float speed;
@@ -192,5 +192,15 @@ public class CameraController : MonoBehaviour
     private bool IsMouseOverUI()
     {
         return EventSystem.current.IsPointerOverGameObject();
+    }
+
+    public static void setObjectToFollow(GameObject gameObject)
+    {
+        objectToFollow = gameObject.transform;
+    }
+
+    public static void deleteObjectToFollow()
+    {
+        objectToFollow = null;
     }
 }

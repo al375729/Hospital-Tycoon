@@ -55,7 +55,7 @@ public class DragBuildings : MonoBehaviour
 
     void OnMouseDown()
     {
-        PatientInfo.disablePanel();
+        //PatientInfo.disablePanel();
 
         if (!IsMouseOverUI())
         {

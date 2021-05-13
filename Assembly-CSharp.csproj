@@ -77,6 +77,7 @@
     <Compile Include="Assets\DisplayController.cs" />
     <Compile Include="Assets\DisplayStatistics.cs" />
     <Compile Include="Assets\DoctorInfo.cs" />
+    <Compile Include="Assets\ExitButtonStore.cs" />
     <Compile Include="Assets\InstantiateHeaderYear.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescr.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescrOptional.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Assets\Scripts\Workers\Radiologist.cs" />
     <Compile Include="Assets\Scripts\Workers\Worker.cs" />
     <Compile Include="Assets\Scripts\Workers\WorkerScriptableObject.cs" />
+    <Compile Include="Assets\SetJobsController.cs" />
     <Compile Include="Assets\StatisticsButton.cs" />
     <Compile Include="Assets\TabGroupStats.cs" />
     <Compile Include="Assets\TapButtonStats.cs" />

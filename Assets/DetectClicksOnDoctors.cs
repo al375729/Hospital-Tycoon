@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DetectClicksOnDoctors : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static bool locked = false;
     void Start()
     {
         
@@ -13,7 +14,7 @@ public class DetectClicksOnDoctors : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && GlobalVariables.UI_OPEN == false && locked == false && !DoctorInfo.checkMouse() && DetectClicksOnCharacters.locked == false)
         {
             RaycastHit hit = new RaycastHit();
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -30,12 +31,16 @@ public class DetectClicksOnDoctors : MonoBehaviour
                     //PatientInfo.DisplayState(hit.collider.gameObject);
                     //PatientInfo.activatePatientBar(hit.collider.gameObject.GetComponent<Patient>().patience);
 
+                    CameraController.setObjectToFollow(hit.collider.gameObject);
+
                     DoctorInfo.showPanel();
+
+                    SetJobsController.setWorker(hit.collider.gameObject);
                 }
-                else
+                else if(locked == false)
                 {
                     DoctorInfo.disablePanel();
-
+                    CameraController.deleteObjectToFollow();
                 }
             }
         }

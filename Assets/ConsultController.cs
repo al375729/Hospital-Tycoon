@@ -123,7 +123,7 @@ public class ConsultController : MonoBehaviour
 
     public void updateIndexOfDoctors(int index)
     {
-        arrayForDoctors.RemoveAt(index);
+       // arrayForDoctors.RemoveAt(index);
 
         if (arrayForDoctors.Count > 0)
         {
