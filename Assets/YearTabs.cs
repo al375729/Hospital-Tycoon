@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ public class YearTabs : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public YearTabGroup buttonGroup;
 
-    public Text text;
+    public TextMeshProUGUI text;
 
     public Image image;
 
@@ -34,7 +35,7 @@ public class YearTabs : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         buttonGroup = this.gameObject.transform.parent.parent.parent.GetComponent<YearTabGroup>();
 
-        text = text.GetComponent<Text>();
+        text = text.GetComponent<TextMeshProUGUI>();
         buttonGroup.Suscribe(this);
         image = this.GetComponent<Image>();
 

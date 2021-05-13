@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -53,12 +54,12 @@ public class TabGroupStats : MonoBehaviour
         button.text.color = textColorSelected;
         button.image.color = imageColorSelected;
 
-        if (button.gameObject.transform.GetChild(0).GetComponent<Text>().text == "ROOM INFO")
+        if (button.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "ROOM INFO")
         {
             DisplayStatistics.mostrarTexto();
         }
 
-        else if (button.gameObject.transform.GetChild(0).GetComponent<Text>().text == "STATISTICS")
+        else if (button.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "STATISTICS")
         {
         }
 

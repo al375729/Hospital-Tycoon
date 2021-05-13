@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,7 +31,7 @@ public class InstantiateHeaderYear : MonoBehaviour
         go.GetComponent<YearTabs>().year = years;
 
         int year = 2021 + DayNightCycle.yearCounter-1;
-        go.transform.GetChild(0).GetComponent<Text>().text = year.ToString();
+        go.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = year.ToString();
 
 
     }

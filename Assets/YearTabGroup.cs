@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,6 +41,7 @@ public class YearTabGroup : MonoBehaviour
         }
 
         buttons.Add(button);
+        Debug.Log(button.name);
     }
 
     public void OnEnter(YearTabs button)
@@ -72,7 +74,7 @@ public class YearTabGroup : MonoBehaviour
         {
             if (buttonSelected == null || button != buttonSelected)
             {
-                button.text.color = textColorIdle;
+                button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = textColorIdle;
                 button.image.color = imageColorIdle;
             }
 

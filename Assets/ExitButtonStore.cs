@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,7 +15,7 @@ public class ExitButtonStore : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public Color imageColorHover;
     public Color imageColorSelected;
 
-    public Text text;
+    public TextMeshProUGUI text;
     public Image image;
 
     public TabGroup buttons;

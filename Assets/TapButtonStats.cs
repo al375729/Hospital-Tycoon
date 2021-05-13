@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ public class TapButtonStats : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 {
     public TabGroupStats buttonGroup;
 
-    public Text text;
+    public TextMeshProUGUI text;
 
     public Image image;
 
@@ -29,7 +30,7 @@ public class TapButtonStats : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private void Start()
     {
-        text = text.GetComponent<Text>();
+        text = text.GetComponent<TextMeshProUGUI>();
         buttonGroup.Suscribe(this);
         image = this.GetComponent<Image>();
     }
