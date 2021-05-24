@@ -18,6 +18,8 @@ public class Worker : MonoBehaviour
 
     public State state = State.WaitingForTask;
 
+    public currentState currentstate = currentState.GoingToRestRoom;
+
     private bool runing = false;
 
     public GameObject mancha;
@@ -40,9 +42,13 @@ public class Worker : MonoBehaviour
 
     public int salary;
 
+    public string role;
+
     public int walkingSpeedBonus;
     public int treatingSpeedBonus;
     public int moneyBonus;
+
+    public bool waitingToChanheJob;
     private enum CurrentTask
     {
         task1,
@@ -53,9 +59,18 @@ public class Worker : MonoBehaviour
     public enum State
     {
         WaitingForTask,
+        WaitingToChangeTask,
         DoingTask,
         Working,
         None
+    }
+
+    public enum currentState
+    {
+        GoingToRestRoom,
+        Resting,
+        GoingToConsult,
+        DoingConsult
     }
 
     private float maxWaitingTime = 1f;

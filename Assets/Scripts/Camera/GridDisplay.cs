@@ -69,9 +69,9 @@ public class GridDisplay : MonoBehaviour
                     texto.color = Color.white;
                     */
                 }
-                
-                DrawLine(grid.GetWorldPosition(i, j) - new Vector3(filas * 5, 0, columnas * 5) , grid.GetWorldPosition(i, j + 1) - new Vector3(filas * 5, 0, columnas * 5));
-                DrawLine(grid.GetWorldPosition(i, j) - new Vector3(filas * 5, 0, columnas * 5), grid.GetWorldPosition(i + 1, j) - new Vector3(filas * 5, 0, columnas * 5));
+                // 2.5 = cuadricula tamaño /2
+                DrawLine(grid.GetWorldPosition(i, j) - new Vector3(filas * 2.5f, 0, columnas * 2.5f) , grid.GetWorldPosition(i, j + 1) - new Vector3(filas * 2.5f, 0, columnas * 2.5f));
+                DrawLine(grid.GetWorldPosition(i, j) - new Vector3(filas * 2.5f, 0, columnas * 2.5f), grid.GetWorldPosition(i + 1, j) - new Vector3(filas * 2.5f, 0, columnas * 2.5f));
 
                 /*
                 if (i == 0)
@@ -81,8 +81,8 @@ public class GridDisplay : MonoBehaviour
                 }*/
             }
         }
-        DrawLine(grid.GetWorldPosition(0, columnas) - new Vector3(filas * 5, 0, columnas * 5), grid.GetWorldPosition(filas, columnas) - new Vector3(filas * 5, 0, columnas * 5));
-        DrawLine(grid.GetWorldPosition(filas, 0) - new Vector3(filas * 5, 0, columnas * 5), grid.GetWorldPosition(filas, columnas) - new Vector3(filas * 5, 0, columnas * 5));
+        DrawLine(grid.GetWorldPosition(0, columnas) - new Vector3(filas * 2.5f, 0, columnas * 2.5f), grid.GetWorldPosition(filas, columnas) - new Vector3(filas * 2.5f, 0, columnas * 2.5f));
+        DrawLine(grid.GetWorldPosition(filas, 0) - new Vector3(filas * 2.5f, 0, columnas * 2.5f), grid.GetWorldPosition(filas, columnas) - new Vector3(filas * 2.5f, 0, columnas * 2.5f));
     }
 
 

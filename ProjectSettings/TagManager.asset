@@ -8,6 +8,10 @@ TagManager:
   - Floor
   - Patient
   - Doctor
+  - Room
+  - NewRoom
+  - Wall
+  - NewItem
   layers:
   - Default
   - TransparentFX
@@ -17,10 +21,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - IgnoreRoom
+  - Floor
+  - Items
+  - NewItems
   - 
   - 
   - 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
@@ -23,7 +24,8 @@ public class CameraController : MonoBehaviour
     public int zoomInLimit = 100;
     public int zoomOutLimit = 500;
 
-
+    public Image img;
+    public static Image button;
     public Vector3 zoom;
 
     
@@ -44,6 +46,7 @@ public class CameraController : MonoBehaviour
         newPosition = transform.position;
         newRotation = transform.rotation;
         newZoom = camera.localPosition;
+        button = img;
     }
 
     // Update is called once per frame
@@ -62,6 +65,7 @@ public class CameraController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            button.color = Color.white;
             objectToFollow = null;
         }
         
@@ -196,11 +200,15 @@ public class CameraController : MonoBehaviour
 
     public static void setObjectToFollow(GameObject gameObject)
     {
+        Debug.Log(gameObject.name);
         objectToFollow = gameObject.transform;
+        button.color = Color.green;
+        Debug.Log(button.name);
+        
     }
 
-    public static void deleteObjectToFollow()
+    public static void deleteObjectToFollow(GameObject gameObject)
     {
-        objectToFollow = null;
+        if(objectToFollow == gameObject) objectToFollow = null;
     }
 }

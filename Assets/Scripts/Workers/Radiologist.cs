@@ -29,7 +29,7 @@ public class Radiologist : MonoBehaviour
 
     RadiologyController radiologyController;
 
-
+    int workToChange = -1;
 
     private enum CurrentTask
     {
@@ -66,6 +66,9 @@ public class Radiologist : MonoBehaviour
         agent = this.GetComponent<NavMeshAgent>();
 
         target = comporbation;
+
+        this.GetComponent<Worker>().role = "Radiologist";
+        DoctorInfo.setRole("Radiologist");
 
     }
 
@@ -136,7 +139,64 @@ public class Radiologist : MonoBehaviour
         endedTask = false;
     }
 
+    public void changeJob(int i)
+    {
+        workToChange = i;
+        if (i != 2)
+        {
+            if (gameObject.GetComponent<Worker>().state == Worker.State.Working)
+            {
+                Debug.Log("Luego cambio que estoy trabajando");
+                workToChange = i;
+                gameObject.GetComponent<Worker>().waitingToChanheJob = true;
+            }
 
+
+            else
+            {
+                change(workToChange);
+            }
+        }
+        else Debug.Log("Ya eres consulta");
+
+    }
+
+    public void change(int i)
+    {
+        switch (workToChange)
+        {
+            case 0:
+                this.gameObject.AddComponent<Recepcionsit>();
+                Destroy(this.gameObject.GetComponent<Radiologist>());
+                gameObject.GetComponent<Worker>().state = Worker.State.WaitingForTask;
+                Debug.Log("Cambiado a Recepcion");
+                break;
+
+            case 2:
+                Debug.Log("Imposible");
+                this.gameObject.AddComponent<Radiologist>();
+                Destroy(this.gameObject.GetComponent<Radiologist>());
+                gameObject.GetComponent<Worker>().state = Worker.State.WaitingForTask;
+                break;
+
+            case 1:
+                Debug.Log("Cambiado a consulta");
+                this.gameObject.AddComponent<Consult>();
+                Destroy(this.gameObject.GetComponent<Radiologist>());
+                gameObject.GetComponent<Worker>().state = Worker.State.WaitingForTask;
+                break;
+
+            case 3:
+                Debug.Log("Cambiado a analista");
+                this.gameObject.AddComponent<Analist>();
+                Destroy(this.gameObject.GetComponent<Radiologist>());
+                gameObject.GetComponent<Worker>().state = Worker.State.WaitingForTask;
+                break;
+
+            default:
+                break;
+        }
+    }
 
     IEnumerator MoveToWork()
     {
@@ -177,9 +237,18 @@ public class Radiologist : MonoBehaviour
     IEnumerator DoWork()
     {
         Debug.Log("Workinh");
-        yield return new WaitForSeconds(1);
+        gameObject.GetComponent<Worker>().state = Worker.State.Working;
+
         radiologyController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().state = Patient.State.GettingRadiology;
+        yield return new WaitForSeconds(10);
         radiologyController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().ChangeState();
+
+        if (gameObject.GetComponent<Worker>().waitingToChanheJob)
+        {
+            gameObject.GetComponent<Worker>().waitingToChanheJob = false;
+            change(workToChange);
+
+        }
 
     }
 }

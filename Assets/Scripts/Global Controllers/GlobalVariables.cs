@@ -11,6 +11,10 @@ public class GlobalVariables : MonoBehaviour
     public static int MONEY = 10000;
     public static int MONTH_INCOMES = 300;
     public static int MONTH_EXPENSES = 5000;
+    public static bool BUILDING_MODE = false;
+    public static bool WALL_MODE = false;
+
+
     void Awake()
     {
         EDIT_MODE = false;
@@ -18,6 +22,8 @@ public class GlobalVariables : MonoBehaviour
         UI_OPEN = false;
         SHOP = false;
         MONEY = 10000;
+        BUILDING_MODE = false;
+        WALL_MODE = false;
     }
 
     // Update is called once per frame

@@ -152,6 +152,7 @@ public class Patient : MonoBehaviour
         PatientInfo.DisplayState(this.gameObject);
 
         waitingRoom.searchPlace(this.gameObject);
+        //waiting = true;
 
         
 
@@ -273,6 +274,7 @@ public class Patient : MonoBehaviour
                     if(state == State.GoingToQueue)
                     {
                         state = State.WaitingToBeAttendedQueue;
+                        waiting = true;
                     }
                     else if (state == State.GoingToRadiology || state == State.GoingToConsult || state == State.GoingToConsult)
                     {

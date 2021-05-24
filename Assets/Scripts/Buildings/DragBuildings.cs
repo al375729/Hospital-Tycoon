@@ -105,6 +105,19 @@ public class DragBuildings : MonoBehaviour
                     changeMaterialOfChildren(0);
                     position = transform.position;
                     rotation = transform.rotation;
+
+                    int x, z;
+                    GetGridPos(GetMouseWorldPos(), out x, out z);
+
+                    Vector3 posicion;
+                    posicion = GetWorldPosition(x, z);
+
+                    Vector2 vec = GridController.gridToMatrix(x, z);
+                    x = (int)vec.x;
+                    z = (int)vec.y;
+                    GridController.setPrefabRoom(x, z, this.gameObject);
+                    Debug.Log(x + " , " + z);
+
                     isSelected = false;
                     globalSelection = false;
                 }
@@ -150,9 +163,15 @@ public class DragBuildings : MonoBehaviour
 
             int x, z;
             GetGridPos(GetMouseWorldPos(), out x, out z);
-
+            Debug.Log(GetMouseWorldPos());
             Vector3 posicion;
             posicion = GetWorldPosition(x, z);
+            /*
+            Vector2 vec = GridController.gridToMatrix(x, z);
+            x = (int)vec.x;
+            z = (int)vec.y;
+
+            Debug.Log(x + " , " + z);*/
 
             transform.position = new Vector3(posicion.x, 0, posicion.z);
 
@@ -242,13 +261,13 @@ public class DragBuildings : MonoBehaviour
 
     public Vector3 GetWorldPosition(int x, int z)
     {
-        return new Vector3(x, 0, z) * 10;
+        return new Vector3(x, 0, z) * 5;
     }
 
     public void GetGridPos(Vector3 posicion, out int x, out int z)
     {
-        x = Mathf.FloorToInt(posicion.x / 10);
-        z = Mathf.FloorToInt(posicion.z / 10);
+        x = Mathf.FloorToInt(posicion.x / 5);
+        z = Mathf.FloorToInt(posicion.z / 5);
     }
 
 

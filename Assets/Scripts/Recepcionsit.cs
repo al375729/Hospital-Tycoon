@@ -31,6 +31,7 @@ public class Recepcionsit : MonoBehaviour
     ConsultController consultController;
 
     WatingRoom waitingRoom;
+
     private enum CurrentTask
     {
         task1,
@@ -53,7 +54,7 @@ public class Recepcionsit : MonoBehaviour
     private Vector3 target;
 
     Transform patient;
-
+    int workToChange = -1;
 
     private void Start()
     {
@@ -71,6 +72,9 @@ public class Recepcionsit : MonoBehaviour
         target = comporbation;
 
         //reception.searchPlace(this.gameObject);
+
+        this.GetComponent<Worker>().role = "Recepcionist";
+        DoctorInfo.setRole("Recepcionist");
 
     }
 
@@ -179,18 +183,85 @@ public class Recepcionsit : MonoBehaviour
         }
     }
 
+    public void changeJob(int i)
+    {
+        workToChange = i;
+        if (i != 0)
+        {
+            if (gameObject.GetComponent<Worker>().state == Worker.State.Working)
+            {
+                Debug.Log("Luego cambio que estoy trabajando");
+                workToChange = i;
+                gameObject.GetComponent<Worker>().waitingToChanheJob = true;
+            }
+
+
+            else
+            {
+                change(workToChange);
+            }
+        }
+        else Debug.Log("Ya eres consulta");
+
+    }
+
+    public void change(int i)
+    {
+        switch (workToChange)
+        {
+            case 0:
+                this.gameObject.AddComponent<Recepcionsit>();
+                Destroy(this.gameObject.GetComponent<Recepcionsit>());
+                gameObject.GetComponent<Worker>().state = Worker.State.WaitingForTask;
+                Debug.Log("Imposible");
+                break;
+
+            case 2:
+                Debug.Log("Cambiado a radiologia");
+                this.gameObject.AddComponent<Radiologist>();
+                Destroy(this.gameObject.GetComponent<Recepcionsit>());
+                gameObject.GetComponent<Worker>().state = Worker.State.WaitingForTask;
+                break;
+
+            case 1:
+                Debug.Log("Cambiado a consulta");
+                this.gameObject.AddComponent<Consult>();
+                Destroy(this.gameObject.GetComponent<Recepcionsit>());
+                gameObject.GetComponent<Worker>().state = Worker.State.WaitingForTask;
+                break;
+
+            case 3:
+                Debug.Log("Cambiado a analista");
+                this.gameObject.AddComponent<Analist>();
+                Destroy(this.gameObject.GetComponent<Recepcionsit>());
+                gameObject.GetComponent<Worker>().state = Worker.State.WaitingForTask;
+                break;
+
+            default:
+                break;
+        }
+    }
 
 
     IEnumerator DoWork()
     {
+        Debug.Log("Workinh");
+        gameObject.GetComponent<Worker>().state = Worker.State.Working;
+
+        patient.gameObject.GetComponent<Patient>().waiting = false;
         patient.gameObject.GetComponent<Patient>().state = Patient.State.GettinAttended;
         PatientInfo.DisplayState(patient.gameObject);
         float workingTime = 1;//- this.gameObject.GetComponent<Worker>().treatingSpeedBonus;
-        yield return new WaitForSeconds(workingTime);
-        consultController.searchPatient(patient.gameObject);
-
+        yield return new WaitForSeconds(10);
         
 
+        if (gameObject.GetComponent<Worker>().waitingToChanheJob)
+        {
+            gameObject.GetComponent<Worker>().waitingToChanheJob = false;
+            change(workToChange);
+
+        }
+        consultController.searchPatient(patient.gameObject);
         waitingRoom.receptionEmpty(indexOfWindow);
 
         yield break;

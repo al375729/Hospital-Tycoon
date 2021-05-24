@@ -51,21 +51,25 @@ public class CharacterGenerator : MonoBehaviour
             {
                 case 0:
                     instance.GetComponent<Worker>().setType("Receptionnist");
+                    instance.GetComponent<Worker>().role = "Receptionnist";
                     instance.AddComponent<Recepcionsit>();
                     break;
 
                 case 1:
                     instance.GetComponent<Worker>().setType("Consult");
+                    instance.GetComponent<Worker>().role = "Consult";
                     instance.AddComponent<Consult>();
                     break;
 
                 case 2:
                     instance.GetComponent<Worker>().setType("Radiologist");
+                    instance.GetComponent<Worker>().role = "Radiologist";
                     instance.AddComponent<Radiologist>();
                     break;
 
                 case 3:
                     instance.GetComponent<Worker>().setType("Analist");
+                    instance.GetComponent<Worker>().role = "Analist";
                     instance.AddComponent<Analist>();
                     break;
             }

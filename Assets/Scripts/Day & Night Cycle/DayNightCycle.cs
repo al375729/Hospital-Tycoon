@@ -226,8 +226,12 @@ public class DayNightCycle : MonoBehaviour
         if (Input.GetMouseButtonDown(1)) {
 
             GlobalVariables.MONTH_EXPENSES += 1000;
-        } 
+        }
+        if (Input.GetMouseButtonDown(2))
+        {
 
+            GlobalVariables.MONTH_INCOMES += 2000;
+        }
         if (!pause)
         {
             UpdateTimeScale();
