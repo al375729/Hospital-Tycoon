@@ -70,7 +70,11 @@ public class Worker : MonoBehaviour
         GoingToRestRoom,
         Resting,
         GoingToConsult,
-        DoingConsult
+        DoingConsult,
+        GoingToRadiology,
+        DoingRadiology,
+        GoingToAnalysis,
+        DoingAnalysis
     }
 
     private float maxWaitingTime = 1f;
@@ -220,10 +224,10 @@ public class Worker : MonoBehaviour
                     endedTask = true;
                     onQueue = true;
                     transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-                    state = State.Working;
                     yield break;
 
                 }
+
                 yield break;
             }
 

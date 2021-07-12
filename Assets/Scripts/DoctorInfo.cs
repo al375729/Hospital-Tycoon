@@ -120,16 +120,28 @@ public class DoctorInfo : MonoBehaviour
         switch (clickedDoctor.GetComponent<Worker>().currentstate)
         {
             case Worker.currentState.GoingToRestRoom:
-                DoctorInfo.state.text = "Going to restroom";
+                DoctorInfo.state.text = "Going to the restroom";
                 break;
             case Worker.currentState.Resting:
                 DoctorInfo.state.text = "Resting";
                 break;
             case Worker.currentState.GoingToConsult:
-                DoctorInfo.state.text = "Going to consult";
+                DoctorInfo.state.text = "Going to the consultation";
                 break;
             case Worker.currentState.DoingConsult:
-                DoctorInfo.state.text = "Doing to consult";
+                DoctorInfo.state.text = "Attending at the consultation";
+                break;
+            case Worker.currentState.GoingToRadiology:
+                DoctorInfo.state.text = "Going to the radiology room";
+                break;
+            case Worker.currentState.DoingRadiology:
+                DoctorInfo.state.text = "Attending at the radiology room";
+                break;
+            case Worker.currentState.GoingToAnalysis:
+                DoctorInfo.state.text = "Going to the analysis room";
+                break;
+            case Worker.currentState.DoingAnalysis:
+                DoctorInfo.state.text = "Attending at the analysis room";
                 break;
             default:
                 break;

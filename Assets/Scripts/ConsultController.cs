@@ -103,6 +103,7 @@ public class ConsultController : MonoBehaviour
 
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
+                patient.GetComponent<Worker>().currentstate = Worker.currentState.GoingToConsult;
                 break;
             }
         }
@@ -192,7 +193,7 @@ public class ConsultController : MonoBehaviour
                 patient.GetComponent<Consult>().state = Consult.State.DoingTask;
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
-
+                patient.GetComponent<Worker>().currentstate = Worker.currentState.GoingToConsult;
                 break;
             }
         }

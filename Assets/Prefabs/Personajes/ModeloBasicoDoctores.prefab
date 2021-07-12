@@ -1417,7 +1417,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6170639247101933872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.1, y: 5, z: -24.7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 1541353978343905618}
@@ -1445,14 +1445,18 @@ MonoBehaviour:
   workerName: 
   stars: 0
   state: 0
+  currentstate: 0
   mancha: {fileID: 0}
   onQueue: 0
   indexOfWindow: 0
   salary: 0
+  role: 
   walkingSpeedBonus: 0
   treatingSpeedBonus: 0
   moneyBonus: 0
+  waitingToChanheJob: 0
   gender: 
+  sprite: {fileID: 0}
 --- !u!54 &588888110603617130
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1480,7 +1484,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 4, z: 1.5}
+  m_Size: {x: 1.5, y: 3, z: 1.5}
   m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1 &7379710191315671997
 GameObject:

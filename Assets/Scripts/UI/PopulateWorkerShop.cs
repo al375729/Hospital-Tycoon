@@ -111,7 +111,7 @@ public class PopulateWorkerShop : MonoBehaviour
             }
             genertaedCharacters[i].GetComponent<Worker>().salary += 500;
             int salary = genertaedCharacters[i].GetComponent<Worker>().salary;
-            instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 4).GetComponent<Text>().text = salary.ToString();
+            instance.gameObject.transform.GetChild(instance.gameObject.transform.childCount - 4).GetComponent<Text>().text = salary.ToString() + " $";
 
             genertaedCharacters[i].transform.position = g2.transform.position;
             
@@ -141,13 +141,13 @@ public class PopulateWorkerShop : MonoBehaviour
 
             shopButton.image.color = Color.white;
 
-            prefab.gameObject.transform.position = new Vector3(5,0.05f,-98f);
+            prefab.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            prefab.gameObject.transform.position = new Vector3(-103f, 1f, -103f);
             prefab.gameObject.transform.rotation = Quaternion.identity;
-            prefab.gameObject.transform.localScale = new Vector3(1.5f, 1.5f,1.5f);
             
             prefab.gameObject.AddComponent<NavMeshAgent>();
             NavMeshAgent navAgent = prefab.gameObject.GetComponent<NavMeshAgent>();
-            navAgent.baseOffset = 0.5f;
+            navAgent.baseOffset = -0.1f;
             navAgent.speed = 7;
             navAgent.angularSpeed = 15;
             navAgent.stoppingDistance = 0.1f;

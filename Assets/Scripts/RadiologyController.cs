@@ -81,7 +81,8 @@ public class RadiologyController : MonoBehaviour
 
                 patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToRadiology;
                 PatientInfo.DisplayState(patient.gameObject);
-
+                DisplayStatistics.changeNumberOfPatientsWaitingRadiology(-1);
+                DisplayStatistics.changeNumberOfPatientsWaiting(-1);
                 break;
             }
         }
@@ -100,6 +101,7 @@ public class RadiologyController : MonoBehaviour
 
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
+                patient.GetComponent<Worker>().currentstate = Worker.currentState.GoingToRadiology;
                 break;
             }
         }
@@ -182,7 +184,7 @@ public class RadiologyController : MonoBehaviour
                 patient.GetComponent<Radiologist>().state = Radiologist.State.DoingTask;
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
-
+                patient.GetComponent<Worker>().currentstate = Worker.currentState.GoingToRadiology;
                 break;
             }
         }
@@ -250,6 +252,8 @@ public class RadiologyController : MonoBehaviour
                 patient.gameObject.GetComponent<Patient>().state = Patient.State.WaitingForRadiology;
                 PatientInfo.DisplayState(patient.gameObject);
                 patient.gameObject.GetComponent<Patient>().waiting = true;
+                DisplayStatistics.changeNumberOfPatientsWaitingAnalysis(+1);
+                DisplayStatistics.changeNumberOfPatientsWaiting(+1);
                 break;
             }
         }

@@ -92,7 +92,6 @@ public class Patient : MonoBehaviour
 
     public void addPos(Vector3 pos)
     {
-        state = State.DoingTask;
         currentTask = CurrentTask.task1;
         this.transform.SetParent(null);
         target = pos;
@@ -172,6 +171,7 @@ public class Patient : MonoBehaviour
 
     private void Update()
     {
+        print(state);
         if (target != null && agent.remainingDistance >= 1.25f)
         {
 
@@ -193,7 +193,9 @@ public class Patient : MonoBehaviour
         {
             CancelInvoke();
             Debug.Log("Ya ta");
-        } 
+        }
+
+        if (patience <= 0) endHome();
         
     }
 
@@ -218,17 +220,15 @@ public class Patient : MonoBehaviour
     {
        
         if (copiaCola.Count <= 0)
-            {
-                Debug.Log("111");
-                //state = State.GoingHome;
-                addPos(new Vector3(-103f, 0f, -103f));
+        {
+            returnHome();
         }
 
         else if (state == State.GoingToRadiology)
         {
             if (patientDisease.stars == 1)
             {
-                addPos(new Vector3(-103f,0f,-103f));
+                returnHome();
             }
             else
             {
@@ -246,7 +246,54 @@ public class Patient : MonoBehaviour
         }
         else
         {
-            addPos(new Vector3(-103f, 0f, -103f));
+            returnHome();
+        }
+    }
+    private void endHome()
+    {
+        state = State.GoingHome;
+
+        DisplayStatistics.notTreateadPatients -= 1;
+
+        addPos(new Vector3(-103f, 0f, -103f));
+
+        if (stars == 1)
+        {
+            GlobalVariables.MONEY -= 100;
+            DisplayStatistics.notTreatedLoses -= 100;
+        }
+        else if (stars == 2)
+        {
+            GlobalVariables.MONEY -= 200;
+            DisplayStatistics.notTreatedLoses -= 200;
+        }
+        else if (stars == 3)
+        {
+            GlobalVariables.MONEY -= 300;
+            DisplayStatistics.notTreatedLoses -= 300;
+        }
+    }
+
+    private void returnHome()
+    {
+        state = State.GoingHome;
+        DisplayStatistics.treateadPatients += 1;
+        addPos(new Vector3(-103f, 0f, -103f));
+       
+        if(stars == 1)
+        {
+            GlobalVariables.MONEY += 100;
+            DisplayStatistics.notTreateadPatients += 100;
+        }
+        else if (stars == 2)
+        {
+            GlobalVariables.MONEY += 200;
+            DisplayStatistics.notTreateadPatients += 200;
+        }
+        else if (stars == 3)
+        {
+            GlobalVariables.MONEY += 300;
+            DisplayStatistics.notTreateadPatients += 300;
         }
     }
 
@@ -290,7 +337,14 @@ public class Patient : MonoBehaviour
                     {
                         state = State.WaitingForDoctor;
                     }
-                        
+                    else if (state == State.GoingHome)
+                    {
+                        PatientInfo.check(this.gameObject.name);
+                        Destroy(this.gameObject);
+
+                    }
+
+
                     yield break;
 
                 }

@@ -1492,7 +1492,7 @@ Transform:
   m_GameObject: {fileID: 5605346067655697433}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 7390173009655097366}
   - {fileID: 1917955399636743564}
@@ -1529,6 +1529,10 @@ MonoBehaviour:
   stars: 0
   onQueue: 0
   exit: {fileID: 0}
+  patience: 1
+  patienceBool: 0
+  waiting: 0
+  sprite: {fileID: 0}
 --- !u!195 &7070250185981369875
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1578,7 +1582,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 4, z: 1.5}
+  m_Size: {x: 1.5, y: 3, z: 1.5}
   m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1 &5917114142655643623
 GameObject:

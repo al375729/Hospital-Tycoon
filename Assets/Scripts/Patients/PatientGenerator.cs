@@ -44,7 +44,6 @@ public class PatientGenerator : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(2))
         {
-            Xoffset += 15;
             generatePatient();
         }
     }
@@ -184,9 +183,9 @@ public class PatientGenerator : MonoBehaviour
                 instance.transform.position = g1.transform.position;
                 instance.transform.localScale = new Vector3(10f, 10f, 10f);
                 instance.GetComponent<Patient>().sprite = generator.TakePhoto();
-                instance.transform.position = positionSpawn;
+                instance.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                instance.transform.position = new Vector3(-103f, 1f, -103f);
                 instance.transform.rotation = Quaternion.identity;
-                instance.transform.localScale = new Vector3(1f, 1f, 1f);
             }
 
             else
@@ -209,7 +208,9 @@ public class PatientGenerator : MonoBehaviour
                 instance.GetComponent<Patient>().sprite = generator.TakePhoto();
                 instance.transform.position = positionSpawn;
                 instance.transform.rotation = Quaternion.identity;
-                instance.transform.localScale = new Vector3(1f, 1f, 1f);
+                instance.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                instance.transform.position = new Vector3(-103f, 1f, -103f);
+                instance.transform.rotation = Quaternion.identity;
             }        
         }
 
@@ -239,6 +240,8 @@ public class PatientGenerator : MonoBehaviour
     private void createPatient(GameObject instance)
     {
         instance.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        instance.transform.position = new Vector3(-103f, 1f, -103f);
+        instance.transform.rotation = Quaternion.identity;
         instance.transform.SetParent(parent.transform);
 
         NavMeshAgent agente = instance.GetComponent<NavMeshAgent>();

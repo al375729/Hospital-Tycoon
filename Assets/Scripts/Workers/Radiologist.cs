@@ -222,6 +222,7 @@ public class Radiologist : MonoBehaviour
                     onQueue = true;
                     transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                     state = State.Working;
+                    this.gameObject.GetComponent<Worker>().currentstate = Worker.currentState.DoingRadiology;
                     yield break;
 
                 }

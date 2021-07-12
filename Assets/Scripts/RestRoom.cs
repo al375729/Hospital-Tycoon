@@ -48,14 +48,14 @@ public class RestRoom : MonoBehaviour
             if (GlobalVariables.EDIT_MODE)
             {
 
-                Console.setText("No puedes mover la sala de descanso");
+                Console.setText("You can't move the rest room");
 
             }
 
             if (GlobalVariables.DELETE_MODE)
             {
 
-                Console.setText("No puedes eliminar la sala de descanso");
+                Console.setText("You can't delete the rest room");
 
             }
 

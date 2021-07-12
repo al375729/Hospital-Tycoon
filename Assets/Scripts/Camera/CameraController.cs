@@ -203,7 +203,6 @@ public class CameraController : MonoBehaviour
         Debug.Log(gameObject.name);
         objectToFollow = gameObject.transform;
         button.color = Color.green;
-        Debug.Log(button.name);
         
     }
 

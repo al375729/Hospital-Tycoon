@@ -62,7 +62,6 @@ public class AnalisisController : MonoBehaviour
                 waitingTime = maxWaitingTime;
 
                 GameObject patient = priorityAnalisisDoctor.Peek();
-                Debug.Log(patient.gameObject.name);
                 DoctorSearchIfIsAnEmptyRadiology(patient);
             }
         }
@@ -82,7 +81,8 @@ public class AnalisisController : MonoBehaviour
 
                 patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToAnalysis;
                 PatientInfo.DisplayState(patient.gameObject);
-
+                DisplayStatistics.changeNumberOfPatientsWaitingAnalysis(-1);
+                DisplayStatistics.changeNumberOfPatientsWaiting(-1);
                 break;
             }
         }
@@ -102,7 +102,7 @@ public class AnalisisController : MonoBehaviour
 
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
-
+                patient.GetComponent<Worker>().currentstate = Worker.currentState.GoingToAnalysis;
 
 
                 break;
@@ -186,7 +186,7 @@ public class AnalisisController : MonoBehaviour
                 patient.GetComponent<Analist>().state = Analist.State.DoingTask;
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
                 patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
-
+                patient.GetComponent<Worker>().currentstate = Worker.currentState.GoingToAnalysis;
                 break;
             }
         }
@@ -253,6 +253,8 @@ public class AnalisisController : MonoBehaviour
 
                 patient.gameObject.GetComponent<Patient>().state = Patient.State.WaitingForAnalysis;
                 PatientInfo.DisplayState(patient.gameObject);
+                DisplayStatistics.changeNumberOfPatientsWaitingAnalysis(+1);
+                DisplayStatistics.changeNumberOfPatientsWaiting(+1);
                 break;
             }
         }

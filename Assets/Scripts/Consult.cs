@@ -165,6 +165,7 @@ public class Consult : MonoBehaviour
                     onQueue = true;
                     transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                     state = State.Working;
+                    this.gameObject.GetComponent<Worker>().currentstate = Worker.currentState.DoingConsult;
                     yield break;
 
                 }
@@ -240,7 +241,7 @@ public class Consult : MonoBehaviour
             patient.gameObject.GetComponent<Patient>().state = Patient.State.GettingConsult;
             PatientInfo.DisplayState(patient.gameObject);
 
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(1);
 
         if (gameObject.GetComponent<Worker>().waitingToChanheJob) 
         {

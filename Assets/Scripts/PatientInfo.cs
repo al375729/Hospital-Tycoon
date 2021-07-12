@@ -95,6 +95,16 @@ public class PatientInfo : MonoBehaviour
         
     }
 
+    public static void check(string nombre)
+    {
+        if(nombre == name.text)
+        {
+            DetectClicksOnCharacters.locked = false;
+            lockButton.gameObject.GetComponent<Image>().color = Color.white;
+            panel.SetActive(false);
+        }
+    }
+
     private void detectState()
     {   
         switch (clickedCharacter.GetComponent<Patient>().state)
@@ -112,6 +122,7 @@ public class PatientInfo : MonoBehaviour
             case Patient.State.NextTask:
                 break;
             case Patient.State.GoingHome:
+                PatientInfo.state.text = "Returning home";
                 break;
             case Patient.State.GoingToReception:
                 PatientInfo.state.text = "Going to reception";
@@ -170,6 +181,7 @@ public class PatientInfo : MonoBehaviour
 
     public static void showPanel()
     {
+        panel.SetActive(true);
         Color tempColor = panel.GetComponent<Image>().color;
         tempColor.a = 1f;
         panel.gameObject.GetComponent<Image>().color = tempColor;

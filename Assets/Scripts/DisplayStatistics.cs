@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,11 +33,11 @@ public class DisplayStatistics : MonoBehaviour
         copyPanel = statisitcsPanel;
         publicStatisticsPanel = patientsStatisticsPanel;
 
-        publicStatisticsPanel.gameObject.transform.GetChild(0).GetComponent<Text>().text = "Succesfully treated patients : " + treateadPatients;
-        publicStatisticsPanel.gameObject.transform.GetChild(1).GetComponent<Text>().text = "Succesfully treated patients income: " + treatedIncome + "$";
+        publicStatisticsPanel.gameObject.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = "  "+treateadPatients.ToString();
+        publicStatisticsPanel.gameObject.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = "  " + treatedIncome + "$";
 
-        publicStatisticsPanel.gameObject.transform.GetChild(2).GetComponent<Text>().text = "Not treated patients : " + notTreateadPatients;
-        publicStatisticsPanel.gameObject.transform.GetChild(3).GetComponent<Text>().text = "Not treated patients expenses: " + notTreatedLoses + "$";
+        publicStatisticsPanel.gameObject.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text = "  " + notTreateadPatients.ToString();
+        publicStatisticsPanel.gameObject.transform.GetChild(7).GetComponent<TextMeshProUGUI>().text = "  " + notTreatedLoses + "$";
     }
 
     public static void changeNumberOfPatientsWaiting(int i)
@@ -70,20 +71,20 @@ public class DisplayStatistics : MonoBehaviour
     }
     private static void updateText()
     {
-        copyPanel.gameObject.transform.GetChild(0).GetComponent<Text>().text = "Patients in the waiting room : " + patientsOnWaitingRoom;
-        copyPanel.gameObject.transform.GetChild(1).GetComponent<Text>().text = "Patients waiting to be attended at the reception: " + patientsWaitingReception;
-        copyPanel.gameObject.transform.GetChild(2).GetComponent<Text>().text = "Patients waiting to be attended at a consultation: " + patientsWaitingConsultation;
-        copyPanel.gameObject.transform.GetChild(3).GetComponent<Text>().text = "Patients waiting to be attended at a radiology room: " + patientsWaitingRadiology;
-        copyPanel.gameObject.transform.GetChild(4).GetComponent<Text>().text = "Patients waiting to be attended at a analysis room : " + patientsWaitingAnalysis;
+        copyPanel.gameObject.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = "  " + patientsOnWaitingRoom;
+        copyPanel.gameObject.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text = "  " + patientsWaitingReception;
+        copyPanel.gameObject.transform.GetChild(7).GetComponent<TextMeshProUGUI>().text = "  " + patientsWaitingConsultation;
+        copyPanel.gameObject.transform.GetChild(8).GetComponent<TextMeshProUGUI>().text = "  " + patientsWaitingRadiology;
+        copyPanel.gameObject.transform.GetChild(9).GetComponent<TextMeshProUGUI>().text ="  " + patientsWaitingAnalysis;
     }
 
     public static void updateTextStatistics()
     {
-        publicStatisticsPanel.gameObject.transform.GetChild(0).GetComponent<Text>().text = "Succesfully treated patients : " + treateadPatients;
-        publicStatisticsPanel.gameObject.transform.GetChild(1).GetComponent<Text>().text = "Succesfully treated patients income: " + treatedIncome + "$";
+        publicStatisticsPanel.gameObject.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = "  " + treateadPatients.ToString();
+        publicStatisticsPanel.gameObject.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = "  " + treatedIncome + "$";
 
-        publicStatisticsPanel.gameObject.transform.GetChild(2).GetComponent<Text>().text = "Succesfully treated patients : " + notTreateadPatients;
-        publicStatisticsPanel.gameObject.transform.GetChild(1).GetComponent<Text>().text = "Succesfully treated patients income: " + notTreatedLoses + "$";
+        publicStatisticsPanel.gameObject.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text = "  " + notTreateadPatients.ToString();
+        publicStatisticsPanel.gameObject.transform.GetChild(7).GetComponent<TextMeshProUGUI>().text = "  " + notTreatedLoses + "$";
     }
 
     // Update is called once per frame
@@ -94,11 +95,11 @@ public class DisplayStatistics : MonoBehaviour
 
     public static void mostrarTexto()
     {
-        copyPanel.gameObject.transform.GetChild(0).GetComponent<Text>().text = "Patients in the waiting room : " + patientsOnWaitingRoom;
-        copyPanel.gameObject.transform.GetChild(1).GetComponent<Text>().text = "Patients waiting to be attended at the reception: " + patientsWaitingReception;
-        copyPanel.gameObject.transform.GetChild(2).GetComponent<Text>().text = "Patients waiting to be attended at a consultation: " + patientsWaitingConsultation;
-        copyPanel.gameObject.transform.GetChild(3).GetComponent<Text>().text = "Patients waiting to be attended at a radiology room: " + patientsWaitingRadiology;
-        copyPanel.gameObject.transform.GetChild(4).GetComponent<Text>().text = "Patients waiting to be attended at a analysis room : " + patientsWaitingAnalysis;
+        copyPanel.gameObject.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = "  " + patientsOnWaitingRoom;
+        copyPanel.gameObject.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text = "  " + patientsWaitingReception;
+        copyPanel.gameObject.transform.GetChild(7).GetComponent<TextMeshProUGUI>().text = "  " + patientsWaitingConsultation;
+        copyPanel.gameObject.transform.GetChild(8).GetComponent<TextMeshProUGUI>().text = "  " + patientsWaitingRadiology;
+        copyPanel.gameObject.transform.GetChild(9).GetComponent<TextMeshProUGUI>().text = "  " + patientsWaitingAnalysis;
 
 
     }
