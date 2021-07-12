@@ -82,7 +82,8 @@ public class ConsultController : MonoBehaviour
 
                 patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToConsult;
                 PatientInfo.DisplayState(patient.gameObject);
-
+                DisplayStatistics.changeNumberOfPatientsWaitingConsultation(-1);
+                DisplayStatistics.changeNumberOfPatientsWaiting(-1);
                 break;
             }
         }
@@ -189,8 +190,8 @@ public class ConsultController : MonoBehaviour
                 patient.transform.SetParent(arrayForDoctors[i]);
                 found = true;
                 patient.GetComponent<Consult>().state = Consult.State.DoingTask;
-                //patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
-                //patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
+                patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().workers = "";
+                patient.gameObject.transform.parent.parent.GetChild(patient.gameObject.transform.parent.parent.childCount - 2).GetComponent<RoomStatus>().updateText();
 
                 break;
             }
@@ -254,7 +255,11 @@ public class ConsultController : MonoBehaviour
                 PatientInfo.DisplayState(patient.gameObject);
                 patient.gameObject.GetComponent<Patient>().waiting = true;
                 patient.gameObject.GetComponent<Patient>().patienceBool = false;
+                DisplayStatistics.changeNumberOfPatientsWaitingConsultation(+1);
+                DisplayStatistics.changeNumberOfPatientsWaiting(+1);
                 break;
+
+
             }
         }
     }

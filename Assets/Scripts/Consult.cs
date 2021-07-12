@@ -159,7 +159,6 @@ public class Consult : MonoBehaviour
 
                 if (currentTask == CurrentTask.task1)
                 {
-                    Debug.Log("Fin de la tarea 1");
                     sub_task1 = true;
                     runing = false;
                     endedTask = true;

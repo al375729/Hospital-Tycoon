@@ -47,7 +47,7 @@ public class DragBuildings : MonoBehaviour
         analisisController = AnalisisController.Instance;
 
         transform.GetChild(transform.childCount - 2).gameObject.GetComponent<MeshRenderer>().enabled = false;
-        this.gameObject.transform.GetChild(gameObject.transform.childCount - 2).GetComponent<RoomStatus>().workers = "NO HAY TRABAJADORES ASIGNADOS " + "\n" + "\n";
+        this.gameObject.transform.GetChild(gameObject.transform.childCount - 2).GetComponent<RoomStatus>().workers = "THERE ARE NOT WORKERS ASSIGNED" + "\n" + "\n";
         
         //this.gameObject.transform.GetChild(gameObject.transform.childCount - 2).GetComponent<RoomStatus>().updateText();
     }
@@ -55,33 +55,67 @@ public class DragBuildings : MonoBehaviour
 
     void OnMouseDown()
     {
-        //PatientInfo.disablePanel();
-
         if (!IsMouseOverUI())
         {
             if (!isSelected && !globalSelection && GlobalVariables.EDIT_MODE)
             {
-                isSelected = true;
-                globalSelection = true;
-                position = transform.position;
-                rotation = transform.rotation;
-
-                if(addedReferences)
+                if (this.gameObject.name == "Recepcion")
                 {
-                    deleteReferences();
-                    addedReferences = false;
+                    Console.setText("You can't move the reception");
                 }
+                
+                else
+                {
+                    if(this.gameObject.transform.GetChild(1).transform.childCount!=0 || this.gameObject.transform.GetChild(2).transform.transform.childCount != 0)
+                    {
+                        Console.setText("You can't move the room because there is someone on it");
+
+                    }
+                    else
+                    {
+                        isSelected = true;
+                        globalSelection = true;
+                        position = transform.position;
+                        rotation = transform.rotation;
+
+                        if (addedReferences)
+                        {
+                            deleteReferences();
+                            addedReferences = false;
+                        }
+                    }
+
+                }
+
                
 
             }
             else if (!isSelected && !globalSelection && GlobalVariables.DELETE_MODE)
             {
-                if (addedReferences)
+                if (this.gameObject.name == "Recepcion")
                 {
-                    deleteReferences();
-                    addedReferences = false;
+                    Console.setText("You can't delte the reception");
                 }
-                Destroy(this.gameObject);
+
+                else
+                {
+                    if (this.gameObject.transform.GetChild(1).transform.childCount != 0 || this.gameObject.transform.GetChild(2).transform.transform.childCount != 0)
+                    {
+                        Console.setText("You can't delete the room because there is someone on it");
+
+                    }
+                    else
+                    {
+                        if (addedReferences)
+                        {
+                            deleteReferences();
+                            addedReferences = false;
+                        }
+                        Destroy(this.gameObject);
+                    }
+
+                }
+
 
             }
             else
@@ -98,7 +132,7 @@ public class DragBuildings : MonoBehaviour
                     }
                     else
                     {
-                        this.gameObject.transform.GetChild(this.gameObject.transform.childCount - 2).GetComponent<RoomStatus>().reachable = "ESTA SALA ES INALCANZABLE" + "\n" + "\n";
+                        this.gameObject.transform.GetChild(this.gameObject.transform.childCount - 2).GetComponent<RoomStatus>().reachable = "THIS ROOM IS UNREACHABLE" + "\n" + "\n";
                         this.gameObject.transform.GetChild(this.gameObject.transform.childCount - 2).GetComponent<RoomStatus>().updateText();
                     }
                    
@@ -116,8 +150,6 @@ public class DragBuildings : MonoBehaviour
                     x = (int)vec.x;
                     z = (int)vec.y;
                     GridController.setPrefabRoom(x, z, this.gameObject);
-                    Debug.Log(x + " , " + z);
-
                     isSelected = false;
                     globalSelection = false;
                 }
@@ -163,7 +195,6 @@ public class DragBuildings : MonoBehaviour
 
             int x, z;
             GetGridPos(GetMouseWorldPos(), out x, out z);
-            Debug.Log(GetMouseWorldPos());
             Vector3 posicion;
             posicion = GetWorldPosition(x, z);
             /*
@@ -290,6 +321,7 @@ public class DragBuildings : MonoBehaviour
 
     public void addReferences()
     {
+
         for (int i = 0; i < transform.childCount - 2; i++)
         {
             if (transform.GetChild(i).GetComponent<ObjectsOnRoom>() != null)

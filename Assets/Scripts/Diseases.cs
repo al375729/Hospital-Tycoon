@@ -8,7 +8,7 @@ public class Diseases : MonoBehaviour
 
     public static List<Disease> diseasesLevel1;
     public static List<Disease> diseasesLevel2;
-    public List<Disease> diseasesLevel3;
+    public static List<Disease> diseasesLevel3;
     public List<Disease> diseasesLevel4;
     public List<Disease> diseasesLevel5;
     public class Disease
@@ -32,6 +32,7 @@ public class Diseases : MonoBehaviour
     {
         diseasesLevel1 = new List<Disease>(5);
         diseasesLevel2 = new List<Disease>(3);
+        diseasesLevel3 = new List<Disease>(1);
 
 
         if (Instance == null) { Instance = this; }
@@ -55,10 +56,24 @@ public class Diseases : MonoBehaviour
         diseasesLevel1.Add(GastroInteritis);
 
         steps.Enqueue("Radiologia");
-        Disease HuesoRoto = new Disease("Hueso roto", steps, 2);
-        diseasesLevel2.Add(HuesoRoto);
-        diseasesLevel2.Add(HuesoRoto);
-        diseasesLevel2.Add(HuesoRoto);
+        Disease BrazoRoto = new Disease("Brazo roto", steps, 2);
+        diseasesLevel2.Add(BrazoRoto);
+
+        Disease PiernaRota = new Disease("Pierna rota", steps, 2);
+        diseasesLevel2.Add(PiernaRota);
+
+        Disease ManoRota = new Disease("Mano rota", steps, 2);
+        diseasesLevel2.Add(ManoRota);
+
+        Disease PieRoto = new Disease("Pie roto", steps, 2);
+        diseasesLevel2.Add(PieRoto);
+
+        Disease Esguince = new Disease("Esguince", steps, 2);
+        diseasesLevel2.Add(Esguince);
+
+        steps.Enqueue("Analisis");
+        Disease InfeccionOrina = new Disease("Infeccion de orina", steps, 3);
+        diseasesLevel3.Add(InfeccionOrina);
     }
 
     
@@ -73,15 +88,23 @@ public class Diseases : MonoBehaviour
         
     }
 
-    public static Disease GetDisease(int random)
+    public static Disease GetDiseaseLevel3(int random)
+    {
+        Disease disease = diseasesLevel3[random];
+        return disease;
+
+    }
+    public static Disease GetDiseaseLevel2(int random)
     {
        Disease disease = diseasesLevel2[random];
             return disease;
         
     }
 
-    internal static Disease getDiseaseLevel1(int ran2)
+    public static Disease GetDiseaseLevel1(int random)
     {
-        throw new System.NotImplementedException();
+        Disease disease = diseasesLevel1[random];
+        return disease;
+
     }
 }

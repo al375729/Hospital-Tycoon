@@ -209,6 +209,7 @@ public class CameraController : MonoBehaviour
 
     public static void deleteObjectToFollow(GameObject gameObject)
     {
+
         if(objectToFollow == gameObject) objectToFollow = null;
     }
 }

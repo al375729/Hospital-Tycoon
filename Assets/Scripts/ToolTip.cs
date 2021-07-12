@@ -60,6 +60,7 @@ public class ToolTip : MonoBehaviour
         float pivotY = mousePosition.y / Screen.height;
 
         rectTransform.pivot = new Vector2(pivotX, pivotY);
+        //rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x + 15f, rectTransform.sizeDelta.y + 15f);
         transform.position = mousePosition;
         
     }

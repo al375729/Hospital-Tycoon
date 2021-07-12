@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2f70de18b061d47a7e0fd10efa227f, type: 3}
   m_Name: Sala de Analisis
   m_EditorClassIdentifier: 
-  buildingName: Analisis
-  image: {fileID: 21300000, guid: 387b3753278e0ac4aab7a5514a7da346, type: 3}
-  description: Sala de analisis
-  price: 1
+  buildingName: Analysis
+  image: {fileID: 21300000, guid: 0aa332883a1985a4baf001dd794968b8, type: 3}
+  description: Analysis Room
+  price: 650
   prefab: {fileID: 8082207803388138420, guid: cc13b84ddf405ae4dbcd9c833230b991, type: 3}

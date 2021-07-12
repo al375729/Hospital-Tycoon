@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2f70de18b061d47a7e0fd10efa227f, type: 3}
   m_Name: Radiologia
   m_EditorClassIdentifier: 
-  buildingName: Radiologia
-  image: {fileID: 21300000, guid: 9db88dd40d0117e4b820a5d24b6245b5, type: 3}
-  description: Radiologia
-  price: 1
+  buildingName: Radiology
+  image: {fileID: 21300000, guid: cabd7d94c22ae3143b826e9327df54a9, type: 3}
+  description: Radiology room
+  price: 500
   prefab: {fileID: 8639330880580438473, guid: 9716930120a365f4da2b0fcd3c20e187, type: 3}

@@ -15,8 +15,8 @@ public class GridDisplay : MonoBehaviour
     private int columnas;
     public Material material;
 
-    private Vector3 Origin; // place where mouse is first pressed
-    private Vector3 Diference; // change in position of mouse relative to origin
+    private Vector3 Origin; 
+    private Vector3 Diference;
     void Start()
     {
         grid = test.getGrid();
@@ -35,17 +35,7 @@ public class GridDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (!IsMouseOverUI())
-        {
-            float fov;
-            fov = Camera.main.fieldOfView;
-            fov += Input.GetAxis("Mouse ScrollWheel") * sensitivity;
-            fov = Mathf.Clamp(fov, minFov, maxFov);
-            Camera.main.fieldOfView = fov;
-
-        }
-        */
+      
     }
 
     private void OnPostRender()
@@ -55,30 +45,9 @@ public class GridDisplay : MonoBehaviour
 
             for (int j = 0; j < cuadricula.GetLength(1); j++)
             {
-
-                if (gridTextMesh[i, j] == null)
-                {/*
-                    GameObject Texto = new GameObject("Texto", typeof(TextMesh));
-                    TextMesh texto = Texto.GetComponent<TextMesh>();
-                    gridTextMesh[i,j] = texto;
-                    texto.transform.position = grid.GetWorldPosition(i, j) + new Vector3(tamañoCelda / 2, 0, tamañoCelda) * 0.5f;
-                    texto.transform.rotation = Quaternion.Euler(90, 0, 0);
-                    //texto.text = "[" + i.ToString() + "," + j.ToString() + "]";
-                    texto.text = cuadricula[i,j].ToString();
-                    texto.alignment = TextAlignment.Center;
-                    texto.color = Color.white;
-                    */
-                }
-                // 2.5 = cuadricula tamaño /2
                 DrawLine(grid.GetWorldPosition(i, j) - new Vector3(filas * 2.5f, 0, columnas * 2.5f) , grid.GetWorldPosition(i, j + 1) - new Vector3(filas * 2.5f, 0, columnas * 2.5f));
                 DrawLine(grid.GetWorldPosition(i, j) - new Vector3(filas * 2.5f, 0, columnas * 2.5f), grid.GetWorldPosition(i + 1, j) - new Vector3(filas * 2.5f, 0, columnas * 2.5f));
 
-                /*
-                if (i == 0)
-                {
-                    cuadricula[i, j] = 10;
-                    gridTextMesh[i, j].text = cuadricula[i, j].ToString(); 
-                }*/
             }
         }
         DrawLine(grid.GetWorldPosition(0, columnas) - new Vector3(filas * 2.5f, 0, columnas * 2.5f), grid.GetWorldPosition(filas, columnas) - new Vector3(filas * 2.5f, 0, columnas * 2.5f));
@@ -98,7 +67,6 @@ public class GridDisplay : MonoBehaviour
         GL.End();
 
     }
-
     void LateUpdate()
     {
         if (Input.GetMouseButtonDown(0))
@@ -112,7 +80,6 @@ public class GridDisplay : MonoBehaviour
         }
         
     }
-    // return the position of the mouse in world coordinates (helper method)
     Vector3 MousePos()
     {
         return Camera.main.ScreenToWorldPoint(Input.mousePosition);

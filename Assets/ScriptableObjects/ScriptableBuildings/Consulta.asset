@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2f70de18b061d47a7e0fd10efa227f, type: 3}
   m_Name: Consulta
   m_EditorClassIdentifier: 
-  buildingName: Consulta
-  image: {fileID: 21300000, guid: 21b5f4dd591d85a41a12ddbb37ce81e1, type: 3}
-  description: Consulta
-  price: 5
+  buildingName: Consultation
+  image: {fileID: 21300000, guid: 36be0fdfcc7d9b94d96480155ae26a3c, type: 3}
+  description: Consultation Room
+  price: 400
   prefab: {fileID: 4649388217965712337, guid: 055e5e9e08956b5408e911ce10c645d4, type: 3}

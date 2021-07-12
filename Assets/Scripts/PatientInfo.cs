@@ -12,6 +12,7 @@ public class PatientInfo : MonoBehaviour
     public static TextMeshProUGUI name;
     public static TextMeshProUGUI gender;
     public static TextMeshProUGUI state;
+    public static TextMeshProUGUI illness;
     public static GameObject panel;
     public static GameObject clickedCharacter;
     public static GameObject patienceBar;
@@ -22,6 +23,7 @@ public class PatientInfo : MonoBehaviour
     public TextMeshProUGUI publicGender;
     public TextMeshProUGUI publicState;
     public GameObject publicPatienceBar;
+    public TextMeshProUGUI publicillness;
     public GameObject publicSubPanel;
     public Image publicImage;
     public Button publicLockButton;
@@ -46,6 +48,7 @@ public class PatientInfo : MonoBehaviour
         gender = publicGender;
         state = publicState;
         patienceBar = publicPatienceBar;
+        illness = publicillness;
         image = publicImage;
         canvas = this.gameObject.transform.parent.gameObject;
 
@@ -179,7 +182,7 @@ public class PatientInfo : MonoBehaviour
         name.gameObject.SetActive(true);
         gender.gameObject.SetActive(true);
         state.gameObject.SetActive(true);
-        state.gameObject.SetActive(true);
+        illness.gameObject.SetActive(true);
         image.gameObject.SetActive(true);
         lockButton.gameObject.SetActive(true);
         subPanel.gameObject.SetActive(true);
@@ -242,6 +245,7 @@ public class PatientInfo : MonoBehaviour
         name.gameObject.SetActive(false);
         gender.gameObject.SetActive(false);
         state.gameObject.SetActive(false);
+        illness.gameObject.SetActive(false);
         patienceBar.SetActive(false);
         stopAnimationPatienceBar();
         image.gameObject.SetActive(false);

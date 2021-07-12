@@ -69,6 +69,7 @@ public class WatingRoom : MonoBehaviour
 
                     patient.gameObject.GetComponent<Patient>().waiting = true;
                     DisplayStatistics.changeNumberOfPatientsWaiting(+1);
+                    DisplayStatistics.changeNumberOfPatientsWaitingReception(+1);
 
                     break;
                 }
@@ -93,6 +94,7 @@ public class WatingRoom : MonoBehaviour
 
             patient.gameObject.GetComponent<Patient>().waiting = false;
             DisplayStatistics.changeNumberOfPatientsWaiting(-1);
+            DisplayStatistics.changeNumberOfPatientsWaitingReception(-1);
         }
     }
 }

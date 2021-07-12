@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class RestRoom : MonoBehaviour
 {
@@ -35,7 +36,33 @@ public class RestRoom : MonoBehaviour
     {
 
     }
-    public void searchPlace(GameObject doctor)
+    private bool IsMouseOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
+    }
+    void OnMouseDown()
+    {
+
+        if (!IsMouseOverUI())
+        {
+            if (GlobalVariables.EDIT_MODE)
+            {
+
+                Console.setText("No puedes mover la sala de descanso");
+
+            }
+
+            if (GlobalVariables.DELETE_MODE)
+            {
+
+                Console.setText("No puedes eliminar la sala de descanso");
+
+            }
+
+        }
+
+     }
+        public void searchPlace(GameObject doctor)
     {
         foreach (Transform seat in queue)
         {

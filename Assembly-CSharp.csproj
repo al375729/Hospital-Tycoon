@@ -64,8 +64,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BuildingButton.cs" />
-    <Compile Include="Assets\DrawWalls.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescr.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescrOptional.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTSeq.cs" />
@@ -74,11 +72,10 @@
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTween.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTweenExt.cs" />
-    <Compile Include="Assets\ManualBuildingType.cs" />
-    <Compile Include="Assets\MarcaMedico.cs" />
     <Compile Include="Assets\QuickOutline\Scripts\Outline.cs" />
     <Compile Include="Assets\Scripts\AnalisisController.cs" />
     <Compile Include="Assets\Scripts\Analist.cs" />
+    <Compile Include="Assets\Scripts\BuildingButton.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingManager.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingObjects.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingsInShop.cs" />
@@ -107,6 +104,7 @@
     <Compile Include="Assets\Scripts\DisplayStatistics.cs" />
     <Compile Include="Assets\Scripts\DoctorInfo.cs" />
     <Compile Include="Assets\Scripts\DrawSquare.cs" />
+    <Compile Include="Assets\Scripts\DrawWalls.cs" />
     <Compile Include="Assets\Scripts\Effects\BloodPuddle.cs" />
     <Compile Include="Assets\Scripts\Effects\Fade.cs" />
     <Compile Include="Assets\Scripts\Effects\Grid.cs" />
@@ -117,6 +115,8 @@
     <Compile Include="Assets\Scripts\Global Controllers\Money.cs" />
     <Compile Include="Assets\Scripts\GridController.cs" />
     <Compile Include="Assets\Scripts\InstantiateHeaderYear.cs" />
+    <Compile Include="Assets\Scripts\ManualBuildingType.cs" />
+    <Compile Include="Assets\Scripts\MarcaMedico.cs" />
     <Compile Include="Assets\Scripts\NavMesh\LocalNavMeshBuilder.cs" />
     <Compile Include="Assets\Scripts\NavMesh\NavMeshSourceTag.cs" />
     <Compile Include="Assets\Scripts\PatientInfo.cs" />
@@ -152,6 +152,8 @@
     <Compile Include="Assets\Scripts\UI\TapButton.cs" />
     <Compile Include="Assets\Scripts\UIDrawGraphs.cs" />
     <Compile Include="Assets\Scripts\UILineRenderer.cs" />
+    <Compile Include="Assets\Scripts\WallCollider.cs" />
+    <Compile Include="Assets\Scripts\WallShop.cs" />
     <Compile Include="Assets\Scripts\WatingRoom.cs" />
     <Compile Include="Assets\Scripts\Workers\CharacterGenerator.cs" />
     <Compile Include="Assets\Scripts\Workers\Radiologist.cs" />
@@ -159,8 +161,6 @@
     <Compile Include="Assets\Scripts\Workers\WorkerScriptableObject.cs" />
     <Compile Include="Assets\Scripts\YearTabGroup.cs" />
     <Compile Include="Assets\Scripts\YearTabs.cs" />
-    <Compile Include="Assets\WallCollider.cs" />
-    <Compile Include="Assets\WallShop.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\LeanTween\ReadMe.txt" />

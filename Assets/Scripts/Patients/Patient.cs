@@ -115,30 +115,37 @@ public class Patient : MonoBehaviour
     private void Start()
     {
 
-         ran = Random.Range(0, Diseases.diseasesLevel2.Count-1);
+         ran = Random.Range(0, 50);
 
-        /*if (ran < 80)
+        if (ran < 60)
         {
             stars = 1;
             int ran2 = Random.Range(0, Diseases.diseasesLevel1.Count);
-            patientDisease = Diseases.GetDisease(ran);
-            copyPatientDisease = patientDisease;
-        }*/
-        //else
-        //{
+            patientDisease = Diseases.GetDiseaseLevel1(ran2);
+        }
+        else if (ran>60 && ran < 85)
+        {
             stars = 2;
-            //int ran2 = Random.Range(0, Diseases.diseasesLevel2.Count);
-            patientDisease = Diseases.GetDisease(ran);
+            int ran2 = Random.Range(0, Diseases.diseasesLevel2.Count);
+            patientDisease = Diseases.GetDiseaseLevel2(ran2);
+        }
+        else
+        {
+            stars = 2;
+            int ran2 = Random.Range(0, Diseases.diseasesLevel3.Count);
+            patientDisease = Diseases.GetDiseaseLevel3(ran2);
+        }
 
-            copiaCola = new Queue<string>();
+        copiaCola = new Queue<string>();
 
         foreach (string item in patientDisease.tasks)
         {
             copiaCola.Enqueue(item);
         }
-       // }
+
 
         Debug.Log(patientDisease.name);
+
 
         navMeshAgent = this.GetComponent<NavMeshAgent>();
         currentTask = CurrentTask.nullTask;
@@ -225,10 +232,9 @@ public class Patient : MonoBehaviour
             }
             else
             {
-                if(copiaCola.Count>0)
+                if(copiaCola.Count>0 && copiaCola.Peek()=="Radiologia")
                 {
                     radiologyController.searchPatient(this.gameObject);
-                    Debug.Log("Delete");
                     copiaCola.Dequeue();
 
                 }
@@ -237,6 +243,10 @@ public class Patient : MonoBehaviour
 
             }
             
+        }
+        else
+        {
+            addPos(new Vector3(-103f, 0f, -103f));
         }
     }
 

@@ -49,6 +49,7 @@ public class ShopUIManagement : MonoBehaviour
             instance.gameObject.transform.GetChild(0).GetComponent<Text>().text = arrayOfBuildings[i].buildingName;
             instance.gameObject.transform.GetChild(1).GetComponent<Text>().text = arrayOfBuildings[i].description;
             instance.gameObject.transform.GetChild(2).GetComponent<Image>().sprite = arrayOfBuildings[i].image;
+            instance.gameObject.transform.GetChild(3).GetComponent<Text>().text = arrayOfBuildings[i].price + "$";
 
             instance.GetComponent<Button>().AddEventListener(arrayOfBuildings[i].prefab, arrayOfBuildings[i].price, SpawnBuilding);
 
@@ -71,6 +72,11 @@ public class ShopUIManagement : MonoBehaviour
             Instantiate(prefab, Input.mousePosition, Quaternion.identity);
 
             buttons.ResetAll();
+        }
+
+        else 
+        {
+            Console.setText("You don't have enough money to buy this");
         }
         
     }

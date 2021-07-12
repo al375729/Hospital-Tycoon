@@ -165,7 +165,7 @@ public class DoctorInfo : MonoBehaviour
         state.gameObject.SetActive(true);
         state.gameObject.SetActive(true);
         button.gameObject.SetActive(true);
-        changebutton.gameObject.SetActive(true);
+        //changebutton.gameObject.SetActive(true);
         role.gameObject.SetActive(true);
 
         startAnimationPatienceBar();
