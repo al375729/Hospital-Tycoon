@@ -195,11 +195,17 @@ public class DayNightCycle : MonoBehaviour
         DateController.changeDate();
 
         paySalaries.paySalaries();
+
+        GlobalVariables.MONTH_INCOMES = 0;
+        GlobalVariables.MONTH_EXPENSES = 0;
     }
 
     private void updateDecember()
     {
         displayController.updateMonth(month-1, GlobalVariables.MONTH_INCOMES, GlobalVariables.MONTH_EXPENSES);
+        GlobalVariables.MONTH_INCOMES = 0;
+        GlobalVariables.MONTH_EXPENSES = 0;
+
     }
 
     private void SunRotation() 
@@ -223,15 +229,6 @@ public class DayNightCycle : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1)) {
-
-            GlobalVariables.MONTH_EXPENSES += 1000;
-        }
-        if (Input.GetMouseButtonDown(2))
-        {
-
-            GlobalVariables.MONTH_INCOMES += 2000;
-        }
         if (!pause)
         {
             UpdateTimeScale();

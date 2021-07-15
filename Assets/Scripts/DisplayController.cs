@@ -314,8 +314,7 @@ public class DisplayController : MonoBehaviour
 
 
     private void Update()
-    {            
-
+    {
     }
 
     internal Year addNewYear(int yearCounter)

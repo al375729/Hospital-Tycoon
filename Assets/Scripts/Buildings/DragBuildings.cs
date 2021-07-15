@@ -153,6 +153,10 @@ public class DragBuildings : MonoBehaviour
                     isSelected = false;
                     globalSelection = false;
                 }
+                else if(isColliding && isSelected)
+                {
+                    Console.setText("You can't place a room here");
+                }
             }
         }
 
@@ -388,7 +392,20 @@ public class DragBuildings : MonoBehaviour
                         consultController.updateIndexOfPatients(obj.indexInList);
                         break;
 
-                    case ObjectsOnRoom.type.None:
+                    case ObjectsOnRoom.type.RadiologyDoctor:
+                        radiologyController.updateIndexOfDoctors(obj.indexInList);
+                        break;
+
+                    case ObjectsOnRoom.type.RadiologyPatient:
+                        radiologyController.updateIndexOfPatients(obj.indexInList);
+                        break;
+
+                    case ObjectsOnRoom.type.AnalysisDoctor:
+                        analisisController.updateIndexOfDoctors(obj.indexInList);
+                        break;
+
+                    case ObjectsOnRoom.type.AnalysisPatient:
+                        analisisController.updateIndexOfPatients(obj.indexInList);
                         break;
                 }
             }

@@ -66,7 +66,7 @@ public class ShopUIManagement : MonoBehaviour
             antiClick.SetActive(false);
 
             GlobalVariables.MONEY -= price;
-
+            GlobalVariables.MONTH_EXPENSES += price;
             shopButton.image.color = Color.white;
 
             Instantiate(prefab, Input.mousePosition, Quaternion.identity);

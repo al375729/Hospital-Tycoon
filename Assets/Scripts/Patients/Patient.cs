@@ -32,6 +32,8 @@ public class Patient : MonoBehaviour
 
     public WatingRoom waitingRoom;
     public RadiologyController radiologyController;
+    public ConsultController consultController;
+    public AnalisisController analisisController;
     public TaskManagement taskManagement;
 
     public  Diseases diseases;
@@ -54,6 +56,10 @@ public class Patient : MonoBehaviour
     public bool waiting = false;
 
     public Sprite sprite;
+
+    private bool end = false;
+
+    private bool atHome = false;
     private enum CurrentTask
     {
         task1,
@@ -114,7 +120,7 @@ public class Patient : MonoBehaviour
     private void Start()
     {
 
-         ran = Random.Range(0, 50);
+         ran = Random.Range(88, 90);
 
         if (ran < 60)
         {
@@ -130,7 +136,7 @@ public class Patient : MonoBehaviour
         }
         else
         {
-            stars = 2;
+            stars = 3;
             int ran2 = Random.Range(0, Diseases.diseasesLevel3.Count);
             patientDisease = Diseases.GetDiseaseLevel3(ran2);
         }
@@ -142,8 +148,6 @@ public class Patient : MonoBehaviour
             copiaCola.Enqueue(item);
         }
 
-
-        Debug.Log(patientDisease.name);
 
 
         navMeshAgent = this.GetComponent<NavMeshAgent>();
@@ -165,13 +169,14 @@ public class Patient : MonoBehaviour
         diseases = Diseases.Instance;
 
         radiologyController = RadiologyController.Instance;
+        analisisController = AnalisisController.Instance;
+        consultController = ConsultController.Instance;
 
-       
     }
 
     private void Update()
     {
-        print(state);
+
         if (target != null && agent.remainingDistance >= 1.25f)
         {
 
@@ -187,15 +192,18 @@ public class Patient : MonoBehaviour
 
         }
 
-        if (waiting && patience > 0 && !patienceBool) InvokeRepeating("DoSomething", 0, 0.1F);
-        else if (!waiting) CancelInvoke();
-        else if (patience < 0) 
+        if(!end)
         {
-            CancelInvoke();
-            Debug.Log("Ya ta");
-        }
+            if (waiting && patience > 0 && !patienceBool) InvokeRepeating("DoSomething",0f,1.0f);
+            else if (!waiting)
+            {
+                CancelInvoke();
+                patienceBool = false;
+            }
 
-        if (patience <= 0) endHome();
+            if (patience <= 0 && patience!=-5) endHome();
+        }
+        
         
     }
 
@@ -203,7 +211,7 @@ public class Patient : MonoBehaviour
     void DoSomething()
     {
         patienceBool = true;
-        patience -= 0.00083f;
+        patience -= 0.00833333333f;
     }
 
 
@@ -224,7 +232,7 @@ public class Patient : MonoBehaviour
             returnHome();
         }
 
-        else if (state == State.GoingToRadiology)
+        else
         {
             if (patientDisease.stars == 1)
             {
@@ -238,63 +246,111 @@ public class Patient : MonoBehaviour
                     copiaCola.Dequeue();
 
                 }
-                
-                   
+                else if (copiaCola.Count > 0 && copiaCola.Peek() == "Analisis")
+                {
+                    analisisController.searchPatient(this.gameObject);
+                    copiaCola.Dequeue();
+
+                }
+
+
 
             }
             
         }
-        else
-        {
-            returnHome();
-        }
+
     }
     private void endHome()
     {
+        patience = -5;
+        if (state != State.WaitingForDoctor || state != State.GoingToAnalysis || state != State.GettingRadiology || state != State.GoingToConsult || state != State.GoingToReception) DisplayStatistics.changeNumberOfPatientsWaiting(-1);
+
+        switch (state)
+        {
+            case State.WaitingForConsult:
+                DisplayStatistics.changeNumberOfPatientsWaitingConsultation(-1);
+                consultController.attendancePriorityConsult.Dequeue();
+                break;
+
+            case State.WaitingForAnalysis:
+                DisplayStatistics.changeNumberOfPatientsWaitingAnalysis(-1);
+                analisisController.attendancePriorityAnalisis.Dequeue();
+                break;
+
+            case State.WaitingForRadiology:
+                DisplayStatistics.changeNumberOfPatientsWaitingRadiology(-1);
+                radiologyController.attendancePriorityRadiology.Dequeue();
+                break;
+
+            case State.WaitingToBeAttended:
+                WatingRoom.attendancePriority.Dequeue();
+                DisplayStatistics.changeNumberOfPatientsWaitingReception(-1);
+                break;
+        }
+
+        waiting = false;
         state = State.GoingHome;
 
-        DisplayStatistics.notTreateadPatients -= 1;
+        //end = true;
 
-        addPos(new Vector3(-103f, 0f, -103f));
+        DisplayStatistics.notTreateadPatients += 1;
+
+        addPos(new Vector3(-102f, 0.1f, -107f));
 
         if (stars == 1)
         {
             GlobalVariables.MONEY -= 100;
             DisplayStatistics.notTreatedLoses -= 100;
+            GlobalVariables.MONTH_EXPENSES += 100;
         }
         else if (stars == 2)
         {
             GlobalVariables.MONEY -= 200;
             DisplayStatistics.notTreatedLoses -= 200;
+            GlobalVariables.MONTH_EXPENSES += 200;
         }
         else if (stars == 3)
         {
             GlobalVariables.MONEY -= 300;
             DisplayStatistics.notTreatedLoses -= 300;
+            GlobalVariables.MONTH_EXPENSES += 300;
         }
+        
+
+
+        
+
+
+        DisplayStatistics.updateTextStatistics();
     }
 
     private void returnHome()
     {
+        //end = true;
+        waiting = false;
         state = State.GoingHome;
         DisplayStatistics.treateadPatients += 1;
-        addPos(new Vector3(-103f, 0f, -103f));
-       
-        if(stars == 1)
+        addPos(new Vector3(-102f, 0.1f, -107f));
+
+        if (stars == 1)
         {
             GlobalVariables.MONEY += 100;
-            DisplayStatistics.notTreateadPatients += 100;
+            DisplayStatistics.treatedIncome += 100;
+            GlobalVariables.MONTH_INCOMES += 100;
         }
         else if (stars == 2)
         {
             GlobalVariables.MONEY += 200;
-            DisplayStatistics.notTreateadPatients += 200;
+            DisplayStatistics.treatedIncome += 200;
+            GlobalVariables.MONTH_INCOMES += 200;
         }
         else if (stars == 3)
         {
             GlobalVariables.MONEY += 300;
-            DisplayStatistics.notTreateadPatients += 300;
+            DisplayStatistics.treatedIncome += 300;
+            GlobalVariables.MONTH_INCOMES += 300;
         }
+        DisplayStatistics.updateTextStatistics();
     }
 
     public void callCoroutine()
@@ -309,11 +365,11 @@ public class Patient : MonoBehaviour
     IEnumerator MoveToTarget()
     {
         bool end = false;
+        target = new Vector3(target.x, this.transform.position.y, target.z);
         agent.destination = target;
         while (!end)
         {
-
-            if (agent.remainingDistance <= 0.1f && agent.pathPending == false)
+            if (!atHome && agent.remainingDistance <= 0.1f && agent.pathPending == false)
             {
                 end = true;
             }
@@ -333,13 +389,18 @@ public class Patient : MonoBehaviour
                         state = State.WaitingToBeAttendedQueue;
                         waiting = true;
                     }
-                    else if (state == State.GoingToRadiology || state == State.GoingToConsult || state == State.GoingToConsult)
+                    else if (state == State.GoingToRadiology || state == State.GoingToAnalysis || state == State.GoingToConsult)
                     {
                         state = State.WaitingForDoctor;
+                        waiting = true;
                     }
                     else if (state == State.GoingHome)
                     {
+                        atHome = true;
+                        print("Me voy");
+                        waiting = false;
                         PatientInfo.check(this.gameObject.name);
+                        Destroy(this.gameObject.transform.GetComponent<Patient>());
                         Destroy(this.gameObject);
 
                     }

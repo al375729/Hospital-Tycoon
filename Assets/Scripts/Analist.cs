@@ -77,7 +77,7 @@ public class Analist : MonoBehaviour
         if (this.gameObject.GetComponent<Worker>().isWorking() && target != comporbation && agent.remainingDistance >= 2f)
         {
 
-            transform.LookAt(target);
+            //transform.LookAt(target);
         }
 
         if (this.gameObject.GetComponent<Worker>().isWorking() && state == State.WaitingForTask)
@@ -106,9 +106,8 @@ public class Analist : MonoBehaviour
     private void attendWindow()
     {
         Transform attend = analisisController.attend(indexOfWindow);
-        if (attend.childCount > 0 && attend.GetChild(0).GetComponent<Patient>().state == Patient.State.WaitingForTask)
+        if (attend.childCount > 0 && attend.GetChild(0).GetComponent<Patient>().state == Patient.State.WaitingForDoctor)
         {
-            Debug.Log("atendiendo a:" + attend.GetChild(0).GetComponent<Patient>().name);
             attend.GetChild(0).GetComponent<Patient>().state = Patient.State.GettinAttended;
             patient = attend.GetChild(0);
             StartCoroutine(DoWork());
@@ -166,6 +165,7 @@ public class Analist : MonoBehaviour
                     transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                     state = State.Working;
                     this.gameObject.GetComponent<Worker>().currentstate = Worker.currentState.DoingAnalysis;
+                    this.gameObject.transform.LookAt(analisisController.arrayForPatients[indexOfWindow]);
                     yield break;
 
                 }
@@ -237,10 +237,11 @@ public class Analist : MonoBehaviour
 
     IEnumerator DoWork()
     {
-        Debug.Log("Workinh");
+        print("Analista trabajandoi");
         gameObject.GetComponent<Worker>().state = Worker.State.Working;
 
-        analisisController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().state = Patient.State.GoingToRadiology;
+        //analisisController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().state = Patient.State.GoingToRadiology;
+        patient.gameObject.GetComponent<Patient>().waiting = false;
         yield return new WaitForSeconds(10);
         analisisController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().ChangeState();
 

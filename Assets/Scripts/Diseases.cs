@@ -72,7 +72,7 @@ public class Diseases : MonoBehaviour
         diseasesLevel2.Add(Esguince);
 
         steps.Enqueue("Analisis");
-        Disease InfeccionOrina = new Disease("Infeccion de orina", steps, 3);
+        Disease InfeccionOrina = new Disease("Piedras en el riñón", steps, 3);
         diseasesLevel3.Add(InfeccionOrina);
     }
 

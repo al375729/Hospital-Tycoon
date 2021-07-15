@@ -78,7 +78,7 @@ public class Radiologist : MonoBehaviour
         if (this.gameObject.GetComponent<Worker>().isWorking() && target != comporbation && agent.remainingDistance >= 2f)
         {
 
-            transform.LookAt(target);
+            //transform.LookAt(target);
         }
 
         if (this.gameObject.GetComponent<Worker>().isWorking() && state == State.WaitingForTask)
@@ -223,6 +223,7 @@ public class Radiologist : MonoBehaviour
                     transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                     state = State.Working;
                     this.gameObject.GetComponent<Worker>().currentstate = Worker.currentState.DoingRadiology;
+                    this.gameObject.transform.LookAt(radiologyController.arrayForPatients[indexOfWindow]);
                     yield break;
 
                 }
@@ -241,6 +242,7 @@ public class Radiologist : MonoBehaviour
         gameObject.GetComponent<Worker>().state = Worker.State.Working;
 
         radiologyController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().state = Patient.State.GettingRadiology;
+        patient.gameObject.GetComponent<Patient>().waiting = false;
         yield return new WaitForSeconds(10);
         radiologyController.arrayForPatients[indexOfWindow].GetChild(0).GetComponent<Patient>().ChangeState();
 

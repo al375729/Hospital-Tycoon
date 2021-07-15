@@ -138,7 +138,7 @@ public class PopulateWorkerShop : MonoBehaviour
             antiClick.SetActive(false);
 
             GlobalVariables.MONEY -= price;
-
+            GlobalVariables.MONTH_EXPENSES += price;
             shopButton.image.color = Color.white;
 
             prefab.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
@@ -148,10 +148,10 @@ public class PopulateWorkerShop : MonoBehaviour
             prefab.gameObject.AddComponent<NavMeshAgent>();
             NavMeshAgent navAgent = prefab.gameObject.GetComponent<NavMeshAgent>();
             navAgent.baseOffset = -0.1f;
-            navAgent.speed = 7;
-            navAgent.angularSpeed = 15;
+            navAgent.speed = 8;
+            navAgent.angularSpeed = 160;
+            navAgent.acceleration = 15;
             navAgent.stoppingDistance = 0.1f;
-            navAgent.acceleration = 5f;
             navAgent.radius = 0.1f;
             navAgent.height = 3.5f;
             navAgent.autoBraking = true;
@@ -165,6 +165,10 @@ public class PopulateWorkerShop : MonoBehaviour
             buttons.ResetAll();
 
             paySalaries.addSalary(prefab.GetComponent<Worker>().salary);
+        }
+        else
+        {
+            Console.setText("You don't have enough money to buy this");
         }
 
     }

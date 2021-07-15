@@ -245,14 +245,13 @@ public class Recepcionsit : MonoBehaviour
 
     IEnumerator DoWork()
     {
-        Debug.Log("Workinh");
         gameObject.GetComponent<Worker>().state = Worker.State.Working;
 
         patient.gameObject.GetComponent<Patient>().waiting = false;
         patient.gameObject.GetComponent<Patient>().state = Patient.State.GettinAttended;
         PatientInfo.DisplayState(patient.gameObject);
         float workingTime = 1;//- this.gameObject.GetComponent<Worker>().treatingSpeedBonus;
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(2);
         
 
         if (gameObject.GetComponent<Worker>().waitingToChanheJob)

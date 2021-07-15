@@ -9,8 +9,8 @@ public class GlobalVariables : MonoBehaviour
     public static bool SHOP;
     public static bool UI_OPEN;
     public static int MONEY = 10000;
-    public static int MONTH_INCOMES = 300;
-    public static int MONTH_EXPENSES = 5000;
+    public static int MONTH_INCOMES = 0;
+    public static int MONTH_EXPENSES = 0;
     public static bool BUILDING_MODE = false;
     public static bool WALL_MODE = false;
 

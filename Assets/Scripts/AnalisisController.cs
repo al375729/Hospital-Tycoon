@@ -72,7 +72,7 @@ public class AnalisisController : MonoBehaviour
     {
         for (int i = 0; i < arrayForPatients.Count; i++)
         {
-            if (arrayForPatients[i].childCount == 0)
+            if (arrayForPatients[i].childCount == 0 && arrayForDoctors[i].childCount != 0)
             {
                 attendancePriorityAnalisis.Dequeue();
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(arrayForPatients[i].gameObject);
@@ -147,14 +147,14 @@ public class AnalisisController : MonoBehaviour
         bool found = false;
         for (int i = 0; i < arrayForPatients.Count; i++)
         {
-            if (arrayForPatients[i].childCount == 0)
+            if (arrayForPatients[i].childCount == 0 && arrayForDoctors[i].childCount != 0)
             {
                 TaskManagement.PatientGoTo task1 = taskManagement.createTaskPatientToGo(arrayForPatients[i].gameObject);
                 patient.GetComponent<Patient>().addTask(task1);
                 patient.transform.SetParent(arrayForPatients[i]);
                 found = true;
-
                 patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToAnalysis;
+                patient.gameObject.GetComponent<Patient>().waiting = false;
                 PatientInfo.DisplayState(patient.gameObject);
 
                 break;

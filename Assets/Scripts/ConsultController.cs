@@ -125,7 +125,7 @@ public class ConsultController : MonoBehaviour
 
     public void updateIndexOfDoctors(int index)
     {
-       // arrayForDoctors.RemoveAt(index);
+       arrayForDoctors.RemoveAt(index);
 
         if (arrayForDoctors.Count > 0)
         {
@@ -161,6 +161,7 @@ public class ConsultController : MonoBehaviour
                 found = true;
 
                 patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToConsult;
+                patient.gameObject.GetComponent<Patient>().waiting = false;
                 PatientInfo.DisplayState(patient.gameObject);
 
                 break;
@@ -255,7 +256,6 @@ public class ConsultController : MonoBehaviour
                 patient.gameObject.GetComponent<Patient>().state = Patient.State.WaitingForConsult;
                 PatientInfo.DisplayState(patient.gameObject);
                 patient.gameObject.GetComponent<Patient>().waiting = true;
-                patient.gameObject.GetComponent<Patient>().patienceBool = false;
                 DisplayStatistics.changeNumberOfPatientsWaitingConsultation(+1);
                 DisplayStatistics.changeNumberOfPatientsWaiting(+1);
                 break;

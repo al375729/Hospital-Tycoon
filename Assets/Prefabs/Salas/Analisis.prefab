@@ -16,10 +16,10 @@ GameObject:
   - component: {fileID: 5263268222092594467}
   m_Layer: 0
   m_Name: Mesa y ordenador.003
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &123148647160590112
 Transform:
@@ -140,10 +140,10 @@ GameObject:
   - component: {fileID: 5033790347344653300}
   m_Layer: 0
   m_Name: Microscopio
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4129560898982385025
 Transform:
@@ -238,10 +238,10 @@ GameObject:
   - component: {fileID: 5018867753309581236}
   m_Layer: 0
   m_Name: IconoHabitacion
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8903204085586281552
 Transform:
@@ -321,10 +321,10 @@ GameObject:
   - component: {fileID: 5047273545828246426}
   m_Layer: 0
   m_Name: ProbetasGrandes
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2408130063891856436
 Transform:
@@ -421,10 +421,10 @@ GameObject:
   - component: {fileID: 2876742534525612155}
   m_Layer: 0
   m_Name: Soporte
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &487752894172258436
 Transform:
@@ -522,10 +522,10 @@ GameObject:
   - component: {fileID: 2358554075777199809}
   m_Layer: 0
   m_Name: Texto
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!224 &6871980766491760767
 RectTransform:
@@ -716,10 +716,10 @@ GameObject:
   - component: {fileID: 9117287074488418495}
   m_Layer: 0
   m_Name: Marca Radiologista
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7266647026177059285
 Transform:
@@ -729,8 +729,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1954839483754490991}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.5}
-  m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
+  m_LocalPosition: {x: 1.49, y: 0.1, z: -2.61}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8890692260784982286}
   m_RootOrder: 1
@@ -816,10 +816,10 @@ GameObject:
   - component: {fileID: 4923500048582412366}
   m_Layer: 0
   m_Name: Marca Paciente
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1673862436204535360
 Transform:
@@ -829,8 +829,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2488797567699856604}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -8.31}
-  m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
+  m_LocalPosition: {x: 0.81, y: 0.1, z: 5.91}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8890692260784982286}
   m_RootOrder: 2
@@ -917,10 +917,10 @@ GameObject:
   - component: {fileID: 1726479322319726461}
   m_Layer: 0
   m_Name: Suelo
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7952680728482820326
 Transform:
@@ -962,7 +962,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 05bd2ae238e0ea0429c063437886beaa, type: 3}
+  - {fileID: 2100000, guid: fd42ffd2f0b3c864ba6324b49fa7a872, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1008,14 +1008,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materiales:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 842bd5ccf1164f44a828ede32e8fec69, type: 2}
   - {fileID: 2100000, guid: 9dab5350f09e1db4f8dcf73656619713, type: 2}
   - {fileID: 2100000, guid: 629ac73f3a6145e41b0ff854b5283dab, type: 2}
-  - {fileID: 2100000, guid: 86e3af14d5499c74480033c73023933e, type: 2}
+  - {fileID: 2100000, guid: 76bd0ab2814615d45943703d14af988e, type: 2}
   objectType: 2
   isSelected: 0
   indexInList: -1
-  materialBase: {fileID: 0}
+  materialBase: {fileID: 2100000, guid: 278c056902e14554e80cbb6815159c7d, type: 2}
 --- !u!1 &4672155762793638052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,10 +1030,10 @@ GameObject:
   - component: {fileID: 667725754241285719}
   m_Layer: 0
   m_Name: Probetas
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &512878664766137021
 Transform:
@@ -1132,10 +1132,10 @@ GameObject:
   - component: {fileID: 4414057329111656086}
   m_Layer: 0
   m_Name: Silla
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4299013684229252017
 Transform:
@@ -1258,10 +1258,10 @@ GameObject:
   - component: {fileID: -8196835705647705542}
   m_Layer: 0
   m_Name: Analisis
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8890692260784982286
 Transform:
@@ -1272,7 +1272,7 @@ Transform:
   m_GameObject: {fileID: 8082207803388138420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.001, y: 1, z: 1.001}
   m_Children:
   - {fileID: 7952680728482820326}
   - {fileID: 7266647026177059285}
@@ -1303,13 +1303,13 @@ MonoBehaviour:
   placed: 0
   prefab: {fileID: 8082207803388138420}
   isSelected: 1
-  originalMaterial: {fileID: 2100000, guid: 779a7112241de3044af6a521e10e7178, type: 2}
+  originalMaterial: {fileID: 2100000, guid: 7f282ffa3ce27b54b8d77d9dab52c6c7, type: 2}
   materiales:
-  - {fileID: 2385314905884685917, guid: 10707d7c31c9c3343b10e82b21d8e596, type: 3}
+  - {fileID: 2100000, guid: fd42ffd2f0b3c864ba6324b49fa7a872, type: 2}
   - {fileID: 2100000, guid: 9dab5350f09e1db4f8dcf73656619713, type: 2}
   - {fileID: 2100000, guid: 629ac73f3a6145e41b0ff854b5283dab, type: 2}
-  - {fileID: 2100000, guid: 03693e3dcf2d8994183099814a60b6bc, type: 2}
-  - {fileID: 2100000, guid: c2070e25ede0e2f4d918b98033420b82, type: 2}
+  - {fileID: 2100000, guid: fd42ffd2f0b3c864ba6324b49fa7a872, type: 2}
+  - {fileID: 2100000, guid: fd42ffd2f0b3c864ba6324b49fa7a872, type: 2}
 --- !u!65 &3391114817924536300
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1334,7 +1334,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 40, y: 1, z: 40}
+  m_Size: {x: 25, y: 1, z: 25}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5175176100225355148
 Rigidbody:

@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 7002530698176877224}
   m_Layer: 0
   m_Name: Marca Radiologista
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &354584081022448537
 Transform:
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424105931808034884}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.63, y: 0, z: -1.51}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 5.7, y: 0.1, z: -4}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 8984330534687544179}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &4646494330596249154
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -115,10 +115,10 @@ GameObject:
   - component: {fileID: 38745036546848056}
   m_Layer: 0
   m_Name: MaquinaRayosX
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1379921577108944924
 Transform:
@@ -228,10 +228,10 @@ GameObject:
   - component: {fileID: 8543455284952729739}
   m_Layer: 0
   m_Name: Texto
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!224 &8762578874672712335
 RectTransform:
@@ -423,10 +423,10 @@ GameObject:
   - component: {fileID: 5931138261231026615}
   m_Layer: 0
   m_Name: Suelo
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7606945325538372251
 Transform:
@@ -468,7 +468,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 5a7ffc96cdeef864c8e0fde50eec0399, type: 3}
+  - {fileID: 2100000, guid: fd42ffd2f0b3c864ba6324b49fa7a872, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -505,7 +505,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 2100000, guid: 9dab5350f09e1db4f8dcf73656619713, type: 2}
   - {fileID: 2100000, guid: 629ac73f3a6145e41b0ff854b5283dab, type: 2}
-  - {fileID: 2100000, guid: 86e3af14d5499c74480033c73023933e, type: 2}
+  - {fileID: 2100000, guid: dd14165268eb46b4ab69d46afc7bbbb4, type: 2}
   objectType: 2
   isSelected: 0
   indexInList: -1
@@ -534,10 +534,10 @@ GameObject:
   - component: {fileID: 6120770966346267506}
   m_Layer: 0
   m_Name: IconoHabitacion
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2602664060771490234
 Transform:
@@ -618,10 +618,10 @@ GameObject:
   - component: {fileID: 6529317679490118475}
   m_Layer: 0
   m_Name: PanelRadiografias
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4910887435224688630
 Transform:
@@ -630,13 +630,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4657643913106974777}
-  m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.59492016, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 1.73, y: 0.6, z: 2.68}
   m_LocalScale: {x: 0.1862424, y: 0.1862424, z: 0.1862424}
   m_Children: []
   m_Father: {fileID: 8984330534687544179}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &2509739621415649069
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -731,10 +731,10 @@ GameObject:
   - component: {fileID: 2258254594794265944}
   m_Layer: 0
   m_Name: Silla
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4352164644758976972
 Transform:
@@ -843,10 +843,10 @@ GameObject:
   - component: {fileID: 2501265920021359082}
   m_Layer: 0
   m_Name: Marca Paciente
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2722111871214883120
 Transform:
@@ -856,7 +856,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6931806110521806581}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.48, y: 0, z: -1.81}
+  m_LocalPosition: {x: 5.55, y: 0.1, z: 3.66}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 8984330534687544179}
@@ -944,10 +944,10 @@ GameObject:
   - component: {fileID: 3519385617915959400}
   m_Layer: 0
   m_Name: Camilla
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1236504263301223492
 Transform:
@@ -1057,10 +1057,10 @@ GameObject:
   - component: {fileID: 5081962402038934977}
   m_Layer: 0
   m_Name: Mesa y ordenador
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &670584588347880799
 Transform:
@@ -1171,10 +1171,10 @@ GameObject:
   - component: {fileID: -2454870211714268874}
   m_Layer: 0
   m_Name: Radiologi
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8984330534687544179
 Transform:
@@ -1185,7 +1185,7 @@ Transform:
   m_GameObject: {fileID: 8639330880580438473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.001, y: 1, z: 1.001}
   m_Children:
   - {fileID: 7606945325538372251}
   - {fileID: 2722111871214883120}
@@ -1246,7 +1246,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 40, y: 1, z: 40}
+  m_Size: {x: 25, y: 1, z: 25}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1587154354022526540
 Rigidbody:

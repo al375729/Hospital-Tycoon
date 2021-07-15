@@ -26,7 +26,7 @@ public class ObjectsOnRoom : MonoBehaviour
     void Start()
     {
         materiales[0] = this.gameObject.GetComponent<MeshRenderer>().material;
-        materialBase = this.gameObject.GetComponent<MeshRenderer>().material;
+        //materialBase = this.gameObject.GetComponent<MeshRenderer>().material;
 
     }
 

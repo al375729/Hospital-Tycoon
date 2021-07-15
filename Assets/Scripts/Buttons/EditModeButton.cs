@@ -18,7 +18,7 @@ public class EditModeButton : MonoBehaviour
     {
         if((GlobalVariables.DELETE_MODE || GlobalVariables.UI_OPEN) && !GlobalVariables.EDIT_MODE)
         {
-           if(GlobalVariables.DELETE_MODE) Console.setText("Desactiva primero el modo destruccion");
+           if(GlobalVariables.DELETE_MODE) Console.setText("First deactivate the destruction mode");
            else if (GlobalVariables.UI_OPEN) Console.setText("Sal primero de la tienda");
         }
 

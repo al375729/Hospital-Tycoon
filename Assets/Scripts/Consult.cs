@@ -78,7 +78,7 @@ public class Consult : MonoBehaviour
         if (this.gameObject.GetComponent<Worker>().isWorking() && target != comporbation && agent.remainingDistance >= 2f)
         {
 
-            transform.LookAt(target);
+            //transform.LookAt(target);
         }
 
         if (this.gameObject.GetComponent<Worker>().isWorking() && state == State.WaitingForTask)
@@ -166,6 +166,7 @@ public class Consult : MonoBehaviour
                     transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                     state = State.Working;
                     this.gameObject.GetComponent<Worker>().currentstate = Worker.currentState.DoingConsult;
+                    this.gameObject.transform.LookAt(consultController.arrayForPatients[indexOfWindow]);
                     yield break;
 
                 }
@@ -239,9 +240,10 @@ public class Consult : MonoBehaviour
         {
             gameObject.GetComponent<Worker>().state = Worker.State.Working;
             patient.gameObject.GetComponent<Patient>().state = Patient.State.GettingConsult;
+            patient.gameObject.GetComponent<Patient>().waiting = false;
             PatientInfo.DisplayState(patient.gameObject);
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(4);
 
         if (gameObject.GetComponent<Worker>().waitingToChanheJob) 
         {

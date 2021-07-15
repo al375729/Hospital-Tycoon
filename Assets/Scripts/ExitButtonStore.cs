@@ -39,6 +39,8 @@ public class ExitButtonStore : MonoBehaviour, IPointerEnterHandler, IPointerExit
         image.color = imageColorIdle;
 
         button.GetComponent<Image>().color = Color.white;
+
+        ToolTipSystem.Hide();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

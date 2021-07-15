@@ -37,7 +37,7 @@ public class PatientGenerator : MonoBehaviour
     {
         GameObject[] personajes = new GameObject[10];
         personajes[0] = null;
-
+        //StartCoroutine("Function");
     }
 
     private void Update()
@@ -47,7 +47,13 @@ public class PatientGenerator : MonoBehaviour
             generatePatient();
         }
     }
+    IEnumerator Function()
+    {
 
+        yield return new WaitForSeconds(5);
+        StartCoroutine("Function");
+        generatePatient();
+    }
 
     void generatePatient()
     {
@@ -184,7 +190,7 @@ public class PatientGenerator : MonoBehaviour
                 instance.transform.localScale = new Vector3(10f, 10f, 10f);
                 instance.GetComponent<Patient>().sprite = generator.TakePhoto();
                 instance.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                instance.transform.position = new Vector3(-103f, 1f, -103f);
+                instance.transform.position = new Vector3(-102f, 0.1f, -107f);
                 instance.transform.rotation = Quaternion.identity;
             }
 
@@ -209,7 +215,7 @@ public class PatientGenerator : MonoBehaviour
                 instance.transform.position = positionSpawn;
                 instance.transform.rotation = Quaternion.identity;
                 instance.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                instance.transform.position = new Vector3(-103f, 1f, -103f);
+                instance.transform.position = new Vector3(-102f, 0.1f, -107f);
                 instance.transform.rotation = Quaternion.identity;
             }        
         }
@@ -230,7 +236,9 @@ public class PatientGenerator : MonoBehaviour
             instance.GetComponent<Patient>().sprite = generator.TakePhoto();
             instance.transform.position = positionSpawn;
             instance.transform.rotation = Quaternion.identity;
-            instance.transform.localScale = new Vector3(1f, 1f, 1f);
+            instance.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            instance.transform.position = new Vector3(-102f, 0.1f, -107f);
+            instance.transform.rotation = Quaternion.identity;
         }
 
         
@@ -240,16 +248,24 @@ public class PatientGenerator : MonoBehaviour
     private void createPatient(GameObject instance)
     {
         instance.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-        instance.transform.position = new Vector3(-103f, 1f, -103f);
+        instance.transform.position = new Vector3(-102f, 0.1f, -107f);
         instance.transform.rotation = Quaternion.identity;
         instance.transform.SetParent(parent.transform);
 
         NavMeshAgent agente = instance.GetComponent<NavMeshAgent>();
         agente.enabled = true;
 
+        agente.baseOffset = 0f;
+        agente.speed = 8;
+        agente.angularSpeed = 160;
+        agente.acceleration = 15;
+        agente.stoppingDistance = 0.1f;
+        agente.radius = 0.1f;
+        agente.height =3f;
+        agente.autoBraking = true;
         //agente.destination = entradaHospital.transform.position;
 
-        
+
     }
 }
 

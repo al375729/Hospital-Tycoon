@@ -150,9 +150,8 @@ public class RadiologyController : MonoBehaviour
                 patient.GetComponent<Patient>().addTask(task1);
                 patient.transform.SetParent(arrayForPatients[i]);
                 found = true;
-
-                Debug.Log("PRUEBA");
                 patient.gameObject.GetComponent<Patient>().state = Patient.State.GoingToRadiology;
+                patient.gameObject.GetComponent<Patient>().waiting = false;
                 PatientInfo.DisplayState(patient.gameObject);
 
                 break;
@@ -252,7 +251,7 @@ public class RadiologyController : MonoBehaviour
                 patient.gameObject.GetComponent<Patient>().state = Patient.State.WaitingForRadiology;
                 PatientInfo.DisplayState(patient.gameObject);
                 patient.gameObject.GetComponent<Patient>().waiting = true;
-                DisplayStatistics.changeNumberOfPatientsWaitingAnalysis(+1);
+                DisplayStatistics.changeNumberOfPatientsWaitingRadiology(+1);
                 DisplayStatistics.changeNumberOfPatientsWaiting(+1);
                 break;
             }
