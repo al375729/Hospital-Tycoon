@@ -120,7 +120,7 @@ public class Patient : MonoBehaviour
     private void Start()
     {
 
-         ran = Random.Range(88, 90);
+         ran = Random.Range(0, 100);
 
         if (ran < 60)
         {
