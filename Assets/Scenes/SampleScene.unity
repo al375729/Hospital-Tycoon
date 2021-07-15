@@ -11628,7 +11628,7 @@ MonoBehaviour:
   sun: {fileID: 734055452}
   sunVariation: 1.5
   sunBaseIntensity: 1.1
-  _targetDayLength: 0.1
+  _targetDayLength: 0.01
   sunGradient:
     serializedVersion: 2
     key0: {r: 0, g: 0, b: 0, a: 1}
