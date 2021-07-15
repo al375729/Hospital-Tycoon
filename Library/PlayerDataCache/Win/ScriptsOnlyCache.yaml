@@ -569,7 +569,7 @@ ScriptsOnlyBuild:
     className: Console
   - hash:
       serializedVersion: 2
-      Hash: 1468e5b8b5a86c9ce0c18a60a4129348
+      Hash: 78781fdd352e743da01e5d09d10b7417
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Patient
@@ -1296,4 +1296,4 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/34655/Desktop/Hospital Tycoon.exe
+  playerPath: C:/Users/34655/Desktop/TycoonBuild/Hospital Tycoon.exe

@@ -37,15 +37,15 @@ public class PatientGenerator : MonoBehaviour
     {
         GameObject[] personajes = new GameObject[10];
         personajes[0] = null;
-        //StartCoroutine("Function");
+        StartCoroutine("Function");
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(2))
+        /*if (Input.GetMouseButtonDown(2))
         {
             generatePatient();
-        }
+        }*/
     }
     IEnumerator Function()
     {
